@@ -104,12 +104,14 @@ _Administrator_ Goal 3: Develop web resources for sharing the plant information
   - Through printing, the selected plant list could be shared to a wider audience and served as future references
   - A presentable printed list with some styling is important for others to view and comprehend
 
-_Administrator_ Goal 4: Allows for adding new plants into the catalog
+_Administrator_ Goal 4: Allows for adding, editing, and deleting plants into the catalog
 
 - **Design Ideas and Choices** _How will you meet those goals in your design?_
   - Include a form that allow administrators to add new plant into the catalog
+  - Allow administration to edit or delete existing data
 - **Rationale & Additional Notes** _Justify your decisions; additional notes._
   - Since the researchers are constantly doing research and updating information, they will have new plants to add into the database for themselves and for consumers, so an add-entry form is necessary for them to do so
+  - They may also identify mistakes in existing data or find some irrelevant or outdates, so the website will support them to edit or delete plant data on site
 
 
 ### _Administrator_ Persona (Milestone 1)
