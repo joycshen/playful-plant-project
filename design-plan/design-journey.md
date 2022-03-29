@@ -20,9 +20,9 @@ You can use bullet points and lists, or full paragraphs, or a combo, whichever i
 > Briefly explain who the intended audiences are for your project website.
 > **DO NOT INVENT RANDOM AUDIENCES HERE!** Use the audiences from the requirements.
 
-_Consumer_: TODO
+_Consumer_: parents with developing children who are interested in building small but high quality, nature-rich areas around their households
 
-_Site Administrator_: TODO
+_Site Administrator_: members of the Playful Plants Project who are researchers at Cornell University
 
 
 ### _Consumer_ Audience Goals (Milestone 1)
@@ -30,22 +30,65 @@ _Site Administrator_: TODO
 > List each goal below. There is no specific number of goals required for this, but you need enough to do the job.
 > **DO NOT INVENT RANDOM GOALS HERE OR STEREOTYPE HERE!** Your goals are things that your users want accomplish when using the site (e.g. print a list of plants). These are informed by the Playful Plants objectives. Review the assignment's requirements for details.
 
-_Consumer_ Goal 1: TODO: Brief Title
+_Consumer_ Goal 1: View and browse potential plants at once with intuitive pictures
 
 - **Design Ideas and Choices** _How will you meet those goals in your design?_
-  - TODO
+  - Display plants on one page with minimum information but just colloquial names and the corresponding pictures
 - **Rationale & Additional Notes** _Justify your decisions; additional notes._
-  - TODO
+  - Since parents of developing children are no experts in plants or biology-related knowledge, name and pictures of plants are the most intuitive and relevant information for them to have a first glance of potential plants.
+  - With potential plants on the same page, consumers will have a basic glimpse, understanding, and first impressionce of choices
 
-_Consumer_ Goal 2: TODO
+_Consumer_ Goal 2: Identify nature-rich plants that will provide interests or help to engage children in gardening
 
-TODO
+- **Design Ideas and Choices** _How will you meet those goals in your design?_
+  - Display information regarding whether the plant is nature-rich and could provide interests or help, such as the general type of plant (shrub, grass, vine, etc.), and the play oppotunities each plant offer
+- **Rationale & Additional Notes** _Justify your decisions; additional notes._
+  - Play opportunities of each plant is relevant and useful information for consumers to decide what plant is nature-rich and could provide year-long help to engage children, as playfulness is attractive to children
+  - The general type of plant is also relevant and is useful in identifying whether a plant is nature-rich
 
-_Consumer_ Goal 3: TODO
+_Consumer_ Goal 3: Identify whether a plant is year-around
+- **Design Ideas and Choices** _How will you meet those goals in your design?_
+  - Display information regarding  whether a plant is an annual or perennial
+- **Rationale & Additional Notes** _Justify your decisions; additional notes._
+  - Information about whether a plant is annual or perennial inform the consumers whether each supports year-long interest and help that is suitable for them to garden
 
-TODO
+_Consumer_ Goal 4: Learn about basic plant care information that can be applied to gardening
 
-TODO: ...
+- **Design Ideas and Choices** _How will you meet those goals in your design?_
+  - Display information of growing needs and characteristics of each plant, such as the hardiness zone, and the sun requirements
+- **Rationale & Additional Notes** _Justify your decisions; additional notes._
+  - Since the consumers plan to garden using the plant data, information about plants' hardiness zoon and sun requirements are essential to learn about
+
+
+_Site Administrator_ Goal 1: Develop a database of playful plants, which support a range of nature play experiences, that can be view at once
+
+- **Design Ideas and Choices** _How will you meet those goals in your design?_
+  - Display plants on one page with TOPO (Play Type Categorization), name, genus and species, and plant ID
+- **Rationale & Additional Notes** _Justify your decisions; additional notes._
+  - TOPO is the critical information for an administrator to show plants that support nature play experiences.
+  - As a member of the project, the administrator has more professional knowledge of plants, and therefore information such as genus and species, and plant ID are useful for them to identify plants
+
+_Site Administrator_Goal 2: Tailor selections to provide ideas and plant collections for specific nature spaces and gardens.
+
+- **Design Ideas and Choices** _How will you meet those goals in your design?_
+  - The database will support filtering, sorting, or searching plants simultaneously, allowing multiple possible combinations of plant data
+- **Rationale & Additional Notes** _Justify your decisions; additional notes._
+  - With filtering, sorting, and searching, the administrator will be able to come up with the most suitable ideas or collections of plants for a themed scenario
+
+_Site Administrator_ Goal 3: Develop web resources for sharing the plant information
+
+- **Design Ideas and Choices** _How will you meet those goals in your design?_
+  - Allow printing selected plant list in an organized and presentable way
+- **Rationale & Additional Notes** _Justify your decisions; additional notes._
+  - Through printing, the selected plant list could be shared to a wider audience and served as future references
+  - A presentable printed list with some styling is important for others to view and comprehend
+
+_Site Administrator_ Goal 4: Allows for adding new plants into the catalog
+
+- **Design Ideas and Choices** _How will you meet those goals in your design?_
+  - Include a form that allow administrators to add new plant into the catalog
+- **Rationale & Additional Notes** _Justify your decisions; additional notes._
+  - Since the researchers are constantly doing research and updating information, they will have new plants to add into the database for themselves and for consumers, so an add-entry form is necessary for them to do so
 
 
 ### _Consumer_ Persona (Milestone 1)
