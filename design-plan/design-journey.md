@@ -42,9 +42,11 @@ _Consumer_ Goal 2: Identify nature-rich plants that will provide interests or he
 
 - **Design Ideas and Choices** _How will you meet those goals in your design?_
   - Display information regarding whether the plant is nature-rich and could provide interests or help, such as the general type of plant (shrub, grass, vine, etc.), and the play oppotunities each plant offer
+  - Use tags to show plant characteristics
 - **Rationale & Additional Notes** _Justify your decisions; additional notes._
   - Play opportunities of each plant is relevant and useful information for consumers to decide what plant is nature-rich and could provide year-long help to engage children, as playfulness is attractive to children
   - The general type of plant is also relevant and is useful in identifying whether a plant is nature-rich
+  - Tags are straightforward and intuitive for consumers to look at and identify whether a plant has certain characteristics, which can be helpful in selecting nature-rich ones
 
 _Consumer_ Goal 3: Identify whether a plant is year-round
 - **Design Ideas and Choices** _How will you meet those goals in your design?_
@@ -59,6 +61,12 @@ _Consumer_ Goal 4: Learn about basic plant care information that can be applied 
 - **Rationale & Additional Notes** _Justify your decisions; additional notes._
   - Since the consumers plan to garden using the plant data, information about plants' hardiness zoon and sun requirements are essential to learn about
 
+_Consumer_Goal 5: Select plants of specific type
+
+- **Design Ideas and Choices** _How will you meet those goals in your design?_
+  - The database will support filtering and sorting plants simultaneously, allowing multiple possible combinations of plant data
+- **Rationale & Additional Notes** _Justify your decisions; additional notes._
+  - With filtering and sorting, the consumer will be able to locate down to plants that satisfy their specific requirements and ones that are the most suitable in supporting gardening and engaging children
 
 ### _Consumer_ Persona (Milestone 1)
 > Use the goals you identified above to develop a persona of your site's audience.
@@ -84,9 +92,9 @@ _Administrator_ Goal 1: Develop a database of playful plants, which support a ra
 _Administrator_Goal 2: Tailor selections to provide ideas and plant collections for specific nature spaces and gardens.
 
 - **Design Ideas and Choices** _How will you meet those goals in your design?_
-  - The database will support filtering, sorting, or searching plants simultaneously, allowing multiple possible combinations of plant data
+  - The database will support filtering and sorting plants simultaneously, allowing multiple possible combinations of plant data
 - **Rationale & Additional Notes** _Justify your decisions; additional notes._
-  - With filtering, sorting, and searching, the administrator will be able to come up with the most suitable ideas or collections of plants for a themed scenario
+  - With filtering and sorting, the administrator will be able to come up with the most suitable ideas or collections of plants for a themed scenario
 
 _Administrator_ Goal 3: Develop web resources for sharing the plant information
 
