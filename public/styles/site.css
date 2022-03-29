@@ -1,0 +1,176 @@
+body {
+    background-color: beige;
+    margin: 0;
+}
+
+title {
+    justify-content: center;
+}
+
+h1{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: white;
+}
+
+h2{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #4a5c50;
+    text-decoration: underline;
+    line-height: 30px;
+}
+
+h3{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #5d7264ea;
+    font-size: 16px;
+    line-height: 20px;
+}
+
+ul {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+}
+
+ul li {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    line-height: 20px;
+}
+
+p {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    line-height: 0px;
+    color: #516150;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+  }
+
+nav ul li {
+    margin: 0;
+    padding: 0px;
+    flex-grow: 4;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #516150;
+}
+
+nav ul li a {
+    display: block;
+    padding: 10px 0px;
+    margin: 5px;
+    text-align: center;
+    background-color: #ffffff69;
+    color: white;
+    font-size: 16px;
+    text-decoration: none;
+}
+
+nav ul li a:link, nav ul li a:visited {
+    color: black;
+  }
+
+nav ul li a:focus, nav ul li a:hover, nav ul li a:active {
+    color: #fff;
+  }
+
+header {
+    color: white;
+    background-color: #4a5c50;
+    padding: 1px 10px 20px 10px;
+}
+
+article {
+    padding: 10px 20px 20px 10px;
+    margin-left: 20px;
+}
+
+section p {
+    line-height: 20px;
+    font-size: 16px;
+}
+
+.main {
+    display: flex;
+    justify-content: center;
+}
+
+.sections {
+    display: flex;
+    flex-direction: row;
+}
+
+.sections article {
+    padding: 10px 20px;
+    margin: 5px;
+    flex-grow: 3;
+}
+
+.sections aside {
+    padding: 10px 10px;
+    margin: 5px;
+    flex-grow: 0;
+}
+
+.catalog {
+    background-color:#ebebc1;
+    padding: 1px 10px 20px 10px;
+    margin: 10px;
+}
+
+.cutleaf_weeping_birch {
+    background-color:#ebebc1;
+    padding: 1px 10px 20px 10px;
+    margin: 10px;
+}
+
+form {
+    display: inline-block;
+}
+
+form * {
+    margin-bottom: 2px;
+    margin: 1px;
+}
+
+form label {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.label_input {
+    display: flex;
+    flex-direction: column;
+    align-items:flex-start;
+    margin-bottom: 8px;
+}
+
+.forms .label_input {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.form {
+    background-color:#f0f0d4d3;
+    padding: 10px 10px 20px 10px;
+}
+
+.align_right {
+    display: flex;
+    justify-content:flex-end;
+  }
+
+.feedback {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 16px;
+    line-height: 20px;
+    color: #b42727;
+}
+
+.hidden {
+    display: none;
+  }
