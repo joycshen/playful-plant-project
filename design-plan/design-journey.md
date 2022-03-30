@@ -295,16 +295,56 @@ Tabl4: users
 ### Database Query Plan (Milestone 1, Milestone 2, Milestone 3, Final Submission)
 > Plan _all_ of your database queries. You may use natural language, pseudocode, or SQL.
 
-```
-TODO: Plan a query
-```
+1. All Records
 
-```
-TODO: Plan another query
-```
+    ```
+    SELECT * FROM entries;
+    ```
 
-TODO: ...
+2. Filter/Sort/Tags Records
 
+  Filter
+
+  ```
+    SELECT * FROM entries WHERE (exploratory_constructive_play_present = 1);
+    SELECT * FROM entries WHERE (exploratory_sensory_play_present = 1);
+    SELECT * FROM entries WHERE (physical_play_present = 1);
+    SELECT * FROM entries WHERE (imaginative_play_present = 1);
+    SELECT * FROM entries WHERE (restorative_play_present = 1);
+    SELECT * FROM entries WHERE (play_with_rules_present = 1);
+    SELECT * FROM entries WHERE (bio_play_present = 1);
+    SELECT * FROM entries WHERE (perennial = 1);
+    SELECT * FROM entries WHERE (full_sun = 1);
+    SELECT * FROM entries WHERE (partial_shade = 1);
+    SELECT * FROM entries WHERE (full_shade = 1);
+    SELECT * FROM entries WHERE (hardiness_zone_range = 1);
+  ```
+
+  Sort
+
+  ```
+    SELECT * FROM entries ORDER BY name_colloquial ASC;
+    SELECT * FROM entries ORDER BY name_colloquial DESC;
+  ```
+
+  Tags
+
+  ```
+    SELECT * FROM entries WHERE (shrub = 1);
+    SELECT * FROM entries WHERE (grass = 1);
+    SELECT * FROM entries WHERE (vine = 1);
+    SELECT * FROM entries WHERE (tree = 1);
+    SELECT * FROM entries WHERE (flower = 1);
+    SELECT * FROM entries WHERE (groundcovers = 1);
+    SELECT * FROM entries WHERE (other = 1);
+  ```
+
+3. Insert Record
+
+    ```
+    INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play_present, exploratory_sensory_play_present, physical_play_present, imaginative_play_present, restorative_play_present, play_with_rules_present, bio_play_present) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play_present, :exploratory_sensory_play_present, :physical_play_present, :imaginative_play_present, :restorative_play_present, :play_with_rules_present, :bio_play_present);
+    INSERT INTO entries (shrub, grass, vine, tree, flower, groundcovers, other) VALUES (:shrub, :grass, :vine, :tree, :flower, :groundcovers, :other);
+    ```
 
 ### Code Planning (Milestone 1, Milestone 2, Milestone 3, Final Submission)
 > Plan any PHP code you'll need here using pseudocode.
