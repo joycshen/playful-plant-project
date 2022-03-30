@@ -250,11 +250,46 @@ Since Pat falls mostly in the middle of the five cognitive style facets, I inclu
 > **Hint: You probably need a table for "entries", `tags`, `"entry"_tags`** (stores relationship between entries and tags), and a `users` tables.
 > **Hint: For foreign keys, use the singular name of the table + _id.** For example: `image_id` and `tag_id` for the `image_tags` (tags for each image) table.
 
-Table: TODO
+Table1: entries
 
-- field1: TYPE {constraints...},
-- field2...
-- TODO
+- id: INTEGER {PK, U, NN, AI}
+- name_colloquial: TEXT {NN}
+- name_genus_species: TEXT {NN}
+- plant_id: TEXT {NN}
+- exploratory_constructive_play_present: INTEGER {NN}
+- exploratory_sensory_play_present: INTEGER {NN}
+- physical_play_present: INTEGER {NN}
+- imaginative_play_present: INTEGER {NN}
+- restorative_play_present: INTEGER {NN}
+- play_with_rules_present: INTEGER {NN}
+- bio_play_present: INTEGER {NN}
+- perennial: INTEGER {NN}
+- full_sun: INTEGER {NN}
+- partial_shade: INTEGER {NN}
+- full_shade: INTEGER {NN}
+- hardiness_zone_range: TEXT {NN}
+
+Table2: tags
+
+- shrub: INTEGER {NN}
+- grass: INTEGER {NN}
+- vine: INTEGER {NN}
+- tree: INTEGER {NN}
+- flower: INTEGER {NN}
+- groundcovers: INTEGER {NN}
+- other: INTEGER {NN}
+
+Table3: entry_tags
+
+- id: INTEGER {PK, U, NN, AI}
+- entry_id: INTEGER {NN}
+- tag_id: INTEGER {NN}
+
+Tabl4: users
+
+- id: INTEGER {PK, U, NN, AI}
+- username: TEXT {NN}
+- password: TEXT {NN}
 
 
 ### Database Query Plan (Milestone 1, Milestone 2, Milestone 3, Final Submission)
