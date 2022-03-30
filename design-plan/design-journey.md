@@ -185,9 +185,10 @@ I showed only one confirmation message for this iteration and add hyperlinks lin
 _Final Design:_
 
 **URL for thumbnail: /**
+
 **URL for details page: /plant-name**
 
-![mobile homepage final](mobile_home_final.png)
+![mobile homepage final](mobile_final.png)
 
 I will use hover drop-down for menu, filter, sort, and tags. This not only save space for mobile version, but also Abi, a risk-averse consumer who processes information comprehensively, to know exactly what to do. I also decided to put two pictures of plants in a row to make the most effective use of space while displaying the right amount of information for Abi to process. As mentioned before, a list dislay for the details page for each plant is helpful for Abi, who has low self-efficacy and task-oriented motivation, to select and comprehend information.
 
@@ -226,7 +227,7 @@ The confirmation message provides the right amount of information and direct Pat
 ### Design Pattern Explanation/Reflection (Milestone 1)
 > Write a one paragraph (6-8 sentences) reflection explaining how you used design patterns for media catalogs in your site's final design.
 
-TODO
+I included filter, sort, and tags for the catalog, which allow Abi and Pat to select the plants that meet their specific needs and wants. The filter, sort, and tag functions are all sticky so that Abi and Pat will always be able to trace back to what they have selected. For the mobile version, I mainly use hover drop-down as it saves space and also makes sense to Abi and Pat, informing what they can do. For the desktop version, I include a sidebar for tags so that it is intuitive to use. I used thumbnails to display plants so that Abi and Pat could view all plants at once. They could click on each pictures to view details of the plant. Information are also grouped together and are shown in list display, which is concise and organized to view. The website also support printing list.
 
 
 ### Cognitive Styles Explanation/Reflection (Milestone 1)
@@ -234,12 +235,12 @@ TODO
 
 _Consumer Cognitive Styles Reflection:_
 
-TODO
 
+In my final design, I used hover drop-down for filter and sort (also tag for mobile version), which support Abi, a risk-averse consumer who processes information comprehensively, to know exactly what to do. I employed a list dislay for the details page for each plant, which is helpful for Abi, who has low self-efficacy and task-oriented motivation, to select and comprehend information. I also provides a notice on the "add new plants" page to inform Abi kindly that page is not for her. I phrased the notice in a gentle and clear way so that Abi, who has low computer self-efficacy and is risk-averse, would not blame herself and leave site after trying to log in but fail. In addition, I made sure not to present too much information at once to Abi, but display them step-by-step in a reasonble sequence, so she could digest all information. As someone who tend to process information comprehensively, she would read through everything and complete her task following the site guide.
 
 _Site Administrator Cognitive Styles Reflection:_
 
-TODO
+Since Pat falls mostly in the middle of the five cognitive style facets, I include concise information that provide the right amount of information to understand a task. For instance, I grouped different information both in the catalog and in the form so that Pat will be able to trace and locate to her desired information. I also provided feedback using concise yet gentle expressions to inform her she is doing something wrong. These design choices would guide and sufficient for Pat, who combine tinkering and processing information comprehensively. I also created a separate page for Pat to add new plants so that she will not feel overwhelmed by too much information on one page, which might stimulate risk-averse behaviors. The confirmation page also acts as an affirmation to Pat, who is somewhat risk-averse but not quite so. With the concise message, Pat would be assured and move onto the next task, or even explore new functions, given she is neither task-motivated or technology-motivated.
 
 
 ## Implementation Plan (Milestone 1, Milestone 2, Milestone 3, Final Submission)
