@@ -213,8 +213,10 @@ I will show a notice in a box for Abi and Pat before them attempt to login. Feed
 **URL: /add-new-plants/form**
 
 ![add-entry form final](add_form_final.png)
+![full catalog for admin final](admin_catalog_final.png)
 
 I segmented different sections and display them in a row to save space, and show some strcuture for Pat. The concise feedback also show the right amount of guidance to Pat, who is in the middle of all cognitive facets.
+I also put the full catalog of the plants as a list with filter and sort options for Pat underneath the add-entry form. Pat can refer to the catalog and see data that is relevant to her need, including plant name, species and genus, plant ID, and types of play categorizations. She will also be able to filter and sort the plants based on themed situation and select the plants that concur her desires.
 
 
 **URL: /add-new-plants/confirmation**
