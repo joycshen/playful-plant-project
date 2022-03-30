@@ -3,8 +3,8 @@
 
   <nav>
     <ul>
-        <li class="<?php echo $nav_plants_data; ?>"><a href="/">Playful Plants Data</a>
-        <li class="<?php echo $nav_new_entry_form; ?>"><a href="/add-new-plants-form">Add-New-Plants Form</a>
+        <li class="<?php echo $nav_plants_data; ?>"><a href="/">Plants Information</a>
+        <li class="<?php echo $nav_new_entry_form; ?>"><a href="/add-new-plants-form">Add New Plants</a>
     </ul>
   </nav>
 </header>
