@@ -350,16 +350,85 @@ Tabl4: users
 > Plan any PHP code you'll need here using pseudocode.
 > Tip: Break this up by pages. It makes it easier to plan.
 
+_1. "Plant Information" page_
+
+The following is the plan for filtering/sorting form. (this form does not require user to fill out every parameter, gives a uniform feedback if the user didn't specify any filter/sort but click on the filter/sort button, and does not show a confirmation message)
 ```
-TODO: WRITE YOUR PSEUDOCODE HERE, between the back-tick lines.
+1. initiatlize default page state (show form, hide feedback)
+2. if form is submitted:
+3.      store HTTP parameter (assume form is valid)
+4.      check whether at least one TOPO checkbox or one sorting option is checked: if not:
+5.         set form to invalid
+6.         show feedback message for filtering/sorting
+7. if form is valid
+8.     set sticky values for the selected filtering/sorting
 ```
 
+The following is the plan for selecting tags
 ```
-TODO: WRITE MORE PSEUDOCODE HERE, between the back-tick lines.
+1. initiatlize default page state (show form, hide feedback)
+2. if at least one tag is selected:
+3.         show plants that have the selected tag(s)
 ```
 
-TODO: ...
+_2. "Add New Plants" page_
 
+The following is the plan for user login and logout
+```
+1. initiatlize default page state (show form, hide feedback)
+2. if form is submitted:
+3.      store HTTP parameter (assume form is valid)
+4.      check whether username is entered: if not:
+5.         set form to invalid
+6.         show feedback message for entering a username
+7.      check whether password is entered: if not:
+8.         set form to invalid
+9.         show feedback message for entering a valid password
+10. if form is valid
+11.     set sticky values for the entered information
+12.     direct to add-entry form
+```
+
+The following are pseudocodes for the add-entry form. (this form require the user to fill out each parameter and will show a confirmation message if form is valid)
+```
+1. initiatlize default page state (hide confirmation, show form, hide feedback)
+2. if form is submitted:
+3.      store HTTP parameter (assume form is valid)
+4.      check whether plant name (colloquial parameter) is empty: if empty:
+5.         set form to invalid
+6.         show feedback message for plant name (colloquial) parameter
+7.     check whether plant name(genus,species) parameter is empty: if empty:
+8.        set form to invalid
+9.        show feedback message for plant name(genus,species) parameter
+10.     check whether plant id parameter is empty: if empty:
+11.        set form to invalid
+12.        show feedback message for plant id parameter
+13.     check whether at least one TOPO checkbox is checked: if not:
+14.         set form to invalid
+15.         show feedback message for TOPO checkboxes
+16.     check whether at least one growing need checkbox is checked: if not:
+17.         set form to invalid
+18.         show feedback message for growing need checkboxes
+19.     check whether at least one tag is selected: if not:
+20.         set form to invalid
+21.         show feedback message for selecting tags
+22.     check whether image of the plant is uploaded: if not:
+23.         set form to invalid
+24.         show feedback message for uploading image for the plant
+25. if form is valid
+26.     query DB
+27.     show confirmation message
+28. else
+29.     set sticky values
+```
+
+The following is the plan for adding new plant data
+```
+```
+
+Assemble sql
+```
+```
 
 ### Accessibility Audit (Final Submission)
 > Tell us what issues you discovered during your accessibility audit.
