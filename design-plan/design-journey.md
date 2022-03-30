@@ -133,12 +133,94 @@ _Administrator_ Goal 4: Allows for adding, editing, and deleting plants into the
 
 _Initial Designs / Design Iterations:_
 
-TODO
+**Iteration 1:**
+
+![mobile homepage #1](mobile_home_1.png)
+
+This is the 1st design idea of the mobile version of Home page that both Abi and Pat will look at. I display 2 plants' pictures in a row using a thumbnail view. I decided to use a drop-down nav bar because mobile version has less space and I want to save that space for filter and sort to satisfy Abi and Pat's goal of selecting plants for themed purposes. The sketch also shows what the detailed description of each plant looks like, with colloquial name and tags on the top and the same photo of the plant as it was shown in the thumbnail, so Abi, who is risk averse and has low self-efficacy, will be able to trace what she is doing and knows whether she is looking at the right plant she wants.
+
+![desktop homepage #1](desktop_home_1.png)
+
+This is the 1st desktop version of Home page for both Abi and Pat. Pat will be able to edit or delete each plant in the thumbnail after she logs in. I put only 2 pictures in a row to minimize information for Abi and a filtering and sorting section at the top so they are intuitive to use.
+
+![desktop detailed description page #1](desktop_detail_description_1.png)
+
+This is the desktop version of the detailed description page of a plant. I display data in lists so that Abi, who has a task-oriented motivation and process-oriented learning style, and is risk-averse and , can find what she is looking for exactly without confusion and many efforts.
+
+![admin-only login page #1](admin-only_1.png)
+
+This is the 1st design idea for both desktop and mobile for the admin-only page where it requires users to log in. A feedback message explicitly explaining what is going on will inform Abi she is not allowed to do anything further. The feedback for username and password field when they are not entered correctly will inform and guide Pat what to do.
+
+![add-entry form #1](add_form_1.png)
+
+This is the add entry form for desptop version where Pat will access. I first designed two forms becasue Abi and Pat have different goals and want to see different data, so I think it would be clear for Pat to enter data separately. I will include another catalog specifically for Pat below the forms.
+
+![confirmation+logout page #1](confirmation_1.png)
+
+This is the confirmation message that will show up after Pat successfully enter add entry. This ensures Pat she has done everything right and that her need is fulfilled.
+
+**Iteration 2:**
+
+![mobile homepage #2](mobile_home_2.png)
+
+I display only 1 picture in 1 row for this iteration for the mobile version. This would be more digestible for Abi who has the patience to view everything and one at a time as someone who has comprehensive information processing style.
+
+![desktop homepage #2](desktop_home_2.png)
+
+I decided to have a section for all the filtering, sorting, and tags for the desktop version. I also change the name of each section in the nav bar to "Plant Information" and "Add new plant", as this tell Abi and Pat directly what each page is about.
+
+![admin-only login page #2](login_2.png)
+
+I added a section telling Abi explicitly that this page is for admin-only before she tried to enter something to login. As someone who is risk-averse and has low self-efficacy, this message would prevent Abi from leaving the site directly or blaming herself.
+
+![add-entry form #2](add_form_2.png)
+
+I combined the two forms to one as it would be more convenient for Pat. The backend will handle what data goes to where, and the website wil also provide feedback when Pat do something wrong. As someone who is somewhere between tinkering and by process in terms of learning style, she will find the form friendly and easy-to-use without excessive feedback.
+
+![confirmation+logout page #2](confirmation_2.png)
+
+I showed only one confirmation message for this iteration and add hyperlinks linking to the catalog or linking back to the add-entry form to better guide Pat.
 
 
 _Final Design:_
 
-TODO
+**URL for thumbnail: /**
+**URL for details page: /plant-name**
+
+![mobile homepage final](mobile_home_final.png)
+
+I will use hover drop-down for menu, filter, sort, and tags. This not only save space for mobile version, but also Abi, a risk-averse consumer who processes information comprehensively, to know exactly what to do. I also decided to put two pictures of plants in a row to make the most effective use of space while displaying the right amount of information for Abi to process. As mentioned before, a list dislay for the details page for each plant is helpful for Abi, who has low self-efficacy and task-oriented motivation, to select and comprehend information.
+
+**URL: /**
+
+![desktop homepage thumbnail final](desktop_thumbnail_final.png)
+
+For the desktop thumbnail, I will use hover drop-down for filter and sort, and a sidebar for tags on the right to make effective use of space, and that Abi and Pat could select plants they desire. Three pictures of plants are displayed in a row. "Delet" buttons will only appear for Pat after she logs in, so that she could reach the goal of deleting plants.
+
+**URL: /plant-name**
+
+![desktop homepage details final](desktop_detail_final.png)
+
+I will use boxes to group different information so that Abi and Pat to see some organization and categorization of information. "Edit Plant" button will only appear after Pat login, so that she will be able to edit plants, as her one of her needs. Information such as genus, plant ID, and TOPO will also only be displayed for Pat after login.
+
+**URL: /add-new-plants/login**
+
+![admin-only login page final](login_final.png)
+
+I will show a notice in a box for Abi and Pat before them attempt to login. Feedback messages and sticky values will process themselves for Pat as she tries to login. These message help Abi, who is risk-averse, and has low self-efficacy and process-oriented learn style to process information and stay on site to achieve needs.
+
+**URL: /add-new-plants/form**
+
+![add-entry form final](add_form_final.png)
+
+I segmented different sections and display them in a row to save space, and show some strcuture for Pat. The concise feedback also show the right amount of guidance to Pat, who is in the middle of all cognitive facets.
+
+
+**URL: /add-new-plants/confirmation**
+
+![confirmation+logout page #2](confirmation_final.png)
+
+The confirmation message provides the right amount of information and direct Pat to corresponding pages. This informs Pat her need is satified, and offer guide to her next need to edit or add more data.
 
 
 ### Design Pattern Explanation/Reflection (Milestone 1)
