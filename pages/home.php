@@ -104,31 +104,39 @@ $nav_plants_data = "active_page";
       <div class="plants">
         <div class="plant">
         <div>
-          <img src="public/images/FL_26.jpg" alt="" width="300" height="300"/>
+          <img src="public/images/FL_26.jpg" alt="" width="250" height="250"/>
           <h3>Lady's mantle</h3>
         </div>
         <div>
-          <img src="public/images/FL_05.jpg" alt="" width="300" height="300"/>
+          <img src="public/images/FL_05.jpg" alt="" width="250" height="250"/>
           <h3>Spiked Gay-Feather</h3>
         </div>
         <div>
-          <img src="public/images/GA_05.jpg" alt="" width="300" height="300"/>
+          <img src="public/images/GA_05.jpg" alt="" width="250" height="250"/>
           <h3>Broad-leaf Sedge</h3>
+        </div>
+        <div>
+          <img src="public/images/SH_29.jpg" alt="" width="250" height="250"/>
+          <h3>Red Osier Dogwood</h3>
         </div>
         </div>
 
         <div class="plant">
         <div>
-          <img src="public/images/SH_29.jpg" alt="" width="300" height="300"/>
-          <h3>Red Osier Dogwood</h3>
-        </div>
-        <div>
-          <img src="public/images/SH_33.jpg" alt="" width="300" height="300"/>
+          <img src="public/images/SH_33.jpg" alt="" width="250" height="250"/>
           <h3>Flowering Raspberry</h3>
         </div>
         <div>
-          <img src="public/images/TR_23.jpg" alt="" width="300" height="300"/>
+          <img src="public/images/TR_23.jpg" alt="" width="250" height="250"/>
           <h3>River Birch</h3>
+        </div>
+        <div>
+          <img src="public/images/SH_03.jpg" alt="" width="250" height="250"/>
+          <h3>Harry Lauder's Walking stick</h3>
+        </div>
+        <div>
+          <img src="public/images/FE_12.jpg" alt="" width="250" height="250"/>
+          <h3>Christmas fern</h3>
         </div>
         </div>
       </div>

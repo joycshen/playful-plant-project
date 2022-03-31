@@ -192,8 +192,9 @@ form label {
 }
 
 img {
-    padding: 10px 10px;
-    margin: 20px;
+    /* width: 80%; */
+    padding: 10px;
+    margin: 15px;
 }
 
 .filters {
