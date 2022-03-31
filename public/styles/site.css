@@ -191,7 +191,7 @@ form label {
     margin-bottom: 20px;
 }
 
-.plant {
+.plant, .detail {
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -285,12 +285,6 @@ img {
 
 .style:hover {
     background-color: #9daa9c;
-}
-
-.detail {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
 }
 
 .detail button {
