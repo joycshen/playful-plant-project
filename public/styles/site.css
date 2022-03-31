@@ -124,6 +124,11 @@ section p {
     margin: 10px;
 }
 
+.catalogs {
+    display: flex;
+    flex-direction: column;
+}
+
 .cutleaf_weeping_birch {
     background-color:#ebebc1;
     padding: 1px 10px 20px 10px;
@@ -189,6 +194,13 @@ form label {
 .plant {
     display: flex;
     flex-direction: row;
+    align-items: center;
+}
+
+.plant h3 {
+    line-height: 0px;
+    padding: 20px;
+    margin: 15px;
 }
 
 img {
@@ -273,4 +285,14 @@ img {
 
 .style:hover {
     background-color: #9daa9c;
+}
+
+.detail {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.detail button {
+    margin-left: 50px;
 }

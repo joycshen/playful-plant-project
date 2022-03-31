@@ -269,7 +269,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
         <p>The new plant <strong>"<?php echo htmlspecialchars($colloquial_name); ?>"</strong> is successfully added to the catalog!</p>
 
-        <p>View new catalog in <a href="/">Playful Plant Data</a>.</p>
+        <p>View new catalog in <a href="/">Playful Plant Data</a></p>
       </section>
 
     <?php } else { ?>

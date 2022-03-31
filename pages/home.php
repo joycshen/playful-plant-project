@@ -104,7 +104,9 @@ $nav_plants_data = "active_page";
       <div class="plants">
         <div class="plant">
         <div>
-          <img src="public/images/FL_26.jpg" alt="" width="250" height="250"/>
+          <a href="/plant-details">
+            <img src="public/images/FL_26.jpg" alt="" width="250" height="250"/>
+          </a>
           <h3>Lady's mantle</h3>
         </div>
         <div>
@@ -147,7 +149,7 @@ $nav_plants_data = "active_page";
     <!-- <div id="feedback" class="feedback <?php echo $feedback_class; ?>">Please choose at least one sorting/filter.</div> -->
 
     <div class="plants">
-      <h2>Tags</h2>
+      <h2>Choose Tag(s)</h2>
           <h3>General Classification: </h3></div>
           <div class="buttons">
             <button class="button style">Shrub</button>
