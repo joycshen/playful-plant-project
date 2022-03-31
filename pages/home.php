@@ -21,8 +21,9 @@ $nav_plants_data = "active_page";
 
   <main>
   <div class="sections">
+  <article>
+  <div class="body">
   <div class="filters">
-
   <div class="titles">
     <p>Filters: </p>
   </div>
@@ -81,7 +82,6 @@ $nav_plants_data = "active_page";
   </div>
 
   <div class="filters">
-
   <div class="titles">
    <p>Sort: </p>
   </div>
@@ -89,32 +89,19 @@ $nav_plants_data = "active_page";
   <div>
   <form>
   <div class="sort">
-  <div class="growing" onclick="showCheckboxes()">
-    <select>
-      <option>Playing Opportunities: </option>
-    </select>
-  <div class="choices"></div>
-  </div>
-  <div id="checkboxes">
-    <label for="one">
-      <input type="checkbox" id="one" />Creates Nooks or Secret Spaces</label>
-    <label for="two">
-      <input type="checkbox" id="two" />Provides Loose Parts/Play Props</label>
-    <label for="three">
-      <input type="checkbox" id="three" />Provides Opportunities for Climbing & Swinging</label>
-    <label for="four">
-      <input type="checkbox" id="four" />Can be used to create Mazes/Labyrinths/Spirals</label>
-    <label for="five">
-      <input type="checkbox" id="five" />Includes Evocative or Unique Elements</label>
+  <div class="select" onclick="showCheckboxes()">
+  <select name="name" id="name">'
+    <option value="" id="asc">Colloquial Name Ascendant (A-Z)</option>
+    <option value="" id="desc">Colloquial Name Descendant (Z-A)</option>
+  </select>
   </div>
   </div>
   </form>
   </div>
-</div>
+  </div>
 
   </div>
       <div class="plants">
-      <article>
         <div class="plant">
         <div>
           <img src="public/images/FL_26.jpg" alt="" width="300" height="300"/>
@@ -144,9 +131,28 @@ $nav_plants_data = "active_page";
           <h3>River Birch</h3>
         </div>
         </div>
-        </div>
-      </article>
       </div>
+    </article>
+
+    <div class="form">
+    <aside>
+    <!-- <div id="feedback" class="feedback <?php echo $feedback_class; ?>">Please choose at least one sorting/filter.</div> -->
+
+    <div class="plants">
+      <h2>Tags</h2>
+          <h3>General Classification: </h3></div>
+          <div class="buttons">
+            <button class="button style">Shrub</button>
+            <button class="button style">Grass</button>
+            <button class="button style">Vine</button>
+            <button class="button style">Tree</button>
+            <button class="button style">Flower</button>
+            <button class="button style">Groundcovers</button>
+            <button class="button style">Other</button>
+          </div>
+    </div>
+    </div>
+    </aside>
     </div>
   </main>
 </body>
