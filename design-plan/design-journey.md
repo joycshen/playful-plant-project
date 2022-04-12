@@ -273,6 +273,7 @@ Table1: entries
 
 Table2: tags
 
+- id: INTEGER {PK, U, NN, AI}
 - shrub: INTEGER {NN}
 - grass: INTEGER {NN}
 - vine: INTEGER {NN}
@@ -472,8 +473,8 @@ TODO
 
 _View all entries:_
 
-1. TODO
-2.
+1. the site will display all entries with photos and names for consumers when entering (Plants information page)
+2. the admin will be able to view all desirable entries when clicking on the "Add New Plants" page and scrolling down
 
 _View all entries for a tag:_
 
