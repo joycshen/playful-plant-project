@@ -1,6 +1,9 @@
 <?php
 $title = "Playful Plants Projects";
 $nav_plants_data = "active_page";
+
+// open database
+$db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
 ?>
 
 <!DOCTYPE html>

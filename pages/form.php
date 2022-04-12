@@ -2,8 +2,8 @@
 $title = "Playful Plants Projects";
 $nav_new_entry_form = "active_page";
 
-//open database
-$db = open_sqlite_db('tmp/site.sqlite');
+// open database
+$db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
 
 // add-entry form
 

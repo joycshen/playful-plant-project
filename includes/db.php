@@ -1,19 +1,5 @@
 <?php
 // Open a connection to an SQLite database stored in filename: $db_filename.
-// Returns: Connection to database.
-function open_sqlite_db($db_filename)
-{
-  if (!file_exists($db_filename)) {
-    throw new Exception('Failed to open database. No such file: ' . $db_filename);
-  }
-
-  // database was already initialized. Just open it!
-  $db_connection = new PDO('sqlite:' . $db_filename);
-  $db_connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  return $db_connection;
-}
-
-// Open a connection to an SQLite database stored in filename: $db_filename.
 // If database does not exists, will execute .sql file from $init_sql_filename
 // to create and initialize the database. No database is created if there is
 // an error the initialization SQL.
