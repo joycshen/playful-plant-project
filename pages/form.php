@@ -87,7 +87,7 @@ if (isset($_POST['add-entry'])) {
     //securely insert new data
     $result = exec_sql_query(
     $db,
-    "INSERT INTO seed (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play_present, exploratory_sensory_play_present, physical_play_present, imaginative_play_present, restorative_play_present, play_with_rules_present, bio_play_present) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play_present, :exploratory_sensory_play_present, :physical_play_present, :imaginative_play_present, :restorative_play_present, :play_with_rules_present, :bio_play_present);",
+    "INSERT INTO seed (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play_present) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play_present);",
     array(
       ':name_colloquial' => $colloquial_name,
       ':name_genus_species' => $genus_species,

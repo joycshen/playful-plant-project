@@ -258,13 +258,13 @@ Table1: entries
 - name_colloquial: TEXT {NN}
 - name_genus_species: TEXT {NN}
 - plant_id: TEXT {NN}
-- exploratory_constructive_play_present: INTEGER {NN}
-- exploratory_sensory_play_present: INTEGER {NN}
-- physical_play_present: INTEGER {NN}
-- imaginative_play_present: INTEGER {NN}
-- restorative_play_present: INTEGER {NN}
-- play_with_rules_present: INTEGER {NN}
-- bio_play_present: INTEGER {NN}
+- exploratory_constructive_play: INTEGER {NN}
+- exploratory_sensory_play: INTEGER {NN}
+- physical_play: INTEGER {NN}
+- imaginative_play: INTEGER {NN}
+- restorative_play: INTEGER {NN}
+- play_with_rules: INTEGER {NN}
+- bio_play: INTEGER {NN}
 - perennial: INTEGER {NN}
 - full_sun: INTEGER {NN}
 - partial_shade: INTEGER {NN}
@@ -308,13 +308,13 @@ Tabl4: users
   Filter
 
   ```
-    SELECT * FROM entries WHERE (exploratory_constructive_play_present = 1);
-    SELECT * FROM entries WHERE (exploratory_sensory_play_present = 1);
-    SELECT * FROM entries WHERE (physical_play_present = 1);
-    SELECT * FROM entries WHERE (imaginative_play_present = 1);
-    SELECT * FROM entries WHERE (restorative_play_present = 1);
-    SELECT * FROM entries WHERE (play_with_rules_present = 1);
-    SELECT * FROM entries WHERE (bio_play_present = 1);
+    SELECT * FROM entries WHERE (exploratory_constructive_play = 1);
+    SELECT * FROM entries WHERE (exploratory_sensory_play = 1);
+    SELECT * FROM entries WHERE (physical_play = 1);
+    SELECT * FROM entries WHERE (imaginative_play = 1);
+    SELECT * FROM entries WHERE (restorative_play = 1);
+    SELECT * FROM entries WHERE (play_with_rules = 1);
+    SELECT * FROM entries WHERE (bio_play = 1);
     SELECT * FROM entries WHERE (perennial = 1);
     SELECT * FROM entries WHERE (full_sun = 1);
     SELECT * FROM entries WHERE (partial_shade = 1);
@@ -344,7 +344,7 @@ Tabl4: users
 3. Insert Record
 
     ```
-    INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play_present, exploratory_sensory_play_present, physical_play_present, imaginative_play_present, restorative_play_present, play_with_rules_present, bio_play_present) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play_present, :exploratory_sensory_play_present, :physical_play_present, :imaginative_play_present, :restorative_play_present, :play_with_rules_present, :bio_play_present);
+    INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play);
     INSERT INTO entries (shrub, grass, vine, tree, flower, groundcovers, other) VALUES (:shrub, :grass, :vine, :tree, :flower, :groundcovers, :other);
     ```
 
