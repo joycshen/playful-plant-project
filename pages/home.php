@@ -1,9 +1,70 @@
 <?php
 $title = "Playful Plants Projects";
 $nav_plants_data = "active_page";
+$nav_new_entry_form = "active_page";
 
 // open database
-// $db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
+$db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
+
+//query pieces
+$sql_select_part = 'SELECT * FROM entries ';
+$sql_where_part = '';
+$sql_sort_part = ' ORDER BY name_colloquial ASC;';
+$sql_filter_array = array();
+
+//Filters
+$filter_exploratory_constructive_play = (bool)($_GET['exploratory_constructive_play'] ?? NULL);
+$filter_exploratory_sensory_play = (bool)($_GET['exploratory_sensory_play'] ?? NULL);
+$filter_physical_play = (bool)($_GET['physical_play'] ?? NULL);
+$filter_imaginative_play = (bool)($_GET['imaginative_play'] ?? NULL);
+$filter_restorative_play = (bool)($_GET['restorative_play'] ?? NULL);
+$filter_play_with_rules = (bool)($_GET['play_with_rules'] ?? NULL);
+$filter_bio_play = (bool)($_GET['bio_play'] ?? NULL);
+
+if ($filter_exploratory_constructive_play) {
+  array_push($sql_filter_array, "(exploratory_constructive_play = '1')");
+}
+
+if ($filter_exploratory_sensory_play) {
+  array_push($sql_filter_array, "(exploratory_sensory_play = '1')");
+}
+
+if ($filter_physical_play) {
+  array_push($sql_filter_array, "(physical_play = '1')");
+}
+
+if ($filter_imaginative_play) {
+  array_push($sql_filter_array, "(imaginative_play = '1')");
+}
+
+if ($filter_restorative_play) {
+  array_push($sql_filter_array, "(restorative_play = '1')");
+}
+
+if ($filter_play_with_rules) {
+  array_push($sql_filter_array, "(play_with_rules = '1')");
+}
+
+if ($filter_bio_play) {
+  array_push($sql_filter_array, "(bio_play = '1')");
+}
+
+if (count($sql_filter_array) > 0) {
+  $sql_where_part = ' WHERE ' . implode(' AND ', $sql_filter_array);
+}
+
+//sorting
+$sort_asc = (bool)($_GET['sort'] ?? NULL);
+
+//stick the parts together
+if ($sort_asc) {
+  $sql_query = $sql_select_part . $sql_where_part . $sql_sort_part;
+}
+else {
+  $sql_query = $sql_select_part . $sql_where_part;
+}
+
+$records = exec_sql_query($db, $sql_query)->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -29,31 +90,6 @@ $nav_plants_data = "active_page";
   <div class="filters">
   <div class="titles">
     <p>Filters: </p>
-  </div>
-
-  <div>
-  <form>
-  <div class="filter">
-    <div class="select" onclick="showCheckboxes()">
-      <select>
-        <option>Playing Opportunities: </option>
-      </select>
-    <div class="choices"></div>
-    </div>
-    <div id="checkboxes">
-      <label for="one">
-        <input type="checkbox" id="one" />Creates Nooks or Secret Spaces</label>
-      <label for="two">
-        <input type="checkbox" id="two" />Provides Loose Parts/Play Props</label>
-      <label for="three">
-        <input type="checkbox" id="three" />Provides Opportunities for Climbing & Swinging</label>
-      <label for="four">
-        <input type="checkbox" id="four" />Can be used to create Mazes/Labyrinths/Spirals</label>
-      <label for="five">
-        <input type="checkbox" id="five" />Includes Evocative or Unique Elements</label>
-    </div>
-  </div>
-  </form>
   </div>
 
   <div>
@@ -105,28 +141,18 @@ $nav_plants_data = "active_page";
 
   </div>
       <div class="plants">
+        <?php
+        foreach ($records as $record) { ?>
         <div class="plant">
         <div>
           <a href="/plant-details">
             <img src="public/images/FL_26.jpg" alt="" width="250" height="250"/>
           </a>
-          <h3>Lady's mantle</h3>
-        </div>
-        <div>
-          <img src="public/images/FL_05.jpg" alt="" width="250" height="250"/>
-          <h3>Spiked Gay-Feather</h3>
-        </div>
-        <div>
-          <img src="public/images/GA_05.jpg" alt="" width="250" height="250"/>
-          <h3>Broad-leaf Sedge</h3>
-        </div>
-        <div>
-          <img src="public/images/SH_29.jpg" alt="" width="250" height="250"/>
-          <h3>Red Osier Dogwood</h3>
+          <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
         </div>
         </div>
 
-        <div class="plant">
+        <!-- <div class="plant">
         <div>
           <img src="public/images/SH_33.jpg" alt="" width="250" height="250"/>
           <h3>Flowering Raspberry</h3>
@@ -143,7 +169,8 @@ $nav_plants_data = "active_page";
           <img src="public/images/FE_12.jpg" alt="" width="250" height="250"/>
           <h3>Christmas fern</h3>
         </div>
-        </div>
+        </div> -->
+        <?php } ?>
       </div>
     </article>
 

@@ -1,5 +1,6 @@
 <?php
 $title = "Playful Plants Projects";
+$nav_plants_data = "active_page";
 $nav_new_entry_form = "active_page";
 
 // open database
@@ -255,7 +256,6 @@ else {
 }
 
 $records = exec_sql_query($db, $sql_query)->fetchAll();
-
 ?>
 
 <!DOCTYPE html>
@@ -345,34 +345,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           </div>
           </div>
 
-          <div class="">
-          <div id="feedback4" class="feedback <?php echo $topo_feedback_class; ?>">Please select at least one Play Opportunity.</div>
-          <div class="forms label_input" role="group" aria-labelledby="play">
-          <div id="play"><h3>Play Opportunities: </h3></div>
-          <div>
-            <div>
-              <input type="checkbox" id="creates_nooks_or_secret_spaces" name="creates_nooks_or_secret_spaces" <?php echo $sticky_exploratory_constructive_play; ?>/>
-              <label for="creates_nooks_or_secret_spaces_present">Creates Nooks or Secret Spaces</label>
-            </div>
-            <div>
-              <input type="checkbox" id="provides_loose_parts" name="provides_loose_parts" <?php echo $sticky_exploratory_sensory_play; ?>/>
-              <label for="provides_loose_parts_present">Provides Loose Parts/Play Props</label>
-            </div>
-            <div>
-              <input type="checkbox" id="provides_pportunities_for_climbing_swinging" name="provides_pportunities_for_climbing_swinging" <?php echo $sticky_physical_play; ?>/>
-              <label for="provides_pportunities_for_climbing_swinging_present">Provides Opportunities for Climbing & Swinging</label>
-            </div>
-            <div>
-              <input type="checkbox" id="can_be_used_to_create_mazes" name="can_be_used_to_create_mazes" <?php echo $sticky_imaginative_play; ?>/>
-              <label for="can_be_used_to_create_mazes_present">Can be used to create Mazes/Labyrinths/Spirals</label>
-            </div>
-            <div>
-              <input type="checkbox" id="includes_evocative_or_unique_elements" name="includes_evocative_or_unique_elements" <?php echo $sticky_restorative_play; ?>/>
-              <label for="includes_evocative_or_unique_elements_present">Includes Evocative or Unique Elements</label>
-            </div>
-          </div>
-          </div>
-
           <div id="feedback4" class="feedback <?php echo $topo_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
           <div class="forms label_input" role="group" aria-labelledby="play">
           <div id="play"><h3>Growing Needs and Characteristics: </h3></div>
@@ -426,31 +398,39 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
     <div class="sections">
     <article>
+      <?php
+      foreach ($records as $record) { ?>
       <div class="catalog">
-        <h2>Lady's mantle</h2>
-        <h3><em>Genus, species: Alchemilla mollis</em></h3>
-        <h3>Plant ID: FL_26</h3>
+        <h2><?php echo htmlspecialchars($record["name_colloquial"]) ?></h2>
+        <h3><em>Genus, species: <?php echo htmlspecialchars($record["name_genus_species"]) ?></em></h3>
+        <h3>Plant ID: <?php echo htmlspecialchars($record["plant_id"]) ?></h3>
         <h3>TOPO - Play Type Categorization: </h3>
         <ul>
-          <li>Supports Exploratory Sensory Play</li>
-          <li>Supports Physical Play</li>
-          <li>Supports Imaginative Play</li>
-          <li>Supports Bio Play </li>
+          <?php if ($record["exploratory_constructive_play"] == 1) { ?>
+            <li>Supports Exploratory Constructive Play</li>
+          <?php } ?>
+          <?php if ($record["exploratory_sensory_play"] == 1) { ?>
+            <li>Supports Exploratory Sensory Play</li>
+          <?php } ?>
+          <?php if ($record["physical_play"] == 1) { ?>
+            <li>Supports Physical Play</li>
+          <?php } ?>
+          <?php if ($record["imaginative_play"] == 1) { ?>
+            <li>Supports Imaginative Play</li>
+          <?php } ?>
+          <?php if ($record["restorative_play"] == 1) { ?>
+            <li>Supports Restorative Play</li>
+          <?php } ?>
+          <?php if ($record["play_with_rules"] == 1) { ?>
+            <li>Supports Play with Rules</li>
+          <?php } ?>
+          <?php if ($record["bio_play"] == 1) { ?>
+            <li>Supports Bio Play </li>
+          <?php } ?>
         </ul>
       </div>
-
-      <div class="catalog">
-        <h2>Spiked Gay-Feather</h2>
-        <h3><em>Genus, species: Liatris spicata</em></h3>
-        <h3>Plant ID: FL_05</h3>
-        <h3>TOPO - Play Type Categorization: </h3>
-        <ul>
-          <li>Supports Exploratory Sensory Play</li>
-          <li>Supports Physical Play</li>
-          <li>Supports Bio Play </li>
-        </ul>
-      </div>
-    </article>
+      <?php } ?>
+      </article>
 
     <div class="form">
     <aside>
