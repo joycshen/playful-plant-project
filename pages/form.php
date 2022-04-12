@@ -197,7 +197,7 @@ if (isset($_GET['submit-filter'])) {
 }
 
 //query pieces
-$sql_select_part = 'SELECT * FROM seed ';
+$sql_select_part = 'SELECT * FROM entries ';
 $sql_where_part = '';
 $sql_sort_part = ' ORDER BY name_colloquial ASC;';
 $sql_filter_array = array();
@@ -212,31 +212,31 @@ $filter_play_with_rules = (bool)($_GET['play_with_rules'] ?? NULL);
 $filter_bio_play = (bool)($_GET['bio_play'] ?? NULL);
 
 if ($filter_exploratory_constructive_play) {
-  array_push($sql_filter_array, "(exploratory_constructive_play_present = '1')");
+  array_push($sql_filter_array, "(exploratory_constructive_play = '1')");
 }
 
 if ($filter_exploratory_sensory_play) {
-  array_push($sql_filter_array, "(exploratory_sensory_play_present = '1')");
+  array_push($sql_filter_array, "(exploratory_sensory_play = '1')");
 }
 
 if ($filter_physical_play) {
-  array_push($sql_filter_array, "(physical_play_present = '1')");
+  array_push($sql_filter_array, "(physical_play = '1')");
 }
 
 if ($filter_imaginative_play) {
-  array_push($sql_filter_array, "(imaginative_play_present = '1')");
+  array_push($sql_filter_array, "(imaginative_play = '1')");
 }
 
 if ($filter_restorative_play) {
-  array_push($sql_filter_array, "(restorative_play_present = '1')");
+  array_push($sql_filter_array, "(restorative_play = '1')");
 }
 
 if ($filter_play_with_rules) {
-  array_push($sql_filter_array, "(play_with_rules_present = '1')");
+  array_push($sql_filter_array, "(play_with_rules = '1')");
 }
 
 if ($filter_bio_play) {
-  array_push($sql_filter_array, "(bio_play_present = '1')");
+  array_push($sql_filter_array, "(bio_play = '1')");
 }
 
 if (count($sql_filter_array) > 0) {

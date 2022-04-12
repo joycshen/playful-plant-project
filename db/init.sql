@@ -16,7 +16,7 @@ CREATE TABLE entries (
     full_sun INTEGER NOT NULL,
     partial_shade INTEGER NOT NULL,
     full_shade INTEGER NOT NULL,
-    hardiness_zone_range TEXT NOT NULL,
+    hardiness_zone_range TEXT NOT NULL
 );
 
 INSERT INTO
