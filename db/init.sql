@@ -1,5 +1,3 @@
--- TODO: create tables
-
 CREATE TABLE entries (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     name_colloquial TEXT NOT NULL,
@@ -98,3 +96,70 @@ INSERT INTO
     entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range)
 VALUES
     (16, "Harry Lauder's Walking stick", "Corylus avellana 'Contorta'", 'SH_03', 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, '4-8');
+
+CREATE TABLE tags (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    tag_name TEXT NOT NULL
+);
+
+INSERT INTO
+    entries(id, tag_name)
+VALUES
+    (17, 'shrub');
+
+INSERT INTO
+    entries(id, tag_name)
+VALUES
+    (18, 'grass');
+
+INSERT INTO
+    entries(id, tag_name)
+VALUES
+    (19, 'vine');
+
+INSERT INTO
+    entries(id, tag_name)
+VALUES
+    (20, 'tree');
+
+INSERT INTO
+    entries(id, tag_name)
+VALUES
+    (21, 'flower');
+
+INSERT INTO
+    entries(id, tag_name)
+VALUES
+    (22, 'groundcovers');
+
+INSERT INTO
+    entries(id, tag_name)
+VALUES
+    (23, 'other');
+
+
+CREATE TABLE entry_tags (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    entry_id INTEGER NOT NULL,
+    FOREIGN KEY(entry_id)
+        REFERENCES entries(id)
+    tag_id INTEGER NOT NULL,
+    FOREIGN KEY(tag_id)
+        REFERENCES tags(id)
+);
+
+INSERT INTO
+    entries(id, entry_id, tag_id)
+VALUES
+    (24, 1, 18);
+
+INSERT INTO
+    entries(id, entry_id, tag_id)
+VALUES
+    (24, 1, 18);
+
+CREATE TABLE users (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    username TEXT NOT NULL,
+    passward TEXT NOT NULL,
+);
