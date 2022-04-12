@@ -87,18 +87,23 @@ if (isset($_POST['add-entry'])) {
     //securely insert new data
     $result = exec_sql_query(
     $db,
-    "INSERT INTO seed (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play_present) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play_present);",
+    "INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range);",
     array(
       ':name_colloquial' => $colloquial_name,
       ':name_genus_species' => $genus_species,
       ':plant_id' => $plant_id,
-      ':exploratory_constructive_play_present' => $exploratory_constructive_play,
-      ':exploratory_sensory_play_present' => $exploratory_sensory_play,
-      ':physical_play_present' => $physical_play,
-      ':imaginative_play_present' => $imaginative_play,
-      ':restorative_play_present' => $restorative_play,
-      ':play_with_rules_present' => $play_with_rules,
-      ':bio_play_present' => $bio_play,
+      ':exploratory_constructive_play' => $exploratory_constructive_play,
+      ':exploratory_sensory_play' => $exploratory_sensory_play,
+      ':physical_play' => $physical_play,
+      ':imaginative_play' => $imaginative_play,
+      ':restorative_play' => $restorative_play,
+      ':play_with_rules' => $play_with_rules,
+      ':bio_play' => $bio_play,
+      ':perennial' => $perennial,
+      ':full_sun' => $full_sun,
+      ':partial_shade' => $partial_shade,
+      ':full_shade' => $full_shade,
+      ':hardiness_zone_range' => $hardiness_zone_range,
     )
   );
 
@@ -135,6 +140,11 @@ $imaginative_play = '';
 $restorative_play = '';
 $play_with_rules = '';
 $bio_play = '';
+$perennial ='';
+$full_sun = '';
+$partial_shade = '';
+$full_shade = '';
+$hardiness_zone_range = '';
 $sort = '';
 
 // sticky values
@@ -145,6 +155,11 @@ $sticky_imaginative_play = '';
 $sticky_restorative_play = '';
 $sticky_play_with_rules = '';
 $sticky_bio_play = '';
+$sticky_perennial ='';
+$sticky_full_sun = '';
+$sticky_partial_shade = '';
+$sticky_full_shade = '';
+$sticky_hardiness_zone_range = '';
 $sticky_sort = '';
 
 if (isset($_GET['submit-filter'])) {

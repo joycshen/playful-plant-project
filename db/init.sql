@@ -17,7 +17,7 @@ CREATE TABLE entries (
     partial_shade INTEGER NOT NULL,
     full_shade INTEGER NOT NULL,
     hardiness_zone_range TEXT NOT NULL,
-)
+);
 
 INSERT INTO
     entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range)
