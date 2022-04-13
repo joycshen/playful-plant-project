@@ -11,9 +11,17 @@ $sql_select_part = 'SELECT * FROM entries ';
 $sql_where_part = '';
 $sql_sort_part = ' ORDER BY name_colloquial ASC;';
 $sql_filter_array = array();
+$sql_array = array();
 
-// create id variable
+
+// Get HTTP request user data
 $id = $_GET['id'];
+$colloquial_name = $_GET['colloquial_name'];
+$perennial = (!empty($_GET['perennial']) ? 1 : 0);
+$full_sun = (!empty($_GET['full_sun']) ? 1 : 0);
+$partial_shade = (!empty($_GET['partial_shade']) ? 1 : 0);
+$full_shade = (!empty($_GET['full_shade']) ? 1 : 0);
+$hardiness_zone_range = $_GET['hardiness_zone_range'];
 
 //Filters
 $filter_exploratory_constructive_play = (bool)($_GET['exploratory_constructive_play'] ?? NULL);
@@ -56,16 +64,28 @@ if (count($sql_filter_array) > 0) {
   $sql_where_part = ' WHERE ' . implode(' AND ', $sql_filter_array);
 }
 
+
+//detail page info
+if ($perennial) {
+  array_push($sql_array, "(perennial = '1')");
+}
+
+// if ($sql_array[0] = $id) {
+//   $sql_where_part_1 = ' WHERE ' . implode(' AND ', $sql_array);
+// }
+
 //sorting
 $sort_asc = (bool)($_GET['sort'] ?? NULL);
 
 //stick the parts together
-if ($sort_asc) {
-  $sql_query = $sql_select_part . $sql_where_part . $sql_sort_part;
-}
-else {
-  $sql_query = $sql_select_part . $sql_where_part;
-}
+// if ($sort_asc) {
+//   $sql_query = $sql_select_part . $sql_where_part . $sql_sort_part;
+// }
+// else {
+//   $sql_query = $sql_select_part . $sql_where_part;
+// }
+
+$sql_query = $sql_select_part . $sql_where_part_1;
 
 $records = exec_sql_query($db, $sql_query)->fetchAll();
 ?>
@@ -91,16 +111,17 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
       <div class="plant">
       <article>
         <div class="detail">
+        <?php foreach ($records as $record) { ?>
         <h2><?php echo htmlspecialchars($record["name_colloquial"]) ?></h2>
         <div class="buttons">
             <button class="button style">Flower</button>
         </div>
+        <?php } ?>
         </div>
         <div class="plant">
             <img src="public/images/FL_26.jpg" alt="" width="600" height="350"/>
             <div class="catalogs">
-            <?php foreach ($records as $record) {
-            if ($id = $record['id']); { ?>
+            <?php foreach ($records as $record) { ?>
             <div class="catalog">
               <h3>Growing Needs and Characteristics: </h3>
               <ul>
@@ -119,7 +140,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
                   <li><?php echo htmlspecialchars($record["hardiness_zone_range"]) ?></li>
               </ul>
             </div>
-            <?php }} ?>
+            <?php } ?>
         </div>
         </div>
       </article>

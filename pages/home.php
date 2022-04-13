@@ -146,7 +146,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         <!-- <div class="plant"> -->
           <div>
             <a href=<?php echo "/plant-details?". $record['id'] ?>>
-              <img src="public/images/FL_26.jpg" alt="" width="250" height="250"/>
+              <img src=<?php echo "/public/uploads/entries/?" . $record['id'] . '.' . 'jpg'?> alt="" width="250" height="250"/>
             </a>
             <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
           </div>
