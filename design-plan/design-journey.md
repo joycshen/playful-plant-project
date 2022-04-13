@@ -355,6 +355,26 @@ Tabl4: users
 
 _1. "Plant Information" page_
 
+The following is the view all entry page for consumers
+```
+1. for every plant in $records
+2.    store as $record
+3.        display corresponding image
+4.        display corresponding name of the plant under the image
+```
+
+The following is the view all entry page for admins
+```
+1. for every plant in $records
+2.    store as $record
+3.        display corresponding name of the plant
+3.        display corresponding genus, species
+4.        display corresponding plant ID
+5. if there is a specific TOPO for the plant (e.g. exploratory_constructive_play)
+6.     display TOPO as list
+7. (repeat step 5 and 6 for all the TOPO)
+```
+
 The following is the plan for filtering/sorting form. (this form does not require user to fill out every parameter, gives a uniform feedback if the user didn't specify any filter/sort but click on the filter/sort button, and does not show a confirmation message)
 ```
 1. initiatlize default page state (show form, hide feedback)
