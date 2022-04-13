@@ -103,63 +103,63 @@ CREATE TABLE tags (
 );
 
 INSERT INTO
-    entries(id, tag_name)
+    tags(id, tag_name)
 VALUES
     (17, 'shrub');
 
 INSERT INTO
-    entries(id, tag_name)
+    tags(id, tag_name)
 VALUES
     (18, 'grass');
 
 INSERT INTO
-    entries(id, tag_name)
+    tags(id, tag_name)
 VALUES
     (19, 'vine');
 
 INSERT INTO
-    entries(id, tag_name)
+    tags(id, tag_name)
 VALUES
     (20, 'tree');
 
 INSERT INTO
-    entries(id, tag_name)
+    tags(id, tag_name)
 VALUES
     (21, 'flower');
 
 INSERT INTO
-    entries(id, tag_name)
+    tags(id, tag_name)
 VALUES
     (22, 'groundcovers');
 
 INSERT INTO
-    entries(id, tag_name)
+    tags(id, tag_name)
 VALUES
     (23, 'other');
 
 
-CREATE TABLE entry_tags (
-    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    entry_id INTEGER NOT NULL,
-    FOREIGN KEY(entry_id)
-        REFERENCES entries(id)
-    tag_id INTEGER NOT NULL,
-    FOREIGN KEY(tag_id)
-        REFERENCES tags(id)
-);
+-- CREATE TABLE entry_tags (
+--     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+--     entry_id INTEGER NOT NULL,
+--     FOREIGN KEY(entry_id)
+--         REFERENCES entries(id)
+--     tag_id INTEGER NOT NULL,
+--     FOREIGN KEY(tag_id)
+--         REFERENCES tags(id)
+-- );
 
-INSERT INTO
-    entries(id, entry_id, tag_id)
-VALUES
-    (24, 1, 18);
+-- INSERT INTO
+--     entries(id, entry_id, tag_id)
+-- VALUES
+--     (24, 1, 18);
 
-INSERT INTO
-    entries(id, entry_id, tag_id)
-VALUES
-    (24, 1, 18);
+-- INSERT INTO
+--     entries(id, entry_id, tag_id)
+-- VALUES
+--     (24, 1, 18);
 
-CREATE TABLE users (
-    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
-    username TEXT NOT NULL,
-    passward TEXT NOT NULL,
-);
+-- CREATE TABLE users (
+--     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+--     username TEXT NOT NULL,
+--     passward TEXT NOT NULL,
+-- );

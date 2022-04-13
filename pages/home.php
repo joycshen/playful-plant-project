@@ -145,7 +145,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         foreach ($records as $record) { ?>
         <div class="plant">
         <div>
-          <a href="/plant-details">
+          <a href="/plant-details?<?php echo http_build_query(array('id' => ':id')); ?>">
             <img src="public/images/FL_26.jpg" alt="" width="250" height="250"/>
           </a>
           <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
