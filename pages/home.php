@@ -64,6 +64,21 @@ else {
   $sql_query = $sql_select_part . $sql_where_part;
 }
 
+// http params
+// $sort_query_string = http_build_query(
+//   array(
+//     'id' => $record['id'],
+//     // 'q' => $search_terms ?: NULL,
+//     // 'a' => $filter_a ?: NULL,
+//     // 'b' => $filter_b ?: NULL,
+//     // 'c' => $filter_c ?: NULL,
+//     // 'd' => $filter_d ?: NULL,
+//     // 'f' => $filter_f ?: NULL
+//   )
+// );
+
+$sql_url = 'plant-details?' . $sort_query_string;
+
 $records = exec_sql_query($db, $sql_query)->fetchAll();
 ?>
 
@@ -145,8 +160,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         foreach ($records as $record) { ?>
         <!-- <div class="plant"> -->
           <div>
-            <a href=<?php echo "/plant-details?". $record['id'] ?>>
-              <img src=<?php echo "/public/uploads/entries/?" . $record['id'] . '.' . 'jpg'?> alt="" width="250" height="250"/>
+            <a href=<?php echo "/plant-details?" . $record['id']; ?>>
+              <img src=<?php echo "/public/uploads/entries/" . $record['id'] . '.jpg'?> alt="" width="250" height="250"/>
             </a>
             <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
           </div>

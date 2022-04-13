@@ -16,12 +16,12 @@ $sql_array = array();
 
 // Get HTTP request user data
 $id = $_GET['id'];
-$colloquial_name = $_GET['colloquial_name'];
-$perennial = (!empty($_GET['perennial']) ? 1 : 0);
-$full_sun = (!empty($_GET['full_sun']) ? 1 : 0);
-$partial_shade = (!empty($_GET['partial_shade']) ? 1 : 0);
-$full_shade = (!empty($_GET['full_shade']) ? 1 : 0);
-$hardiness_zone_range = $_GET['hardiness_zone_range'];
+// $colloquial_name = $_GET['colloquial_name'];
+// $perennial = (!empty($_GET['perennial']) ? 1 : 0);
+// $full_sun = (!empty($_GET['full_sun']) ? 1 : 0);
+// $partial_shade = (!empty($_GET['partial_shade']) ? 1 : 0);
+// $full_shade = (!empty($_GET['full_shade']) ? 1 : 0);
+// $hardiness_zone_range = $_GET['hardiness_zone_range'];
 
 //Filters
 $filter_exploratory_constructive_play = (bool)($_GET['exploratory_constructive_play'] ?? NULL);
@@ -65,10 +65,12 @@ if (count($sql_filter_array) > 0) {
 }
 
 
+// 'WHERE' $id
+
 //detail page info
-if ($perennial) {
-  array_push($sql_array, "(perennial = '1')");
-}
+// if ($perennial) {
+//   array_push($sql_array, "(perennial = '1')");
+// }
 
 // if ($sql_array[0] = $id) {
 //   $sql_where_part_1 = ' WHERE ' . implode(' AND ', $sql_array);
@@ -86,6 +88,15 @@ $sort_asc = (bool)($_GET['sort'] ?? NULL);
 // }
 
 $sql_query = $sql_select_part . $sql_where_part_1;
+
+// !!id
+// $records = exec_sql_query(
+//   $db,
+//   "SELECT * FROM grades WHERE (netid = :netid);",
+//   array(
+//     ':netid' => $netid
+//   )
+// )->fetchAll();
 
 $records = exec_sql_query($db, $sql_query)->fetchAll();
 ?>
@@ -119,9 +130,9 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         <?php } ?>
         </div>
         <div class="plant">
-            <img src="public/images/FL_26.jpg" alt="" width="600" height="350"/>
-            <div class="catalogs">
             <?php foreach ($records as $record) { ?>
+            <img src=<?php echo "/public/uploads/entries/" . $record['id'] . '.jpg'?> alt="" width="600" height="350"/>
+            <div class="catalogs">
             <div class="catalog">
               <h3>Growing Needs and Characteristics: </h3>
               <ul>
