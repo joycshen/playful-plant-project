@@ -60,7 +60,7 @@ VALUES
 INSERT INTO
     entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range)
 VALUES
-    (9, 'Red Osier Dogwood (Red Twig Dogwood)', 'Cornus sericea', 'SH_29', 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, '3-7');
+    (9, 'Red Osier Dogwood', 'Cornus sericea', 'SH_29', 0, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, '3-7');
 
 INSERT INTO
     entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range)

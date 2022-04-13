@@ -12,6 +12,9 @@ $sql_where_part = '';
 $sql_sort_part = ' ORDER BY name_colloquial ASC;';
 $sql_filter_array = array();
 
+// create id variable
+$id = $_GET['id'];
+
 //Filters
 $filter_exploratory_constructive_play = (bool)($_GET['exploratory_constructive_play'] ?? NULL);
 $filter_exploratory_sensory_play = (bool)($_GET['exploratory_sensory_play'] ?? NULL);
@@ -96,7 +99,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         <div class="plant">
             <img src="public/images/FL_26.jpg" alt="" width="600" height="350"/>
             <div class="catalogs">
-            <?php foreach ($records as $record) { ?>
+            <?php foreach ($records as $record) {
+            if ($id = $record['id']); { ?>
             <div class="catalog">
               <h3>Growing Needs and Characteristics: </h3>
               <ul>
@@ -115,7 +119,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
                   <li><?php echo htmlspecialchars($record["hardiness_zone_range"]) ?></li>
               </ul>
             </div>
-            <?php } ?>
+            <?php }} ?>
         </div>
         </div>
       </article>

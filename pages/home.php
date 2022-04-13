@@ -143,34 +143,15 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
       <div class="plants">
         <?php
         foreach ($records as $record) { ?>
-        <div class="plant">
-        <div>
-          <a href="/plant-details?<?php echo http_build_query(array('id' => ':id')); ?>">
-            <img src="public/images/FL_26.jpg" alt="" width="250" height="250"/>
-          </a>
-          <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
-        </div>
-        </div>
-
-        <!-- <div class="plant">
-        <div>
-          <img src="public/images/SH_33.jpg" alt="" width="250" height="250"/>
-          <h3>Flowering Raspberry</h3>
-        </div>
-        <div>
-          <img src="public/images/TR_23.jpg" alt="" width="250" height="250"/>
-          <h3>River Birch</h3>
-        </div>
-        <div>
-          <img src="public/images/SH_03.jpg" alt="" width="250" height="250"/>
-          <h3>Harry Lauder's Walking stick</h3>
-        </div>
-        <div>
-          <img src="public/images/FE_12.jpg" alt="" width="250" height="250"/>
-          <h3>Christmas fern</h3>
-        </div>
-        </div> -->
+        <!-- <div class="plant"> -->
+          <div>
+            <a href=<?php echo "/plant-details?". $record['id'] ?>>
+              <img src="public/images/FL_26.jpg" alt="" width="250" height="250"/>
+            </a>
+            <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
+          </div>
         <?php } ?>
+      <!-- </div> -->
       </div>
     </article>
 
