@@ -77,7 +77,7 @@ else {
 //   )
 // );
 
-$sql_url = 'plant-details?' . $sort_query_string;
+// $sql_url = 'plant-details?' . $sort_query_string;
 
 $records = exec_sql_query($db, $sql_query)->fetchAll();
 ?>
@@ -145,8 +145,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   <div class="sort">
   <div class="select" onclick="showCheckboxes()">
   <select name="name" id="name">'
-    <option value="" id="asc">Colloquial Name Ascendant (A-Z)</option>
-    <option value="" id="desc">Colloquial Name Descendant (Z-A)</option>
+    <option value="asc" id="asc">Colloquial Name Ascendant (A-Z)</option>
+    <option value="desc" id="desc">Colloquial Name Descendant (Z-A)</option>
   </select>
   </div>
   </div>
@@ -161,7 +161,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         <!-- <div class="plant"> -->
           <div>
             <a href=<?php echo "/plant-details?" . $record['id']; ?>>
-              <img src=<?php echo "/public/uploads/entries/" . $record['id'] . '.jpg'?> alt="" width="250" height="250"/>
+              <img src=<?php echo "/public/uploads/entries/" . $record['id'] . $record['img_ext']?> alt="" width="250" height="250"/>
             </a>
             <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
           </div>

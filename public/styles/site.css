@@ -135,6 +135,35 @@ section p {
     margin: 10px;
 }
 
+.align-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.add-form {
+    display: flex;
+    flex-direction: row;
+}
+
+.button1 {
+    display:inline-block;
+    padding:5px 5px;
+    border: 1px solid black;
+    margin:0 5px 5px 0;
+    border-radius:0.12em;
+    box-sizing: border-box;
+    text-decoration:none;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color:#384736;
+    text-align:center;
+}
+
+.button1:hover{
+    color:#000000;
+    background-color:#FFFFFF;
+}
+
 form {
     display: inline-block;
 }
@@ -176,9 +205,14 @@ form label {
 
 .feedback {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 20px;
     color: #b42727;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
 }
 
 .hidden {
@@ -208,6 +242,19 @@ img {
     /* width: 80%; */
     padding: 10px;
     margin: 15px;
+}
+
+.tags {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+.tags label {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #010101ea;
+    font-size: 16px;
+    line-height: 20px;
 }
 
 .filters {

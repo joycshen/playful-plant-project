@@ -14,8 +14,6 @@ $sql_filter_array = array();
 $sql_array = array();
 
 
-// Get HTTP request user data
-$id = $_GET['id'];
 // $colloquial_name = $_GET['colloquial_name'];
 // $perennial = (!empty($_GET['perennial']) ? 1 : 0);
 // $full_sun = (!empty($_GET['full_sun']) ? 1 : 0);
@@ -80,25 +78,37 @@ if (count($sql_filter_array) > 0) {
 $sort_asc = (bool)($_GET['sort'] ?? NULL);
 
 //stick the parts together
-// if ($sort_asc) {
-//   $sql_query = $sql_select_part . $sql_where_part . $sql_sort_part;
-// }
-// else {
-//   $sql_query = $sql_select_part . $sql_where_part;
-// }
+if ($sort_asc) {
+  $sql_query = $sql_select_part . $sql_where_part . $sql_sort_part;
+}
+else {
+  $sql_query = $sql_select_part . $sql_where_part;
+}
 
-$sql_query = $sql_select_part . $sql_where_part_1;
+$sql_query = $sql_select_part . $sql_where_part;
 
-// !!id
+// Get HTTP request user data
+// $id = $_GET['id'];
+
 // $records = exec_sql_query(
 //   $db,
-//   "SELECT * FROM grades WHERE (netid = :netid);",
+//   "SELECT * FROM entries WHERE (id = :id);",
 //   array(
-//     ':netid' => $netid
+//     ':id' => $id
 //   )
 // )->fetchAll();
 
-$records = exec_sql_query($db, $sql_query)->fetchAll();
+
+// // locate plant
+// if (count($records) > 0) {
+//   $record = $records[0];
+// }
+
+// if ($record) {
+//   $id = $record['id'];
+// }
+
+// $records = exec_sql_query($db, $sql_query)->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -122,16 +132,13 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
       <div class="plant">
       <article>
         <div class="detail">
-        <?php foreach ($records as $record) { ?>
-        <h2><?php echo htmlspecialchars($record["name_colloquial"]) ?></h2>
+        <h2>(plant name)</h2>
         <div class="buttons">
             <button class="button style">Flower</button>
         </div>
-        <?php } ?>
         </div>
         <div class="plant">
-            <?php foreach ($records as $record) { ?>
-            <img src=<?php echo "/public/uploads/entries/" . $record['id'] . '.jpg'?> alt="" width="600" height="350"/>
+            <img src=<?php echo "/public/uploads/entries/2.jpg"?> alt="" width="600" height="350"/>
             <div class="catalogs">
             <div class="catalog">
               <h3>Growing Needs and Characteristics: </h3>
@@ -151,7 +158,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
                   <li><?php echo htmlspecialchars($record["hardiness_zone_range"]) ?></li>
               </ul>
             </div>
-            <?php } ?>
         </div>
         </div>
       </article>

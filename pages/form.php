@@ -275,7 +275,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   <?php include('includes/header.php'); ?>
 
   <main>
-  <div class="form2">
     <article>
     <?php if ($show_confirmation) { ?>
 
@@ -289,8 +288,11 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
     <?php } else { ?>
       <h2>Add a New Plant!</h2>
+      <div class="align-center">
       <form id="request-form" method="post" action="/add-new-plants-form" novalidate>
 
+      <div class="add-form">
+        <div>
         <div id="feedback1" class="feedback <?php echo $name_feedback_class; ?>">Please enter a valid colloquial name.</div>
         <div class="label_input">
         <h3><label for="name_field">Plant Name (Colloquial):</label></h3>
@@ -308,7 +310,9 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           <h3><label for="plant_id_field">Plant ID:</label></h3>
           <input id="plant_id_field" type="text" name="plant_id" value="<?php echo htmlspecialchars($sticky_plant_id); ?>"/>
         </div>
+        </div>
 
+        <div class="column">
         <div id="feedback4" class="feedback <?php echo $topo_feedback_class; ?>">Please select at least one TOPO-Play Type Categorization.</div>
         <div class="forms label_input" role="group" aria-labelledby="TOPO">
           <div id="TOPO"><h3>TOPO-Play Type Categorization: </h3></div>
@@ -344,7 +348,9 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             </div>
           </div>
           </div>
+          </div>
 
+          <div class="column">
           <div id="feedback4" class="feedback <?php echo $topo_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
           <div class="forms label_input" role="group" aria-labelledby="play">
           <div id="play"><h3>Growing Needs and Characteristics: </h3></div>
@@ -373,25 +379,29 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
              <label for="hardiness_zone_range_field">Hardiness Zone Range:</label>
              <input id="hardiness_zone_range_field" type="text" name="hardiness_zone_range" value="<?php echo htmlspecialchars($sticky_colloquial_name); ?>"/>
             </div>
+            </div>
           </div>
           </div>
-        <div class="align_right">
-          <input id="add-submit" type="submit" name="add-entry" value="Add Entry" />
         </div>
-      </form>
 
-      <div class="plants">
+      <div class="tags">
       <h3>Choose Tag(s)</h3>
-          <label>General Classification: </label></div>
-          <div class="plant">
-            <button class="button style">Shrub</button>
-            <button class="button style">Grass</button>
-            <button class="button style">Vine</button>
-            <button class="button style">Tree</button>
-            <button class="button style">Flower</button>
-            <button class="button style">Groundcovers</button>
-            <button class="button style">Other</button>
-          </div>
+          <label>General Classification: </label>
+      </div>
+      <div class="plant">
+        <button class="button style">Shrub</button>
+        <button class="button style">Grass</button>
+        <button class="button style">Vine</button>
+        <button class="button style">Tree</button>
+        <button class="button style">Flower</button>
+        <button class="button style">Groundcovers</button>
+        <button class="button style">Other</button>
+      </div>
+      <div class="align_right">
+        <input id="add-submit" class="button1" type="submit" name="add-entry" value="Add Entry" />
+      </div>
+      </form>
+      </div>
     </article>
     </div>
     <?php } ?>
@@ -477,10 +487,9 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             <div id="feedback1" class="feedback <?php echo $name_feedback_class; ?>">Please enter a valid colloquial name.</div>
           </div>
         </div>
-        <input id="filter-submit" type="submit" name="submit-filter" value="Sort and Filter"/>
+        <input id="filter-submit" class="button1" type="submit" name="submit-filter" value="Sort and Filter"/>
       </form>
     </aside>
-    </div>
     </div>
   </main>
 </body>
