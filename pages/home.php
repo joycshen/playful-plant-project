@@ -160,8 +160,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         foreach ($records as $record) { ?>
         <!-- <div class="plant"> -->
           <div>
-            <a href=<?php echo "/plant-details?" . $record['id']; ?>>
-              <img src=<?php echo "/public/uploads/entries/" . $record['id'] . $record['img_ext']?> alt="" width="250" height="250"/>
+            <a href="/plant-details?<?php echo http_build_query(array('id' => $record['id'])); ?>">
+              <img src="/public/uploads/entries/<?php echo $record['id'] . $record['img_ext']; ?>" alt="" width="250" height="250"/>
             </a>
             <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
           </div>
