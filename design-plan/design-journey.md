@@ -318,7 +318,9 @@ Tabl4: users
       entries.full_shade AS 'entries.full_shade',
       entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
       entries.img_ext AS 'entries.img_ext',
-      tags.tag_name AS 'tags.tag_name'
+      tags.tag_name AS 'tags.tag_name',
+      entry_tags.entry_id AS 'entries.id',
+      entry_tags.tag_id AS 'tags.id'
     FROM
       entry_tags
       LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
