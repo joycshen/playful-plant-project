@@ -177,7 +177,7 @@ form label {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.body {
+.body-display {
     display: flex;
     flex-direction: row;
 }
@@ -213,6 +213,11 @@ form label {
 .column {
     display: flex;
     flex-direction: column;
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
 }
 
 .hidden {
@@ -255,11 +260,6 @@ img {
     color: #010101ea;
     font-size: 16px;
     line-height: 20px;
-}
-
-.filters {
-    display: flex;
-    flex-direction: row;
 }
 
 .titles {
@@ -338,3 +338,27 @@ img {
 .detail button {
     margin-left: 50px;
 }
+
+/* mobile version */
+@media screen and (max-width: 600px) {
+    body {
+
+    }
+
+    .body-display {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sections {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .plants {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+  }

@@ -101,8 +101,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   <main>
   <div class="sections">
   <article>
-  <div class="body">
-  <div class="filters">
+  <div class="body-display">
+  <div class="row">
   <div class="titles">
     <p>Filters: </p>
   </div>
@@ -131,11 +131,11 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         <input type="checkbox" id="six" />Hardiness Zone Range</label>
     </div>
   </div>
+  </div>
   </form>
   </div>
-  </div>
 
-  <div class="filters">
+  <div class="row">
   <div class="titles">
    <p>Sort: </p>
   </div>
@@ -153,24 +153,9 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   </form>
   </div>
   </div>
-
   </div>
-      <div class="plants">
-        <?php
-        foreach ($records as $record) { ?>
-        <!-- <div class="plant"> -->
-          <div>
-            <a href="/plant-details?<?php echo http_build_query(array('id' => $record['id'])); ?>">
-              <img src="/public/uploads/entries/<?php echo $record['id'] . $record['img_ext']; ?>" alt="" width="250" height="250"/>
-            </a>
-            <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
-          </div>
-        <?php } ?>
-      <!-- </div> -->
-      </div>
-    </article>
 
-    <div class="form">
+  <div class="form">
     <aside>
     <!-- <div id="feedback" class="feedback <?php echo $feedback_class; ?>">Please choose at least one sorting/filter.</div> -->
 
@@ -187,8 +172,23 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             <button class="button style">Other</button>
           </div>
     </div>
-    </div>
     </aside>
+
+    <div class="plants">
+      <?php
+      foreach ($records as $record) { ?>
+      <!-- <div class="plant"> -->
+        <div>
+          <a href="/plant-details?<?php echo http_build_query(array('id' => $record['id'])); ?>">
+            <img src="/public/uploads/entries/<?php echo $record['id'] . $record['img_ext']; ?>" alt="" width="250" height="250"/>
+            </a>
+            <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
+        </div>
+      <?php } ?>
+      <!-- </div> -->
+    </div>
+    </article>
+
     </div>
   </main>
 </body>

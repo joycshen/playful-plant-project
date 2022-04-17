@@ -141,7 +141,7 @@ if ($plant_id) {
       <article>
         <?php if ($plant) { ?>
         <div class="detail">
-        <h2><?php echo $record['name_colloquial'] ?></h2>
+        <h2><?php echo $plant['name_colloquial'] ?></h2>
         <div class="buttons">
           <!-- need to get tags here -->
             <button class="button style">Flower</button>
