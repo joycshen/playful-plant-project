@@ -7,7 +7,31 @@ $nav_new_entry_form = "active_page";
 $db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
 
 //query pieces
-$sql_select_part = 'SELECT * FROM entries ';
+// $sql_select_part = 'SELECT * FROM entries ';
+$sql_select_part = "SELECT
+entries.name_colloquial AS 'entries.name_colloquial',
+entries.name_genus_species AS 'entries.name_genus_species',
+entries.plant_id AS 'entries.plant_id',
+entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
+entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
+entries.physical_play AS 'entries.physical_play',
+entries.imaginative_play AS 'entries.imaginative_play',
+entries.restorative_play AS 'entries.restorative_play',
+entries.play_with_rules AS 'entries.play_with_rules',
+entries.bio_play AS 'entries.bio_play',
+entries.perennial AS 'entries.perennial',
+entries.full_sun AS 'entries.full_sun',
+entries.partial_shade AS 'entries.partial_shade',
+entries.full_shade AS 'entries.full_shade',
+entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+entries.img_ext AS 'entries.img_ext',
+tags.tag_name AS 'tags.tag_name',
+entry_tags.entry_id AS 'entries.id',
+entry_tags.tag_id AS 'tags.id'
+FROM
+entry_tags
+LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
+LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id);";
 $sql_where_part = '';
 $sql_sort_part = ' ORDER BY name_colloquial ASC;';
 $sql_filter_array = array();
@@ -160,10 +184,10 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
       foreach ($records as $record) { ?>
       <!-- <div class="plant"> -->
         <div>
-          <a href="/plant-details?<?php echo http_build_query(array('id' => $record['id'])); ?>">
-            <img src="/public/uploads/entries/<?php echo $record['id'] . $record['img_ext']; ?>" alt="" width="250" height="250"/>
+          <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
+            <img src="/public/uploads/entries/<?php echo $record['entries.id'] . $record['entries.img_ext']; ?>" alt="" width="250" height="250"/>
             </a>
-            <h3><?php echo htmlspecialchars($record["name_colloquial"]) ?></h3>
+            <h3><?php echo htmlspecialchars($record["entries.name_colloquial"]) ?></h3>
         </div>
       <?php } ?>
       <!-- </div> -->

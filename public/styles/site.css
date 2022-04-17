@@ -227,7 +227,8 @@ form label {
 .plants {
     display: flex;
     flex-wrap: wrap;
-    margin-bottom: 20px;
+    align-items: center;
+    /* margin-bottom: 20px; */
 }
 
 .plant, .detail {
@@ -339,6 +340,10 @@ img {
     margin-left: 50px;
 }
 
+.hidden {
+    display: none;
+}
+
 /* mobile version */
 @media screen and (max-width: 600px) {
     .body-display {
@@ -354,7 +359,50 @@ img {
     .plants {
         display: flex;
         flex-direction: column;
-        margin-bottom: 20px;
-        margin-left: 20px;
+        align-items: center;
+        /* margin-bottom: 20px;
+        margin-left: 20px; */
     }
+
+    .plant {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .plant img {
+        width: 90%;
+    }
+
+    .add-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .hidden {
+        display: flex;
+    }
+
+    .menuItem {
+        display: block;
+        margin: 2rem 4rem;
+        font-size: 1.8rem;
+        color: white;
+        text-decoration: none;
+      }
+
+      .menuItem:hover {
+        text-decoration: underline;
+      }
+
+      .hamburger {
+        position: fixed;
+        z-index: 100;
+        top: 1rem;
+        right: 1rem;
+        padding: 4px;
+        border: black solid 1px;
+        background: white;
+        cursor: pointer;
+      }
   }

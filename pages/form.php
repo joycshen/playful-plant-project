@@ -6,7 +6,7 @@ $nav_new_entry_form = "active_page";
 // open database
 $db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
 
-// add-entry form
+// ----------- add-entry form ----------------
 
 // form initial state
 $show_confirmation = False;
@@ -19,6 +19,7 @@ $name_feedback_class = 'hidden';
 $genus_feedback_class = 'hidden';
 $plant_id_feedback_class = 'hidden';
 $topo_feedback_class = 'hidden';
+$growing_needs_feedback_class = 'hidden';
 
 // values
 $colloquial_name = '';
@@ -31,6 +32,11 @@ $imaginative_play = '';
 $restorative_play = '';
 $play_with_rules = '';
 $bio_play = '';
+$perennial = '';
+$full_sun = '';
+$partial_shade = '';
+$full_shade = '';
+$hardiness_zone_range = '';
 
 // sticky values
 $sticky_colloquial_name = '';
@@ -43,6 +49,11 @@ $sticky_imaginative_play = '';
 $sticky_restorative_play = '';
 $sticky_play_with_rules = '';
 $sticky_bio_play = '';
+$sticky_perennial = '';
+$sticky_full_sun = '';
+$sticky_partial_shade = '';
+$sticky_full_shade = '';
+$sticky_hardiness_zone_range = '';
 
 if (isset($_POST['add-entry'])) {
 
@@ -57,6 +68,11 @@ if (isset($_POST['add-entry'])) {
   $restorative_play = (!empty($_POST['restorative_play']) ? 1 : 0);
   $play_with_rules = (!empty($_POST['play_with_rules']) ? 1 : 0);
   $bio_play = (!empty($_POST['bio_play']) ? 1 : 0);
+  $perennial = (!empty($_POST['perennial']) ? 1 : 0);
+  $full_sun = (!empty($_POST['full_sun']) ? 1 : 0);
+  $partial_shade = (!empty($_POST['partial_shade']) ? 1 : 0);
+  $full_shade = (!empty($_POST['full_shade']) ? 1 : 0);
+  $hardiness_zone_range = $_POST['hardiness_zone_range'];
 
   $form_valid = True;
 
@@ -82,6 +98,12 @@ if (isset($_POST['add-entry'])) {
    if (empty($plant_id)) {
     $form_valid = False;
     $plant_id_feedback_class = '';
+  }
+
+   // whether at least one check box checked, if so, form invalid
+   if (empty($perennial) && empty($full_sun) && empty($partial_shade) && empty($full_shade) && empty($hardiness_zone_range)) {
+    $form_valid = False;
+    $growing_needs_feedback_class = '';
   }
 
   if ($form_valid) {
@@ -122,6 +144,11 @@ if (isset($_POST['add-entry'])) {
     $sticky_restorative_play = (empty($restorative_play) ? '' : 'checked');
     $sticky_play_with_rules = (empty($play_with_rules) ? '' : 'checked');
     $sticky_bio_play = (empty($bio_play) ? '' : 'checked');
+    $sticky_perennial = (empty($perennial) ? '' : 'checked');
+    $sticky_full_sun = (empty($full_sun) ? '' : 'checked');
+    $sticky_partial_shade = (empty($partial_shade) ? '' : 'checked');
+    $sticky_full_shade = (empty($full_shade) ? '' : 'checked');
+    $sticky_hardiness_zone_range = $hardiness_zone_range;
     $sticky_colloquial_name = $colloquial_name;
     $sticky_genus_species = $genus_species;
     $sticky_plant_id = $plant_id;
@@ -134,38 +161,38 @@ if (isset($_POST['add-entry'])) {
 $feedback_class = 'hidden';
 
 // values
-$exploratory_constructive_play = '';
+$exploratory_constructive_play_1 = '';
 $exploratory_sensory_play = '';
 $physical_play = '';
 $imaginative_play = '';
 $restorative_play = '';
 $play_with_rules = '';
 $bio_play = '';
-$perennial ='';
-$full_sun = '';
-$partial_shade = '';
-$full_shade = '';
-$hardiness_zone_range = '';
+// $perennial ='';
+// $full_sun = '';
+// $partial_shade = '';
+// $full_shade = '';
+// $hardiness_zone_range = '';
 $sort = '';
 
 // sticky values
-$sticky_exploratory_constructive_play = '';
+$sticky_exploratory_constructive_play_1 = '';
 $sticky_exploratory_sensory_play = '';
 $sticky_physical_play = '';
 $sticky_imaginative_play = '';
 $sticky_restorative_play = '';
 $sticky_play_with_rules = '';
 $sticky_bio_play = '';
-$sticky_perennial ='';
-$sticky_full_sun = '';
-$sticky_partial_shade = '';
-$sticky_full_shade = '';
-$sticky_hardiness_zone_range = '';
+// $sticky_perennial ='';
+// $sticky_full_sun = '';
+// $sticky_partial_shade = '';
+// $sticky_full_shade = '';
+// $sticky_hardiness_zone_range = '';
 $sticky_sort = '';
 
 if (isset($_GET['submit-filter'])) {
 
-  $exploratory_constructive_play = $_GET['exploratory_constructive_play'];
+  $exploratory_constructive_play_1 = $_GET['exploratory_constructive_play'];
   $exploratory_sensory_play = $_GET['exploratory_sensory_play'];
   $physical_play = $_GET['physical_play'];
   $imaginative_play = $_GET['imaginative_play'];
@@ -176,7 +203,7 @@ if (isset($_GET['submit-filter'])) {
 
   $form_valid = True;
 
-  if (empty($sort) && empty($exploratory_constructive_play) && empty($exploratory_sensory_play) && empty($physical_play) && empty($imaginative_play) && empty($restorative_play) && empty($play_with_rules) && empty($bio_play)) {
+  if (empty($sort) && empty($exploratory_constructive_play_1) && empty($exploratory_sensory_play) && empty($physical_play) && empty($imaginative_play) && empty($restorative_play) && empty($play_with_rules) && empty($bio_play)) {
     $form_valid = False;
     $feedback_class = '';
     $sticky_sort = (empty($sort) ? '' : 'checked');
@@ -184,7 +211,7 @@ if (isset($_GET['submit-filter'])) {
 
   if ($form_valid) {
     // form is valid --> sticky values
-    $sticky_exploratory_constructive_play = (empty($exploratory_constructive_play) ? '' : 'checked');
+    $sticky_exploratory_constructive_play_1 = (empty($exploratory_constructive_play_1) ? '' : 'checked');
     $sticky_exploratory_sensory_play = (empty($exploratory_sensory_play) ? '' : 'checked');
     $sticky_physical_play = (empty($physical_play) ? '' : 'checked');
     $sticky_imaginative_play = (empty($imaginative_play) ? '' : 'checked');
@@ -356,7 +383,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           <div id="play"><h3>Growing Needs and Characteristics: </h3></div>
           <div>
             <div>
-              <input type="checkbox" id="perennial" name="perennial" <?php echo $sticky_exploratory_constructive_play; ?>/>
+              <input type="checkbox" id="perennial" name="perennial" <?php echo $sticky_perennial; ?>/>
               <label for="perennial">Perennial</label>
             </div>
             <div>
@@ -461,7 +488,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
           <div>
             <div>
-              <input type="checkbox" id="exploratory_constructive_play_present" name="exploratory_constructive_play" <?php echo $sticky_exploratory_constructive_play; ?>/>
+              <input type="checkbox" id="exploratory_constructive_play_present" name="exploratory_constructive_play" <?php echo $sticky_exploratory_constructive_play_1; ?>/>
               <label for="exploratory_constructive_play_present">Supports Exploratory Constructive Play</label>
             </div>
             <div>
