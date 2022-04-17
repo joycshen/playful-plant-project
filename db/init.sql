@@ -1,3 +1,4 @@
+-- entry table
 CREATE TABLE entries (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     name_colloquial TEXT NOT NULL,
@@ -98,6 +99,7 @@ INSERT INTO
 VALUES
     (16, "Harry Lauder's Walking stick", "Corylus avellana 'Contorta'", 'SH_03', 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, '4-8', '.jpg');
 
+-- tag table
 CREATE TABLE tags (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
     tag_name TEXT NOT NULL
@@ -106,61 +108,124 @@ CREATE TABLE tags (
 INSERT INTO
     tags(id, tag_name)
 VALUES
-    (17, 'shrub');
+    (1, 'shrub');
 
 INSERT INTO
     tags(id, tag_name)
 VALUES
-    (18, 'grass');
+    (2, 'grass');
 
 INSERT INTO
     tags(id, tag_name)
 VALUES
-    (19, 'vine');
+    (3, 'vine');
 
 INSERT INTO
     tags(id, tag_name)
 VALUES
-    (20, 'tree');
+    (4, 'tree');
 
 INSERT INTO
     tags(id, tag_name)
 VALUES
-    (21, 'flower');
+    (5, 'flower');
 
 INSERT INTO
     tags(id, tag_name)
 VALUES
-    (22, 'groundcovers');
+    (6, 'groundcovers');
 
 INSERT INTO
     tags(id, tag_name)
 VALUES
-    (23, 'other');
+    (7, 'other');
 
 
--- CREATE TABLE entry_tags (
---     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
---     entry_id INTEGER NOT NULL,
---     FOREIGN KEY(entry_id)
---         REFERENCES entries(id)
---     tag_id INTEGER NOT NULL,
---     FOREIGN KEY(tag_id)
---         REFERENCES tags(id)
--- );
+-- relationship table
+CREATE TABLE entry_tags (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+    entry_id INTEGER NOT NULL,
+    tag_id INTEGER NOT NULL,
+	FOREIGN KEY (entry_id) REFERENCES entries(id),
+    FOREIGN KEY (tag_id) REFERENCES tags(id)
+);
 
--- INSERT INTO
---     entries(id, entry_id, tag_id)
--- VALUES
---     (24, 1, 18);
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (1, 1, 2);
 
--- INSERT INTO
---     entries(id, entry_id, tag_id)
--- VALUES
---     (24, 1, 18);
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (2, 2, 5);
 
--- CREATE TABLE users (
---     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
---     username TEXT NOT NULL,
---     passward TEXT NOT NULL,
--- );
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (3, 3, 6);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (4, 4, 1);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (5, 5, 4);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (6, 6, 6);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (7, 7, 6);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (8, 8, 1);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (9, 9, 1);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (10, 10, 4);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (11, 11, 1);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (12, 12, 5);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (13, 13, 2);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (14, 14, 1);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (15, 15, 7);
+
+INSERT INTO
+    entry_tags(id, entry_id, tag_id)
+VALUES
+    (16, 16, 1);
