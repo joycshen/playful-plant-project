@@ -16,7 +16,7 @@ CREATE TABLE entries (
     partial_shade INTEGER NOT NULL,
     full_shade INTEGER NOT NULL,
     hardiness_zone_range TEXT NOT NULL,
-    img_ext TEXT NOT NULL
+    img_ext TEXT
 );
 
 INSERT INTO

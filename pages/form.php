@@ -58,9 +58,9 @@ $sticky_hardiness_zone_range = '';
 if (isset($_POST['add-entry'])) {
 
   // Get HTTP request user data
-  $colloquial_name = $_POST['colloquial_name'];
-  $genus_species = $_POST['genus_species'];
-  $plant_id = $_POST['plant_id'];
+  $colloquial_name = trim($_POST['colloquial_name']);
+  $genus_species = trim($_POST['genus_species']);
+  $plant_id = trim($_POST['plant_id']);
   $exploratory_constructive_play = (!empty($_POST['exploratory_constructive_play']) ? 1 : 0);
   $exploratory_sensory_play = (!empty($_POST['exploratory_sensory_play']) ? 1 : 0);
   $physical_play = (!empty($_POST['physical_play']) ? 1 : 0);
@@ -72,7 +72,7 @@ if (isset($_POST['add-entry'])) {
   $full_sun = (!empty($_POST['full_sun']) ? 1 : 0);
   $partial_shade = (!empty($_POST['partial_shade']) ? 1 : 0);
   $full_shade = (!empty($_POST['full_shade']) ? 1 : 0);
-  $hardiness_zone_range = $_POST['hardiness_zone_range'];
+  $hardiness_zone_range = trim($_POST['hardiness_zone_range']);
 
   $form_valid = True;
 
