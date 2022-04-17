@@ -341,10 +341,6 @@ img {
 
 /* mobile version */
 @media screen and (max-width: 600px) {
-    body {
-
-    }
-
     .body-display {
         display: flex;
         flex-direction: column;

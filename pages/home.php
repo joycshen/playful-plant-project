@@ -155,25 +155,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   </div>
   </div>
 
-  <div class="form">
-    <aside>
-    <!-- <div id="feedback" class="feedback <?php echo $feedback_class; ?>">Please choose at least one sorting/filter.</div> -->
-
-    <div class="plants">
-      <h2>Choose Tag(s)</h2>
-          <h3>General Classification: </h3></div>
-          <div class="buttons">
-            <button class="button style">Shrub</button>
-            <button class="button style">Grass</button>
-            <button class="button style">Vine</button>
-            <button class="button style">Tree</button>
-            <button class="button style">Flower</button>
-            <button class="button style">Groundcovers</button>
-            <button class="button style">Other</button>
-          </div>
-    </div>
-    </aside>
-
     <div class="plants">
       <?php
       foreach ($records as $record) { ?>
@@ -188,6 +169,23 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
       <!-- </div> -->
     </div>
     </article>
+
+    <aside>
+    <div class="form">
+    <div class="plants">
+      <h2>Choose Tag(s)</h2>
+          <h3>General Classification: </h3></div>
+          <div class="buttons">
+            <button class="button style">Shrub</button>
+            <button class="button style">Grass</button>
+            <button class="button style">Vine</button>
+            <button class="button style">Tree</button>
+            <button class="button style">Flower</button>
+            <button class="button style">Groundcovers</button>
+            <button class="button style">Other</button>
+          </div>
+    </div>
+  </aside>
 
     </div>
   </main>
