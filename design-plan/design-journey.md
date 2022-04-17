@@ -301,7 +301,28 @@ Tabl4: users
 1. All Records
 
     ```
-    SELECT * FROM entries;
+    SELECT
+      entries.name_colloquial AS 'entries.name_colloquial',
+      entries.name_genus_species AS 'entries.name_genus_species',
+      entries.plant_id AS 'entries.plant_id',
+      entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
+      entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
+      entries.physical_play AS 'entries.physical_play',
+      entries.imaginative_play AS 'entries.imaginative_play',
+      entries.restorative_play AS 'entries.restorative_play',
+      entries.play_with_rules AS 'entries.play_with_rules',
+      entries.bio_play AS 'entries.bio_play',
+      entries.perennial AS 'entries.perennial',
+      entries.full_sun AS 'entries.full_sun',
+      entries.partial_shade AS 'entries.partial_shade',
+      entries.full_shade AS 'entries.full_shade',
+      entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+      entries.img_ext AS 'entries.img_ext',
+      tags.tag_name AS 'tags.tag_name'
+    FROM
+      entry_tags
+      LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
+      LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id);
     ```
 
 2. Filter/Sort/Tags Records
