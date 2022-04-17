@@ -162,12 +162,12 @@ $feedback_class = 'hidden';
 
 // values
 $exploratory_constructive_play_1 = '';
-$exploratory_sensory_play = '';
-$physical_play = '';
-$imaginative_play = '';
-$restorative_play = '';
-$play_with_rules = '';
-$bio_play = '';
+$exploratory_sensory_play_1 = '';
+$physical_play_1 = '';
+$imaginative_play_1 = '';
+$restorative_play_1 = '';
+$play_with_rules_1 = '';
+$bio_play_1 = '';
 // $perennial ='';
 // $full_sun = '';
 // $partial_shade = '';
@@ -177,12 +177,12 @@ $sort = '';
 
 // sticky values
 $sticky_exploratory_constructive_play_1 = '';
-$sticky_exploratory_sensory_play = '';
-$sticky_physical_play = '';
-$sticky_imaginative_play = '';
-$sticky_restorative_play = '';
-$sticky_play_with_rules = '';
-$sticky_bio_play = '';
+$sticky_exploratory_sensory_play_1 = '';
+$sticky_physical_play_1 = '';
+$sticky_imaginative_play_1 = '';
+$sticky_restorative_play_1 = '';
+$sticky_play_with_rules_1 = '';
+$sticky_bio_play_1 = '';
 // $sticky_perennial ='';
 // $sticky_full_sun = '';
 // $sticky_partial_shade = '';
@@ -193,17 +193,17 @@ $sticky_sort = '';
 if (isset($_GET['submit-filter'])) {
 
   $exploratory_constructive_play_1 = $_GET['exploratory_constructive_play'];
-  $exploratory_sensory_play = $_GET['exploratory_sensory_play'];
-  $physical_play = $_GET['physical_play'];
-  $imaginative_play = $_GET['imaginative_play'];
-  $restorative_play = $_GET['restorative_play'];
-  $play_with_rules = $_GET['play_with_rules'];
-  $bio_play = $_GET['bio_play'];
+  $exploratory_sensory_play_1 = $_GET['exploratory_sensory_play'];
+  $physical_play_1 = $_GET['physical_play'];
+  $imaginative_play_1 = $_GET['imaginative_play'];
+  $restorative_play_1 = $_GET['restorative_play'];
+  $play_with_rules_1 = $_GET['play_with_rules'];
+  $bio_play_1 = $_GET['bio_play'];
   $sort = $_GET['sort'];
 
   $form_valid = True;
 
-  if (empty($sort) && empty($exploratory_constructive_play_1) && empty($exploratory_sensory_play) && empty($physical_play) && empty($imaginative_play) && empty($restorative_play) && empty($play_with_rules) && empty($bio_play)) {
+  if (empty($sort) && empty($exploratory_constructive_play_1) && empty($exploratory_sensory_play_1) && empty($physical_play_1) && empty($imaginative_play_1) && empty($restorative_play_1) && empty($play_with_rules_1) && empty($bio_play_1)) {
     $form_valid = False;
     $feedback_class = '';
     $sticky_sort = (empty($sort) ? '' : 'checked');
@@ -212,13 +212,13 @@ if (isset($_GET['submit-filter'])) {
   if ($form_valid) {
     // form is valid --> sticky values
     $sticky_exploratory_constructive_play_1 = (empty($exploratory_constructive_play_1) ? '' : 'checked');
-    $sticky_exploratory_sensory_play = (empty($exploratory_sensory_play) ? '' : 'checked');
-    $sticky_physical_play = (empty($physical_play) ? '' : 'checked');
-    $sticky_imaginative_play = (empty($imaginative_play) ? '' : 'checked');
-    $sticky_restorative_play = (empty($restorative_play) ? '' : 'checked');
-    $sticky_play_with_rules = (empty($play_with_rules) ? '' : 'checked');
-    $sticky_exploratory_constructive_play = (empty($exploratory_constructive_play) ? '' : 'checked');
-    $sticky_bio_play = (empty($bio_play) ? '' : 'checked');
+    $sticky_exploratory_sensory_play_1 = (empty($exploratory_sensory_play_1) ? '' : 'checked');
+    $sticky_physical_play_1 = (empty($physical_play_1) ? '' : 'checked');
+    $sticky_imaginative_play_1 = (empty($imaginative_play_1) ? '' : 'checked');
+    $sticky_restorative_play_1 = (empty($restorative_play_1) ? '' : 'checked');
+    $sticky_play_with_rules_1 = (empty($play_with_rules_1) ? '' : 'checked');
+    $sticky_exploratory_constructive_play_1 = (empty($exploratory_constructive_play_1) ? '' : 'checked');
+    $sticky_bio_play_1 = (empty($bio_play_1) ? '' : 'checked');
     $sticky_sort = (empty($sort) ? '' : 'checked');
     $feedback_class = 'hidden';
   }
@@ -378,7 +378,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           </div>
 
           <div class="column">
-          <div id="feedback4" class="feedback <?php echo $topo_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
+          <div id="feedback4" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
           <div class="forms label_input" role="group" aria-labelledby="play">
           <div id="play"><h3>Growing Needs and Characteristics: </h3></div>
           <div>
@@ -387,24 +387,20 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
               <label for="perennial">Perennial</label>
             </div>
             <div>
-              <input type="checkbox" id="annual" name="annual" <?php echo $sticky_exploratory_sensory_play; ?>/>
-              <label for="annual">Annual</label>
-            </div>
-            <div>
-              <input type="checkbox" id="full_sun" name="full_sun" <?php echo $sticky_physical_play; ?>/>
+              <input type="checkbox" id="full_sun" name="full_sun" <?php echo $sticky_full_sun; ?>/>
               <label for="full_sun">Full Sun</label>
             </div>
             <div>
-              <input type="checkbox" id="partial_shade" name="partial_shade" <?php echo $sticky_imaginative_play; ?>/>
+              <input type="checkbox" id="partial_shade" name="partial_shade" <?php echo $sticky_partial_shade; ?>/>
               <label for="partial_shade">Partial Shade</label>
             </div>
             <div>
-              <input type="checkbox" id="full_shade" name="full_shade" <?php echo $sticky_restorative_play; ?>/>
+              <input type="checkbox" id="full_shade" name="full_shade" <?php echo $sticky_full_shade; ?>/>
               <label for="full_shade">Full Shade</label>
             </div>
             <div class="label_input">
              <label for="hardiness_zone_range_field">Hardiness Zone Range:</label>
-             <input id="hardiness_zone_range_field" type="text" name="hardiness_zone_range" value="<?php echo htmlspecialchars($sticky_colloquial_name); ?>"/>
+             <input id="hardiness_zone_range_field" type="text" name="hardiness_zone_range" value="<?php echo htmlspecialchars($sticky_hardiness_zone_range); ?>"/>
             </div>
             </div>
           </div>
@@ -492,26 +488,25 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
               <label for="exploratory_constructive_play_present">Supports Exploratory Constructive Play</label>
             </div>
             <div>
-              <input type="checkbox" id="exploratory_sensory_play_present" name="exploratory_sensory_play" <?php echo $sticky_exploratory_sensory_play; ?>/>
+              <input type="checkbox" id="exploratory_sensory_play_present" name="exploratory_sensory_play" <?php echo $sticky_exploratory_sensory_play_1; ?>/>
               <label for="exploratory_sensory_play_present">Supports Exploratory Sensory Play</label>
             </div>
             <div>
-              <input type="checkbox" id="physical_play_present" name="physical_play" <?php echo $sticky_physical_play; ?>/>
+              <input type="checkbox" id="physical_play_present" name="physical_play" <?php echo $sticky_physical_play_1; ?>/>
               <label for="physical_play_present">Supports Physical Play</label>
             </div>
             <div>
-              <input type="checkbox" id="imaginative_play_present" name="imaginative_play" <?php echo $sticky_imaginative_play; ?>/>
+              <input type="checkbox" id="imaginative_play_present" name="imaginative_play" <?php echo $sticky_imaginative_play_1; ?>/>
               <label for="imaginative_play_present">Supports Imaginative Play</label>
             </div>
             <div>
-              <input type="checkbox" id="restorative_play_present" name="restorative_play" <?php echo $sticky_restorative_play; ?>/>
+              <input type="checkbox" id="restorative_play_present" name="restorative_play" <?php echo $sticky_restorative_play_1; ?>/>
               <label for="restorative_play_present">Supports Restorative Play</label>
             </div>
             <div>
-              <input type="checkbox" id="play_with_rules_present" name="play_with_rules" <?php echo $sticky_play_with_rules; ?>/>
+              <input type="checkbox" id="play_with_rules_present" name="play_with_rules" <?php echo $sticky_play_with_rules_1; ?>/>
               <label for="play_with_rules_present">Supports Play with Rules</label>
             </div>
-            <div id="feedback1" class="feedback <?php echo $name_feedback_class; ?>">Please enter a valid colloquial name.</div>
           </div>
         </div>
         <input id="filter-submit" class="button1" type="submit" name="submit-filter" value="Sort and Filter"/>
