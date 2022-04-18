@@ -10,6 +10,6 @@
     <!-- material icons https://material.io/resources/icons/ -->
     <!-- <i class="menuIcon material-icons">menu</i>
     <i class="closeIcon material-icons">close</i>
-  </button> -->
+    </button> -->
   </nav>
 </header>

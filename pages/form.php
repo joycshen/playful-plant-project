@@ -8,6 +8,8 @@ $db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
 
 // ----------- add-entry form ----------------
 
+define("MAX_FILE_SIZE", 1000000);
+
 // form initial state
 $show_confirmation = False;
 
@@ -37,6 +39,10 @@ $full_sun = '';
 $partial_shade = '';
 $full_shade = '';
 $hardiness_zone_range = '';
+
+// upload values
+$upload_filename = NULL;
+$upload_ext = NULL;
 
 // sticky values
 $sticky_colloquial_name = '';
@@ -74,7 +80,17 @@ if (isset($_POST['add-entry'])) {
   $full_shade = (!empty($_POST['full_shade']) ? 1 : 0);
   $hardiness_zone_range = trim($_POST['hardiness_zone_range']);
 
+  $upload = $_FILES['img-file'];
+
   $form_valid = True;
+
+  if ($upload['error'] == UPLOAD_ERR_OK) {
+    $upload_filename = basename($upload['name']);
+
+    $upload_ext = strtolower(pathinfo($upload_filename, PATHINFO_EXTENSION));
+  } else {
+    $form_valid = False;
+  }
 
   // whether at least one check box checked, if not, form invalid
   if (empty($exploratory_constructive_play) && empty($exploratory_sensory_play) && empty($physical_play) && empty($imaginative_play) && empty($restorative_play) && empty($play_with_rules) && empty($bio_play)) {
@@ -110,7 +126,7 @@ if (isset($_POST['add-entry'])) {
     //securely insert new data
     $result = exec_sql_query(
     $db,
-    "INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range);",
+    "INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range, :img_ext);",
     array(
       ':name_colloquial' => $colloquial_name,
       ':name_genus_species' => $genus_species,
@@ -127,14 +143,22 @@ if (isset($_POST['add-entry'])) {
       ':partial_shade' => $partial_shade,
       ':full_shade' => $full_shade,
       ':hardiness_zone_range' => $hardiness_zone_range,
+      ':img_ext' => $upload_ext,
     )
   );
 
   if($result) {
     $record_inserted = True;
+
+    $record_id = $db->lastInsertId('id');
+
+    $id_filename = 'public/uploads/entries/' . $record_id . '.' . $upload_ext;
+
+    move_uploaded_file($upload["tmp_name"], $id_filename);
   }
     // form is valid, hide form and show confirmation message
     $show_confirmation = True;
+
   } else {
     // form is invalid, apply sticky values
     $sticky_exploratory_constructive_play = (empty($exploratory_constructive_play) ? '' : 'checked');
@@ -200,6 +224,8 @@ if (isset($_GET['submit-filter'])) {
   $play_with_rules_1 = $_GET['play_with_rules'];
   $bio_play_1 = $_GET['bio_play'];
   $sort = $_GET['sort'];
+
+  // $upload = $_FILES['img-file'];
 
   $form_valid = True;
 
@@ -316,7 +342,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
     <?php } else { ?>
       <h2>Add a New Plant!</h2>
       <div class="align-center">
-      <form id="request-form" method="post" action="/add-new-plants-form" novalidate>
+      <form id="request-form" method="post" action="/add-new-plants-form" enctype="multipart/form-data" novalidate>
 
       <div class="add-form">
         <div>
@@ -405,6 +431,17 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             </div>
           </div>
           </div>
+        </div>
+
+        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_FILE_SIZE; ?>" />
+        <div class="column">
+          <!-- <div id="feedback5" class="feedback">Please upload an image.</div> -->
+          <div class="forms label_input" role="group" aria-labelledby="upload">
+          <div class="label_input">
+          <h3><label for="upload-file">Upload an Image:</label></h3>
+          <input type="file" id="upload-file" name="img-file"/>
+        </div>
+        </div>
         </div>
 
       <div class="tags">
@@ -514,6 +551,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
     </aside>
     </div>
   </main>
-</body>
 
+  <!-- <script type="text/javascript" src="public/scripts/jquery-3.6.0.js"></script>
+  <script type="text/javascript" src="public/scripts/hamburger.js"></script> -->
+</body>
 </html>
