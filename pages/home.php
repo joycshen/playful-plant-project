@@ -35,6 +35,20 @@ LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id);";
 $sql_where_part = '';
 $sql_sort_part = ' ORDER BY name_colloquial ASC;';
 $sql_filter_array = array();
+$sql_tag_array = array();
+
+//get tag
+// $tag_id = $_GET['id'] ?? NULL;
+
+// if ($tag_id) {
+//   $tags = exec_sql_query(
+//     $db,
+//     "SELECT * FROM tags;",
+//     array(':id' => $tag_id)
+//   )->fetchAll();
+
+//   $tag = $tags[0];
+// }
 
 //Filters
 $filter_exploratory_constructive_play = (bool)($_GET['exploratory_constructive_play'] ?? NULL);
@@ -73,8 +87,57 @@ if ($filter_bio_play) {
   array_push($sql_filter_array, "(bio_play = '1')");
 }
 
-if (count($sql_filter_array) > 0) {
+// if (count($sql_filter_array) > 0) {
+//   $sql_where_part = ' WHERE ' . implode(' AND ', $sql_filter_array);
+// }
+
+//tags
+$tag_name = $_GET['tag'];
+// $tag_grass = $_GET['grass'];
+// $tag_vine = $_GET['vine'];
+// $tag_tree = $_GET['tree'];
+// $tag_flower = $_GET['flower'];
+// $tag_groundcovers = $_GET['groundcovers'];
+// $tag_other = $_GET['other'];
+// $tag_name = $_GET['tags.tag_name'];
+
+if ($tag_name) {
+  array_push($sql_tag_array, "('tag = 'shrub')");
+}
+
+// if ($tag_grass) {
+//   array_push($sql_tag_array, "('grass' = 'grass')");
+// }
+
+// if ($tag_vine) {
+//   array_push($sql_tag_array, "('vine' = 'vine')");
+// }
+
+// if ($tag_tree) {
+//   array_push($sql_tag_array, "('tree' = 'tree')");
+// }
+
+// if ($tag_flower) {
+//   array_push($sql_tag_array, "('flower' = 'flower')");
+// }
+
+// if ($tag_groundcovers) {
+//   array_push($sql_tag_array, "('groundcovers' = 'groundcovers')");
+// }
+
+// if ($tag_other) {
+//   array_push($sql_tag_array, "('other' = 'other')");
+// }
+
+// tag and/or filter
+if (count($sql_tag_array) > 0) {
+  $sql_where_part = ' WHERE ' . implode(' AND ', $sql_tag_array);
+}
+elseif (count($sql_filter_array) > 0) {
   $sql_where_part = ' WHERE ' . implode(' AND ', $sql_filter_array);
+}
+elseif (count($sql_tag_array) > 0 && count($sql_filter_array) > 0) {
+  $sql_where_part = ' WHERE ' . implode(' AND ', $sql_tag_array, ' AND ', $sql_filter_array);
 }
 
 //sorting
@@ -173,6 +236,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             <img src="/public/uploads/entries/<?php echo $record['entries.id'] . $record['entries.img_ext']; ?>" alt="" width="250" height="250"/>
             </a>
             <h3><?php echo htmlspecialchars($record["entries.name_colloquial"]) ?></h3>
+            <h3 class="hidden"><?php echo htmlspecialchars($record["tags.tag_name"]) ?></h3>
         </div>
       <?php } ?>
       <!-- </div> -->
@@ -181,17 +245,38 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
     <aside>
     <div class="form">
-    <div class="plants">
+    <div class="column">
       <h2>Choose Tag(s)</h2>
           <h3>General Classification: </h3></div>
           <div class="buttons">
-            <button class="button style">Shrub</button>
-            <button class="button style">Grass</button>
+          <form id="request-form" method="get" action="/" novalidate>
+             <button class="button style" type="submit" name="tag" value="shrub">Shrub</button>
+          </form>
+          <form id="request-form" method="get" action="/" novalidate>
+             <button class="button style" type="submit" name="tag" value="grass">Grass</button>
+          </form>
+          <form id="request-form" method="get" action="/" novalidate>
+             <button class="button style" type="submit" name="tag" value="vine">Vine</button>
+          </form>
+          <form id="request-form" method="get" action="/" novalidate>
+             <button class="button style" type="submit" name="tag" value="tree">Tree</button>
+          </form>
+          <form id="request-form" method="get" action="/" novalidate>
+             <button class="button style" type="submit" name="tag" value="flower">Flower</button>
+          </form>
+          <form id="request-form" method="get" action="/" novalidate>
+             <button class="button style" type="submit" name="tag" value="groundcovers">Groundcovers</button>
+          </form>
+          <form id="request-form" method="get" action="/" novalidate>
+             <button class="button style" type="submit" name="tag" value="other">Other</button>
+          </form>
+            <!-- <button class="button style">Shrub</button> -->
+            <!-- <button class="button style">Grass</button>
             <button class="button style">Vine</button>
             <button class="button style">Tree</button>
             <button class="button style">Flower</button>
             <button class="button style">Groundcovers</button>
-            <button class="button style">Other</button>
+            <button class="button style">Other</button> -->
           </div>
     </div>
   </aside>
