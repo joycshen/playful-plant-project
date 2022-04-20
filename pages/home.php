@@ -6,6 +6,42 @@ $nav_new_entry_form = "active_page";
 // open database
 $db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
 
+// $plant_id = $_GET['id'] ?? NULL;
+
+// if ($plant_id) {
+//   $records = exec_sql_query(
+//     $db,
+//     "SELECT
+//     entries.name_colloquial AS 'entries.name_colloquial',
+//     entries.name_genus_species AS 'entries.name_genus_species',
+//     entries.plant_id AS 'entries.plant_id',
+//     entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
+//     entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
+//     entries.physical_play AS 'entries.physical_play',
+//     entries.imaginative_play AS 'entries.imaginative_play',
+//     entries.restorative_play AS 'entries.restorative_play',
+//     entries.play_with_rules AS 'entries.play_with_rules',
+//     entries.bio_play AS 'entries.bio_play',
+//     entries.perennial AS 'entries.perennial',
+//     entries.full_sun AS 'entries.full_sun',
+//     entries.partial_shade AS 'entries.partial_shade',
+//     entries.full_shade AS 'entries.full_shade',
+//     entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+//     entries.img_ext AS 'entries.img_ext',
+//     tags.tag_name AS 'tags.tag_name',
+//     entry_tags.entry_id AS 'entries.id',
+//     entry_tags.tag_id AS 'tags.id'
+//     FROM
+//     entry_tags
+//     LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
+//     LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id) WHERE entries.id = :id;",
+//     array(':id' => $plant_id)
+//   )->fetchAll();
+
+//   // if (count($records) > 0) {
+//   $plant = $records[0];
+// }
+
 // if (isset($_GET['submit-sort'])) {
 //   $sort = $_GET['sort'];
 // }
@@ -70,6 +106,52 @@ $sticky_groundcovers = '';
 $sticky_other = '';
 $sticky_sort = '';
 
+// $tags = $_GET['tag'] ?? NULL;
+
+// if ($tags) {
+//   $tag_records = exec_sql_query(
+//     $db,
+//     "SELECT
+//     entries.name_colloquial AS 'entries.name_colloquial',
+//     entries.name_genus_species AS 'entries.name_genus_species',
+//     entries.plant_id AS 'entries.plant_id',
+//     entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
+//     entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
+//     entries.physical_play AS 'entries.physical_play',
+//     entries.imaginative_play AS 'entries.imaginative_play',
+//     entries.restorative_play AS 'entries.restorative_play',
+//     entries.play_with_rules AS 'entries.play_with_rules',
+//     entries.bio_play AS 'entries.bio_play',
+//     entries.perennial AS 'entries.perennial',
+//     entries.full_sun AS 'entries.full_sun',
+//     entries.partial_shade AS 'entries.partial_shade',
+//     entries.full_shade AS 'entries.full_shade',
+//     entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+//     entries.img_ext AS 'entries.img_ext',
+//     tags.tag_name AS 'tags.tag_name',
+//     entry_tags.entry_id AS 'entries.id',
+//     entry_tags.tag_id AS 'tags.id'
+//     FROM
+//     entry_tags
+//     LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
+//     LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id) WHERE tags.id = :tag;",
+//     array(':tag' => $tags)
+//   )->fetchAll();
+
+//   // if (count($records) > 0) {
+//   $tag = $tag_records[0];
+// }
+
+// if (isset($_GET['tag'])) {
+//   $shrub = $_GET['shrub'];
+//   $grass = $_GET['grass'];
+//   $vine = $_GET['vine'];
+//   $tree = $_GET['tree'];
+//   $flower = $_GET['flower'];
+//   $groundcovers = $_GET['groundcovers'];
+//   $other = $_GET['other'];
+// }
+
 if (isset($_GET['submit-filter'])) {
 
   // $exploratory_constructive_play_1 = $_GET['exploratory_constructive_play'];
@@ -83,13 +165,6 @@ if (isset($_GET['submit-filter'])) {
   $full_sun = $_GET['full_sun'];
   $partial_shade = $_GET['partial_shade'];
   $full_shade = $_GET['full_shade'];
-  $shrub = $_GET['shrub'];
-  $grass = $_GET['grass'];
-  $vine = $_GET['vine'];
-  $tree = $_GET['tree'];
-  $flower = $_GET['flower'];
-  $groundcovers = $_GET['groundcovers'];
-  $other = $_GET['other'];
   $sort = $_GET['sort'];
 
   // $upload = $_FILES['img-file'];
@@ -146,6 +221,7 @@ entries.full_sun AS 'entries.full_sun',
 entries.partial_shade AS 'entries.partial_shade',
 entries.full_shade AS 'entries.full_shade',
 entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+entries.file_name AS 'entries.file_name',
 entries.img_ext AS 'entries.img_ext',
 tags.tag_name AS 'tags.tag_name',
 entry_tags.entry_id AS 'entries.id',
@@ -182,13 +258,13 @@ if ($filter_full_shade) {
 }
 
 //tags
-$tag_shrub = $_GET['shrub'];
-$tag_grass = $_GET['grass'];
-$tag_vine = $_GET['vine'];
-$tag_tree = $_GET['tree'];
-$tag_flower = $_GET['flower'];
-$tag_groundcovers = $_GET['groundcovers'];
-$tag_other = $_GET['other'];
+$tag_shrub = $_GET['tag-shrub'];
+$tag_grass = $_GET['tag-grass'];
+$tag_vine = $_GET['tag-vine'];
+$tag_tree = $_GET['tag-tree'];
+$tag_flower = $_GET['tag-flower'];
+$tag_groundcovers = $_GET['tag-groundcovers'];
+$tag_other = $_GET['tag-other'];
 
 // $tag_shrub = $_GET['shrub'];
 // $tag_grass = $_GET['grass'];
@@ -202,6 +278,40 @@ $tag_other = $_GET['other'];
 if ($tag_shrub) {
   array_push($sql_filter_array, "(tags.id = '1')");
 }
+
+// if ($tag_shrub) {
+//   $records = exec_sql_query(
+//     $db,
+//     "SELECT
+//     entries.name_colloquial AS 'entries.name_colloquial',
+//     entries.name_genus_species AS 'entries.name_genus_species',
+//     entries.plant_id AS 'entries.plant_id',
+//     entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
+//     entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
+//     entries.physical_play AS 'entries.physical_play',
+//     entries.imaginative_play AS 'entries.imaginative_play',
+//     entries.restorative_play AS 'entries.restorative_play',
+//     entries.play_with_rules AS 'entries.play_with_rules',
+//     entries.bio_play AS 'entries.bio_play',
+//     entries.perennial AS 'entries.perennial',
+//     entries.full_sun AS 'entries.full_sun',
+//     entries.partial_shade AS 'entries.partial_shade',
+//     entries.full_shade AS 'entries.full_shade',
+//     entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+//     entries.img_ext AS 'entries.img_ext',
+//     tags.tag_name AS 'tags.tag_name',
+//     entry_tags.entry_id AS 'entries.id',
+//     entry_tags.tag_id AS 'tags.id'
+//     FROM
+//     entry_tags
+//     LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
+//     LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id) WHERE entries.id = :id;",
+//     array(':id' => $plant_id)
+//   )->fetchAll();
+// }
+
+  // if (count($records) > 0) {
+  // $plant = $records[0];
 
 if ($tag_grass) {
   array_push($sql_filter_array, "(tags.id = '2')");
@@ -277,82 +387,30 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   <article>
   <div class="body-display">
   <div class="row">
-  <!-- <div class="titles">
-    <p>Filters: </p>
-  </div>
-
-  <div>
-  <form>
-  <div class="filter">
-    <div class="select" onclick="showCheckboxes()">
-      <select>
-        <option>Growing Needs and Characteristics: </option>
-      </select>
-    <div class="choices"></div>
-    </div>
-    <div id="checkboxes">
-      <label for="one">
-        <input type="checkbox" id="one" />Perennial</label>
-      <label for="two">
-        <input type="checkbox" id="two" />Annual</label>
-      <label for="three">
-        <input type="checkbox" id="three" />Full Sun</label>
-      <label for="four">
-        <input type="checkbox" id="four" />Partial Shade</label>
-      <label for="five">
-        <input type="checkbox" id="five" />Full Shade</label>
-      <label for="six">
-        <input type="checkbox" id="six" />Hardiness Zone Range</label>
-    </div>
-  </div>
-  </div>
-  </form>
-  </div>
-
-  <div class="row">
-  <div class="titles">
-   <p>Sort: </p>
-  </div>
-
-  <div>
-  <form id="request-form" method="get" action="/" name="submit-sort" novalidate>
-  <div class="sort">
-  <div class="select">
-  <select id="name" name="sort">
-    <option name="sort" id="asc">Colloquial Name Ascendant (A-Z)</option>
-    <option name="sort" id="desc">Colloquial Name Descendant (Z-A)</option>
-  </select>
-  <div class="forms label_input" role="group" aria-labelledby="sorting">
-        <div>
-              <input type="submit" id="sorting" name="sort"/>
-              <label for="sorting">Sort by Colloquial Name Alphabetically</label>
-            </div>
-        </div>
-  </div>
-  </div>
-  <input id="filter-submit" class="button1" type="submit" name="submit-sort" value="Sort"/>
-  </form>
-  </div> -->
-  </div>
-  </div>
-
     <div class="plants">
       <?php
       foreach ($records as $record) { ?>
       <!-- <div class="plant"> -->
+      <div class="catalog">
         <div>
-          <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
-            <img src="/public/uploads/entries/<?php echo $record['entries.id'] . $record['entries.img_ext']; ?>" alt="" width="250" height="250"/>
-            </a>
-            <div class="row">
+        <div class="row">
             <h3><?php echo htmlspecialchars($record["entries.name_colloquial"]) ?></h3>
             <button class="home-tag"><?php echo htmlspecialchars($record['tags.tag_name']); ?></button>
         </div>
-        </div>
+          <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
+            <img src="/public/uploads/entries/<?php echo $record['entries.id'] . '.' . $record['entries.img_ext']; ?>" alt="" width="250" height="250"/>
+            </a>
+        <div class="align_right">
+        <input id="add-submit" class="button1" type="submit" name="edit-entry" value="Edit" />
+        <input id="add-submit" class="button1" type="submit" name="delete-entry" value="Delete" />
+      </div>
+      </div>
+      </div>
       <?php } ?>
-      <!-- </div> -->
+      </div>
     </div>
-    </article>
+      </article>
+      <!-- </div> -->
 
     <aside>
     <div class="form">
@@ -392,16 +450,17 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           </div>
         </div>
 
+        <input id="filter-submit" class="button1" type="submit" name="submit-filter" value="Sort and Filter"/>
+
         <div class="forms label_input" role="group" aria-labelledby="growing needs">
         <div id="TOPO"><h2>Choose Tag(s)</h2>
           <h3>General Classification: </h3></div>
 
-          <div>
-            <div>
+            <!-- <div>
               <input type="checkbox" id="shrub" name="shrub" <?php echo $sticky_shrub; ?>/>
               <label for="shrub">Shrub</label>
-            </div>
-            <div>
+            </div> -->
+            <!-- <div>
               <input type="checkbox" id="grass" name="grass" <?php echo $sticky_grass; ?>/>
               <label for="grass">Grass</label>
             </div>
@@ -412,8 +471,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             <div>
               <input type="checkbox" id="tree" name="tree" <?php echo $sticky_tree; ?>/>
               <label for="tree">Tree</label>
-            </div>
-            <div>
+            </div> -->
+            <!-- <div>
               <input type="checkbox" id="flower" name="flower" <?php echo $sticky_flower; ?>/>
               <label for="flower">Flower</label>
             </div>
@@ -424,12 +483,38 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             <div>
               <input type="checkbox" id="other" name="other" <?php echo $sticky_other; ?>/>
               <label for="other">Other</label>
-            </div>
-          </div>
-        </div>
+            </div> -->
 
-        <input id="filter-submit" class="button1" type="submit" name="submit-filter" value="Sort and Filter"/>
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-shrub" value="shrub"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-grass" value="grass"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-vine" value="vine"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-tree" value="tree"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-flower" value="flower"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-groundcovers" value="groundcovers"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-other" value="other"/>
+        </a>
+        </div>
       </form>
+
 
           <!-- <div class="buttons">
           <form id="request-form" method="get" action="/" novalidate>
@@ -457,6 +542,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
     </div>
   </aside>
 
+      </div>
+      </div>
     </div>
   </main>
 

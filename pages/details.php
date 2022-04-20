@@ -27,6 +27,7 @@ if ($plant_id) {
     entries.partial_shade AS 'entries.partial_shade',
     entries.full_shade AS 'entries.full_shade',
     entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+    entries.file_name AS 'entries.file_name',
     entries.img_ext AS 'entries.img_ext',
     tags.tag_name AS 'tags.tag_name',
     entry_tags.entry_id AS 'entries.id',
@@ -72,7 +73,7 @@ if ($plant_id) {
         </div>
         </div>
         <div class="plant">
-            <img src="/public/uploads/entries/<?php echo $plant['entries.id'] . $plant['entries.img_ext'];  ?>" alt="<?php echo htmlspecialchars($plant['entries.name_colloquial']); ?>" width="600" height="350"/>
+            <img src="/public/uploads/entries/<?php echo $plant['entries.id'] . '.' . $plant['entries.img_ext'];  ?>" alt="<?php echo htmlspecialchars($plant['entries.name_colloquial']); ?>" width="600" height="350"/>
             <div class="catalogs">
             <div class="catalog">
               <h3>Growing Needs and Characteristics: </h3>

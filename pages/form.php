@@ -140,7 +140,7 @@ if (isset($_POST['add-entry'])) {
     //securely insert new data
     $result = exec_sql_query(
     $db,
-    "INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range, :img_ext);",
+    "INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range, :file_name, :img_ext);",
     array(
       ':name_colloquial' => $colloquial_name,
       ':name_genus_species' => $genus_species,
@@ -157,6 +157,7 @@ if (isset($_POST['add-entry'])) {
       ':partial_shade' => $partial_shade,
       ':full_shade' => $full_shade,
       ':hardiness_zone_range' => $hardiness_zone_range,
+      ':file_name' => $upload_filename,
       ':img_ext' => $upload_ext,
     )
   );
@@ -579,6 +580,10 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             <li>Supports Bio Play </li>
           <?php } ?>
         </ul>
+        <div class="align_right">
+        <input id="add-submit" class="button1" type="submit" name="edit-entry" value="Edit" />
+        <input id="add-submit" class="button1" type="submit" name="delete-entry" value="Delete" />
+      </div>
       </div>
       <?php } ?>
       </article>
