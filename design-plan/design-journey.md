@@ -470,10 +470,17 @@ The following are pseudocodes for the add-entry form. (this form require the use
 
 The following is the plan for adding new plant data
 ```
+INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range, :file_name, :img_ext);
 ```
 
 Assemble sql
 ```
+if ($sort_asc) {
+  $sql_query = $sql_select_part . $sql_where_part . $sql_sort_part;
+}
+else {
+  $sql_query = $sql_select_part . $sql_where_part;
+}
 ```
 
 ### Accessibility Audit (Final Submission)
