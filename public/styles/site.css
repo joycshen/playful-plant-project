@@ -26,6 +26,14 @@ h3{
     line-height: 20px;
 }
 
+h4{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: #ffffffea;
+    font-size: 16px;
+    line-height: 20px;
+    text-decoration: underline;
+}
+
 ul {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 14px;
@@ -101,6 +109,12 @@ section p {
     justify-content: center;
 }
 
+.log-in {
+    display: flex;
+    justify-content:right;
+    margin-right: 20px;
+}
+
 .sections {
     display: flex;
     flex-direction: row;
@@ -165,7 +179,14 @@ section p {
 }
 
 form {
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+}
+
+.column form {
+    display: flex;
+    flex-direction: column;
+    width: 200px;
 }
 
 form * {
@@ -222,6 +243,10 @@ form label {
     flex-direction: row;
 }
 
+.row h3 {
+    font-size: 15px;
+}
+
 .hidden {
     display: none;
   }
@@ -229,8 +254,15 @@ form label {
 .plants {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    justify-content: center;
     /* margin-bottom: 20px; */
+}
+
+.plants .row {
+    display: flex;
+    flex-direction: row;
+    align-items:center;
+    justify-content: center;
 }
 
 .plant, .detail {
@@ -333,6 +365,20 @@ img {
 .style {
     background-color: #516150;
     width: 100%;
+}
+
+.home-tag {
+    border: none;
+    color: white;
+    padding: 10px 10px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    margin: 20px 15px;
+    background-color: #516150;
+    width: 30%;
 }
 
 .style:hover {
