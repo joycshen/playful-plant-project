@@ -68,8 +68,7 @@ if ($plant_id) {
         <div class="detail">
         <h2><?php echo $plant['entries.name_colloquial'] ?></h2>
         <div class="buttons">
-          <!-- need to get tags here -->
-            <button class="button style">Flower</button>
+            <button class="button style"><?php echo $plant['tags.tag_name']; ?></button>
         </div>
         </div>
         <div class="plant">

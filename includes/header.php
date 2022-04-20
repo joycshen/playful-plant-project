@@ -1,5 +1,6 @@
 <header>
   <h1 class="main"><?php echo $title; ?></h1>
+  <h4 class="log-in">Log In</h4>
 
   <nav>
     <ul class="menu">

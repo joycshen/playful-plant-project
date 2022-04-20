@@ -39,6 +39,13 @@ $full_sun = '';
 $partial_shade = '';
 $full_shade = '';
 $hardiness_zone_range = '';
+$shrub = '';
+$grass = '';
+$vine = '';
+$tree = '';
+$flower = '';
+$groundcovers = '';
+$other = '';
 
 // upload values
 $upload_filename = NULL;
@@ -60,6 +67,13 @@ $sticky_full_sun = '';
 $sticky_partial_shade = '';
 $sticky_full_shade = '';
 $sticky_hardiness_zone_range = '';
+$sticky_shrub = '';
+$sticky_grass = '';
+$sticky_vine = '';
+$sticky_tree = '';
+$sticky_flower = '';
+$sticky_groundcovers = '';
+$sticky_other = '';
 
 if (isset($_POST['add-entry'])) {
 
@@ -403,7 +417,52 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           </div>
           </div>
 
-          <div class="column">
+          <!-- <div class="column">
+          <div id="feedback4" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
+          <div class="forms label_input" role="group" aria-labelledby="play">
+          <div id="play"><h3>Growing Needs and Characteristics: </h3></div>
+          <div>
+            <div>
+              <input type="checkbox" id="perennial" name="perennial" <?php echo $sticky_perennial; ?>/>
+              <label for="perennial">Perennial</label>
+            </div>
+            <div>
+              <input type="checkbox" id="full_sun" name="full_sun" <?php echo $sticky_full_sun; ?>/>
+              <label for="full_sun">Full Sun</label>
+            </div>
+            <div>
+              <input type="checkbox" id="partial_shade" name="partial_shade" <?php echo $sticky_partial_shade; ?>/>
+              <label for="partial_shade">Partial Shade</label>
+            </div>
+            <div>
+              <input type="checkbox" id="full_shade" name="full_shade" <?php echo $sticky_full_shade; ?>/>
+              <label for="full_shade">Full Shade</label>
+            </div>
+            <div class="label_input">
+             <label for="hardiness_zone_range_field">Hardiness Zone Range:</label>
+             <input id="hardiness_zone_range_field" type="text" name="hardiness_zone_range" value="<?php echo htmlspecialchars($sticky_hardiness_zone_range); ?>"/>
+            </div>
+            </div>
+          </div>
+          </div> -->
+        </div>
+
+        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_FILE_SIZE; ?>" />
+        <div class="column">
+          <!-- <div id="feedback5" class="feedback">Please upload an image.</div> -->
+          <div class="forms label_input" role="group" aria-labelledby="upload">
+          <div class="label_input">
+          <h3><label for="upload-file">Upload an Image:</label></h3>
+          <input type="file" id="upload-file" name="img-file"/>
+        </div>
+        </div>
+        </div>
+
+      <!-- <div class="tags"> -->
+      <h3>Choose Tag(s)</h3>
+      <!-- </div> -->
+      <div class="add-form">
+      <div class="column">
           <div id="feedback4" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
           <div class="forms label_input" role="group" aria-labelledby="play">
           <div id="play"><h3>Growing Needs and Characteristics: </h3></div>
@@ -431,24 +490,46 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             </div>
           </div>
           </div>
-        </div>
 
-        <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_FILE_SIZE; ?>" />
-        <div class="column">
-          <!-- <div id="feedback5" class="feedback">Please upload an image.</div> -->
-          <div class="forms label_input" role="group" aria-labelledby="upload">
-          <div class="label_input">
-          <h3><label for="upload-file">Upload an Image:</label></h3>
-          <input type="file" id="upload-file" name="img-file"/>
-        </div>
-        </div>
-        </div>
+      <div class="column">
+          <div id="feedback4" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
+          <div class="forms label_input" role="group" aria-labelledby="play">
+          <div id="play"><h3>General Classification: </h3></div>
+          <div>
+            <div>
+              <input type="checkbox" id="shrub" name="shrub" <?php echo $sticky_shrub; ?>/>
+              <label for="shrub">Shrub</label>
+            </div>
+            <div>
+              <input type="checkbox" id="grass" name="grass" <?php echo $sticky_grass; ?>/>
+              <label for="grass">Grass</label>
+            </div>
+            <div>
+              <input type="checkbox" id="vine" name="vine" <?php echo $sticky_vine; ?>/>
+              <label for="vine">Vine</label>
+            </div>
+            <div>
+              <input type="checkbox" id="tree" name="tree" <?php echo $sticky_tree; ?>/>
+              <label for="tree">Tree</label>
+            </div>
+            <div>
+              <input type="checkbox" id="flower" name="flower" <?php echo $sticky_flower; ?>/>
+              <label for="flower">Flower</label>
+            </div>
+            <div>
+              <input type="checkbox" id="groundcovers" name="groundcovers" <?php echo $sticky_groundcovers; ?>/>
+              <label for="groundcovers">Groundcovers</label>
+            </div>
+            <div>
+              <input type="checkbox" id="other" name="other" <?php echo $sticky_other; ?>/>
+              <label for="other">Other</label>
+            </div>
+            </div>
+          </div>
+          </div>
+    </div>
 
-      <div class="tags">
-      <h3>Choose Tag(s)</h3>
-          <label>General Classification: </label>
-      </div>
-      <div class="plant">
+      <!-- <div class="plant">
         <button class="button style">Shrub</button>
         <button class="button style">Grass</button>
         <button class="button style">Vine</button>
@@ -456,7 +537,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         <button class="button style">Flower</button>
         <button class="button style">Groundcovers</button>
         <button class="button style">Other</button>
-      </div>
+      </div> -->
       <div class="align_right">
         <input id="add-submit" class="button1" type="submit" name="add-entry" value="Add Entry" />
       </div>
