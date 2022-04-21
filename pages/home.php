@@ -358,9 +358,9 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         <div class="align_right">
 
         <a class="" href="/plant-update?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>" aria-label="Edit Entry">
-        <input id="add-submit" class="button1" type="submit" name="edit-entry" value="Edit" />
+        <input class="button1" type="submit" name="edit-entry" value="Edit" />
       </a>
-        <input id="add-submit" class="button1" type="submit" name="delete-entry" value="Delete" />
+        <input class="button1" type="submit" name="delete-entry" value="Delete" />
       </div>
       </div>
       </div>

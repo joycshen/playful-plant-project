@@ -81,7 +81,7 @@ $sticky_tag_name = '';
 
 if (isset($_POST['add-entry'])) {
 
-  // Get HTTP request user data
+  //add info
   $colloquial_name = trim($_POST['colloquial_name']);
   $genus_species = trim($_POST['genus_species']);
   $plant_id = trim($_POST['plant_id']);
@@ -98,7 +98,38 @@ if (isset($_POST['add-entry'])) {
   $full_shade = (!empty($_POST['full_shade']) ? 1 : 0);
   $hardiness_zone_range = trim($_POST['hardiness_zone_range']);
 
+  //upload image
   $upload = $_FILES['img-file'];
+
+  //add tags
+  if (!empty($_POST['shrub']) ? 1 : '') {
+    $shrub = 1;
+    $tag_id = 1;
+  }
+  if (!empty($_POST['grass']) ? 2 : '') {
+    $grass = 2;
+    $tag_id = 2;
+  }
+  if (!empty($_POST['vine']) ? 3 : '') {
+    $vine = 3;
+    $tag_id = 3;
+  }
+  if (!empty($_POST['tree']) ? 4 : '') {
+    $tree = 4;
+    $tag_id = 4;
+  }
+  if (!empty($_POST['flower']) ? 5 : '') {
+    $flower = 5;
+    $tag_id = 5;
+  }
+  if (!empty($_POST['groundcovers']) ? 6 : '') {
+    $groundcovers = 6;
+    $tag_id = 6;
+  }
+  if (!empty($_POST['other']) ? 7 : '') {
+    $other = 7;
+    $tag_id = 7;
+  }
 
   $form_valid = True;
 
@@ -140,6 +171,12 @@ if (isset($_POST['add-entry'])) {
     $growing_needs_feedback_class = '';
   }
 
+    // whether at least one check box checked, if not, form invalid
+    if (empty($shrub) && empty($grass) && empty($vine) && empty($tree) && empty($flower) && empty($groundcovers) && empty($other)) {
+      $form_valid = False;
+      $tag_feedback_class = '';
+    }
+
   if ($form_valid) {
     //securely insert new data
     $result = exec_sql_query(
@@ -166,7 +203,18 @@ if (isset($_POST['add-entry'])) {
     )
   );
 
-  if($result) {
+    $entry_id = $db->lastInsertId('id');
+
+    $result_tag_1 = exec_sql_query(
+    $db,
+    "INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);",
+    array(
+      ':entry_id' => $entry_id,
+      ':tag_id' => $tag_id,
+    )
+  );
+
+  if($result && $result_tag_1) {
     $record_inserted = True;
 
     $record_id = $db->lastInsertId('id');
@@ -195,68 +243,103 @@ if (isset($_POST['add-entry'])) {
     $sticky_colloquial_name = $colloquial_name;
     $sticky_genus_species = $genus_species;
     $sticky_plant_id = $plant_id;
+    $sticky_shrub = (empty($shrub) ? '' : 'checked');
+    $sticky_grass = (empty($grass) ? '' : 'checked');
+    $sticky_vine = (empty($vine) ? '' : 'checked');
+    $sticky_tree = (empty($tree) ? '' : 'checked');
+    $sticky_flower = (empty($flower) ? '' : 'checked');
+    $sticky_groundcovers = (empty($groundcovers) ? '' : 'checked');
+    $sticky_other = (empty($other) ? '' : 'checked');
   }
+
+//   if ($form_valid) {
+//     //securely insert new data
+
+//     $entry_id = $db->lastInsertId('id');
+
+//     $result_tag_1 = exec_sql_query(
+//     $db,
+//     "INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);",
+//     array(
+//       ':entry_id' => $entry_id,
+//       ':tag_id' => $tag_id,
+//     )
+//   );
+// } else {
+//   // form is invalid, apply sticky values
+//   $sticky_shrub = (empty($shrub) ? '' : 'checked');
+// }
+
+//   if ($result_tag_1) {
+//     $record_inserted = True;
+
+//     // form is valid, hide form and show confirmation message
+//     $show_confirmation = True;
+
+//   } else {
+//     // form is invalid, apply sticky values
+//     $sticky_tag_name = $tag_name;
+//   }
 }
 
 // add tag form
-if (isset($_POST['add-tag'])) {
+// if (isset($_POST['add-entry'])) {
 
-  // Get HTTP request user data
-  $tag_name = trim($_POST['tag_name']);
-  $shrub = (!empty($_POST['shrub']) ? 1 : '');
-  $grass = (!empty($_POST['grass']) ? 2 : '');
-  $vine = (!empty($_POST['vine']) ? 3 : '');
-  $tree = (!empty($_POST['tree']) ? 4 : '');
-  $flower = (!empty($_POST['flower']) ? 5 : '');
-  $groundcovers = (!empty($_POST['groundcovers']) ? 6 : '');
-  $other = (!empty($_POST['other']) ? 7 : '');
+//   // Get HTTP request user data
+//   // $tag_name = trim($_POST['tag_name']);
+//   if (!empty($_POST['shrub']) ? 1 : '') {
+//     $tag_id = 1;
+//     $form_valid = True;
+//   }
+//   if (!empty($_POST['grass']) ? 2 : '') {
+//     $tag_id = 2;
+//     $form_valid = True;
+//   }
+//   // $shrub = (!empty($_POST['shrub']) ? 1 : '');
+//   // $grass = (!empty($_POST['grass']) ? 2 : '');
+//   $vine = (!empty($_POST['vine']) ? 3 : '');
+//   $tree = (!empty($_POST['tree']) ? 4 : '');
+//   $flower = (!empty($_POST['flower']) ? 5 : '');
+//   $groundcovers = (!empty($_POST['groundcovers']) ? 6 : '');
+//   $other = (!empty($_POST['other']) ? 7 : '');
 
-  $form_valid = True;
+//   // $form_valid = True;
 
-  // whether at least one check box checked, if not, form invalid
-  if (empty($shrub) && empty($grass) && empty($vine) && empty($tree) && empty($flower) && empty($groundcovers) && empty($other)) {
-    $form_valid = False;
-    $tag_feedback_class = '';
-  }
+//   // whether at least one check box checked, if not, form invalid
+//   if (empty($shrub) && empty($grass) && empty($vine) && empty($tree) && empty($flower) && empty($groundcovers) && empty($other)) {
+//     $form_valid = False;
+//     $tag_feedback_class = '';
+//   }
 
-  if ($form_valid) {
-    //securely insert new data
-    $result_tag_1 = exec_sql_query(
-    $db,
-    "INSERT INTO tags (tag_name) VALUES (:tag_name);",
-    array(
-      ':tag_name' => $tag_name,
-    )
-  );
+//   if ($form_valid) {
+//     //securely insert new data
 
-  if ($form_valid) {
-    //securely insert new data
+//     $entry_id = $db->lastInsertId('id');
 
-    $result_tag_1 = exec_sql_query(
-    $db,
-    "INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);",
-    array(
-      ':entry_id' => $upload_filename,
-      ':tag_id' => $shrub,
-    )
-  );
-} else {
-  // form is invalid, apply sticky values
-  $sticky_shrub = (empty($shrub) ? '' : 'checked');;
-}
+//     $result_tag_1 = exec_sql_query(
+//     $db,
+//     "INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);",
+//     array(
+//       ':entry_id' => $entry_id,
+//       ':tag_id' => $tag_id,
+//     )
+//   );
+// } else {
+//   // form is invalid, apply sticky values
+//   $sticky_shrub = (empty($shrub) ? '' : 'checked');;
+// }
 
-  if($result_tag_1) {
-    $record_inserted = True;
+//   if ($result_tag_1) {
+//     $record_inserted = True;
 
-  }
-    // form is valid, hide form and show confirmation message
-    $show_confirmation = True;
+//     // form is valid, hide form and show confirmation message
+//     $show_confirmation = True;
 
-  } else {
-    // form is invalid, apply sticky values
-    $sticky_tag_name = $tag_name;
-  }
-}
+//   } else {
+//     // form is invalid, apply sticky values
+//     $sticky_tag_name = $tag_name;
+//   }
+// }
 
 
 // filter and sort form
@@ -526,33 +609,16 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           </div>
     </div>
 
-      <!-- <div class="plant">
-        <button class="button style">Shrub</button>
-        <button class="button style">Grass</button>
-        <button class="button style">Vine</button>
-        <button class="button style">Tree</button>
-        <button class="button style">Flower</button>
-        <button class="button style">Groundcovers</button>
-        <button class="button style">Other</button>
-      </div> -->
-      <div class="align_right">
+      <!-- <div class="align_right">
         <input id="add-submit" class="button1" type="submit" name="add-entry" value="Add Entry" />
       </div>
       </form>
-      </div>
+      </div> -->
 
 <!-- add tag form -->
-    <div class="align-center">
-      <form id="request-form" method="post" action="/add-new-plants-form" novalidate>
+    <!-- <div class="align-center">
+      <form id="request-form" method="post" action="/add-new-plants-form" novalidate> -->
       <div class="add-form">
-      <div>
-      <div id="feedback1" class="feedback <?php echo $tag_name_feedback_class; ?>">Please enter a valid tag name.</div>
-      <h3>Add a New Tag</h3>
-        <div class="label_input">
-        <h3><label for="name_field">Tag Name:</label></h3>
-          <input id="name_field" type="text" name="tag_name" value="<?php echo htmlspecialchars($sticky_tag_name); ?>"/>
-        </div>
-    </div>
       <!-- <div class="tags"> -->
       <div>
       <h3>Choose Existing Tag(s)</h3>
@@ -596,11 +662,16 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
     </div>
     </div>
 
-        <div class="align_right">
+        <!-- <div class="align_right">
         <input id="add-submit" class="button1" type="submit" name="add-tag" value="Add Tag" />
+      </div> -->
+    <!-- </form>
+    </div> -->
+    <div class="align_right">
+        <input id="add-submit" class="button1" type="submit" name="add-entry" value="Add Entry" />
       </div>
-    </form>
-    </div>
+      </form>
+      </div>
     </article>
     </div>
     <?php } ?>
@@ -638,7 +709,9 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           <?php } ?>
         </ul>
         <div class="align_right">
+        <a class="" href="/plant-update?<?php echo http_build_query(array('id' => $record['id'])); ?>" aria-label="Edit Entry">
         <input id="add-submit" class="button1" type="submit" name="edit-entry" value="Edit" />
+        </a>
         <input id="add-submit" class="button1" type="submit" name="delete-entry" value="Delete" />
       </div>
       </div>
