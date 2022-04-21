@@ -473,6 +473,10 @@ The following is the plan for adding new plant data
 INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range, :file_name, :img_ext);
 ```
 
+```
+INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);
+```
+
 Assemble sql
 ```
 if ($sort_asc) {
