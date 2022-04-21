@@ -166,12 +166,19 @@ if (isset($_GET['submit-filter'])) {
   $partial_shade = $_GET['partial_shade'];
   $full_shade = $_GET['full_shade'];
   $sort = $_GET['sort'];
+  // $tag_shrub = $_GET['tag-shrub'];
+  // $tag_grass = $_GET['tag-grass'];
+  // $tag_vine = $_GET['tag-vine'];
+  // $tag_tree = $_GET['tag-tree'];
+  // $tag_flower = $_GET['tag-flower'];
+  // $tag_groundcovers = $_GET['tag-groundcovers'];
+  // $tag_other = $_GET['tag-other'];
 
   // $upload = $_FILES['img-file'];
 
   $form_valid = True;
 
-  if (empty($sort) && empty($perennial) && empty($full_sun) && empty($partial_shade) && empty($full_shade) && empty($shrub) && empty($grass) && empty($vine) && empty($tree) && empty($flower) && empty($groundcovers) && empty($other)) {
+  if (empty($sort) && empty($perennial) && empty($full_sun) && empty($partial_shade) && empty($full_shade)){
     $form_valid = False;
     $feedback_class = '';
     $sticky_sort = (empty($sort) ? '' : 'checked');
@@ -191,13 +198,13 @@ if (isset($_GET['submit-filter'])) {
     $sticky_full_sun =  (empty($full_sun) ? '' : 'checked');
     $sticky_partial_shade =  (empty($partial_shade) ? '' : 'checked');
     $sticky_full_shade =  (empty($full_shade) ? '' : 'checked');
-    $sticky_shrub =  (empty($shrub) ? '' : 'checked');
-    $sticky_grass =  (empty($grass) ? '' : 'checked');
-    $sticky_vine =  (empty($vine) ? '' : 'checked');
-    $sticky_tree =  (empty($tree) ? '' : 'checked');
-    $sticky_flower = (empty($flower) ? '' : 'checked');
-    $sticky_groundcovers =  (empty($groundcovers) ? '' : 'checked');
-    $sticky_other = (empty($other) ? '' : 'checked');
+    // $sticky_shrub =  (empty($shrub) ? '' : 'checked');
+    // $sticky_grass =  (empty($grass) ? '' : 'checked');
+    // $sticky_vine =  (empty($vine) ? '' : 'checked');
+    // $sticky_tree =  (empty($tree) ? '' : 'checked');
+    // $sticky_flower = (empty($flower) ? '' : 'checked');
+    // $sticky_groundcovers =  (empty($groundcovers) ? '' : 'checked');
+    // $sticky_other = (empty($other) ? '' : 'checked');
     $sticky_sort = (empty($sort) ? '' : 'checked');
     $feedback_class = 'hidden';
   }
@@ -266,52 +273,11 @@ $tag_flower = $_GET['tag-flower'];
 $tag_groundcovers = $_GET['tag-groundcovers'];
 $tag_other = $_GET['tag-other'];
 
-// $tag_shrub = $_GET['shrub'];
-// $tag_grass = $_GET['grass'];
-// $tag_vine = $_GET['vine'];
-// $tag_tree = $_GET['tree'];
-// $tag_flower = $_GET['flower'];
-// $tag_groundcovers = $_GET['groundcovers'];
-// $tag_other = $_GET['other'];
-// $tag_name = $_GET['tags.tag_name'];
-
 if ($tag_shrub) {
   array_push($sql_filter_array, "(tags.id = '1')");
+
+  $form_valid = True;
 }
-
-// if ($tag_shrub) {
-//   $records = exec_sql_query(
-//     $db,
-//     "SELECT
-//     entries.name_colloquial AS 'entries.name_colloquial',
-//     entries.name_genus_species AS 'entries.name_genus_species',
-//     entries.plant_id AS 'entries.plant_id',
-//     entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
-//     entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
-//     entries.physical_play AS 'entries.physical_play',
-//     entries.imaginative_play AS 'entries.imaginative_play',
-//     entries.restorative_play AS 'entries.restorative_play',
-//     entries.play_with_rules AS 'entries.play_with_rules',
-//     entries.bio_play AS 'entries.bio_play',
-//     entries.perennial AS 'entries.perennial',
-//     entries.full_sun AS 'entries.full_sun',
-//     entries.partial_shade AS 'entries.partial_shade',
-//     entries.full_shade AS 'entries.full_shade',
-//     entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
-//     entries.img_ext AS 'entries.img_ext',
-//     tags.tag_name AS 'tags.tag_name',
-//     entry_tags.entry_id AS 'entries.id',
-//     entry_tags.tag_id AS 'tags.id'
-//     FROM
-//     entry_tags
-//     LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
-//     LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id) WHERE entries.id = :id;",
-//     array(':id' => $plant_id)
-//   )->fetchAll();
-// }
-
-  // if (count($records) > 0) {
-  // $plant = $records[0];
 
 if ($tag_grass) {
   array_push($sql_filter_array, "(tags.id = '2')");
@@ -340,17 +306,6 @@ if ($tag_other) {
 if (count($sql_filter_array) > 0) {
   $sql_where_part = ' WHERE ' . implode(' AND ', $sql_filter_array);
 }
-
-// tag and/or filter
-// if (count($sql_tag_array) > 0) {
-//   $sql_where_part = ' WHERE ' . implode(' AND ', $sql_tag_array);
-// }
-// elseif (count($sql_filter_array) > 0) {
-//   $sql_where_part = ' WHERE ' . implode(' AND ', $sql_filter_array);
-// }
-// elseif (count($sql_tag_array) > 0 && count($sql_filter_array) > 0) {
-//   $sql_where_part = ' WHERE ' . implode(' AND ', $sql_tag_array, ' AND ', $sql_filter_array);
-// }
 
 //sorting
 $sort_asc = (bool)($_GET['sort'] ?? NULL);
@@ -401,7 +356,10 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             <img src="/public/uploads/entries/<?php echo $record['entries.id'] . '.' . $record['entries.img_ext']; ?>" alt="" width="250" height="250"/>
             </a>
         <div class="align_right">
+
+        <a class="" href="/plant-update?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>" aria-label="Edit Entry">
         <input id="add-submit" class="button1" type="submit" name="edit-entry" value="Edit" />
+      </a>
         <input id="add-submit" class="button1" type="submit" name="delete-entry" value="Delete" />
       </div>
       </div>

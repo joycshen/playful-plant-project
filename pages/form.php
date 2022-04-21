@@ -22,6 +22,8 @@ $genus_feedback_class = 'hidden';
 $plant_id_feedback_class = 'hidden';
 $topo_feedback_class = 'hidden';
 $growing_needs_feedback_class = 'hidden';
+$tag_name_feedback_class = 'hidden';
+$tag_feedback_class = 'hidden';
 
 // values
 $colloquial_name = '';
@@ -46,6 +48,7 @@ $tree = '';
 $flower = '';
 $groundcovers = '';
 $other = '';
+$tag_name = '';
 
 // upload values
 $upload_filename = NULL;
@@ -74,6 +77,7 @@ $sticky_tree = '';
 $sticky_flower = '';
 $sticky_groundcovers = '';
 $sticky_other = '';
+$sticky_tag_name = '';
 
 if (isset($_POST['add-entry'])) {
 
@@ -193,6 +197,67 @@ if (isset($_POST['add-entry'])) {
     $sticky_plant_id = $plant_id;
   }
 }
+
+// add tag form
+if (isset($_POST['add-tag'])) {
+
+  // Get HTTP request user data
+  $tag_name = trim($_POST['tag_name']);
+  $shrub = (!empty($_POST['shrub']) ? 1 : '');
+  $grass = (!empty($_POST['grass']) ? 2 : '');
+  $vine = (!empty($_POST['vine']) ? 3 : '');
+  $tree = (!empty($_POST['tree']) ? 4 : '');
+  $flower = (!empty($_POST['flower']) ? 5 : '');
+  $groundcovers = (!empty($_POST['groundcovers']) ? 6 : '');
+  $other = (!empty($_POST['other']) ? 7 : '');
+
+  $form_valid = True;
+
+  // whether at least one check box checked, if not, form invalid
+  if (empty($shrub) && empty($grass) && empty($vine) && empty($tree) && empty($flower) && empty($groundcovers) && empty($other)) {
+    $form_valid = False;
+    $tag_feedback_class = '';
+  }
+
+  if ($form_valid) {
+    //securely insert new data
+    $result_tag_1 = exec_sql_query(
+    $db,
+    "INSERT INTO tags (tag_name) VALUES (:tag_name);",
+    array(
+      ':tag_name' => $tag_name,
+    )
+  );
+
+  if ($form_valid) {
+    //securely insert new data
+
+    $result_tag_1 = exec_sql_query(
+    $db,
+    "INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);",
+    array(
+      ':entry_id' => $upload_filename,
+      ':tag_id' => $shrub,
+    )
+  );
+} else {
+  // form is invalid, apply sticky values
+  $sticky_shrub = (empty($shrub) ? '' : 'checked');;
+}
+
+  if($result_tag_1) {
+    $record_inserted = True;
+
+  }
+    // form is valid, hide form and show confirmation message
+    $show_confirmation = True;
+
+  } else {
+    // form is invalid, apply sticky values
+    $sticky_tag_name = $tag_name;
+  }
+}
+
 
 // filter and sort form
 
@@ -417,35 +482,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           </div>
           </div>
           </div>
-
-          <!-- <div class="column">
-          <div id="feedback4" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
-          <div class="forms label_input" role="group" aria-labelledby="play">
-          <div id="play"><h3>Growing Needs and Characteristics: </h3></div>
-          <div>
-            <div>
-              <input type="checkbox" id="perennial" name="perennial" <?php echo $sticky_perennial; ?>/>
-              <label for="perennial">Perennial</label>
-            </div>
-            <div>
-              <input type="checkbox" id="full_sun" name="full_sun" <?php echo $sticky_full_sun; ?>/>
-              <label for="full_sun">Full Sun</label>
-            </div>
-            <div>
-              <input type="checkbox" id="partial_shade" name="partial_shade" <?php echo $sticky_partial_shade; ?>/>
-              <label for="partial_shade">Partial Shade</label>
-            </div>
-            <div>
-              <input type="checkbox" id="full_shade" name="full_shade" <?php echo $sticky_full_shade; ?>/>
-              <label for="full_shade">Full Shade</label>
-            </div>
-            <div class="label_input">
-             <label for="hardiness_zone_range_field">Hardiness Zone Range:</label>
-             <input id="hardiness_zone_range_field" type="text" name="hardiness_zone_range" value="<?php echo htmlspecialchars($sticky_hardiness_zone_range); ?>"/>
-            </div>
-            </div>
-          </div>
-          </div> -->
         </div>
 
         <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_FILE_SIZE; ?>" />
@@ -459,9 +495,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         </div>
         </div>
 
-      <!-- <div class="tags"> -->
-      <h3>Choose Tag(s)</h3>
-      <!-- </div> -->
       <div class="add-form">
       <div class="column">
           <div id="feedback4" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
@@ -491,9 +524,41 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             </div>
           </div>
           </div>
+    </div>
 
+      <!-- <div class="plant">
+        <button class="button style">Shrub</button>
+        <button class="button style">Grass</button>
+        <button class="button style">Vine</button>
+        <button class="button style">Tree</button>
+        <button class="button style">Flower</button>
+        <button class="button style">Groundcovers</button>
+        <button class="button style">Other</button>
+      </div> -->
+      <div class="align_right">
+        <input id="add-submit" class="button1" type="submit" name="add-entry" value="Add Entry" />
+      </div>
+      </form>
+      </div>
+
+<!-- add tag form -->
+    <div class="align-center">
+      <form id="request-form" method="post" action="/add-new-plants-form" novalidate>
+      <div class="add-form">
+      <div>
+      <div id="feedback1" class="feedback <?php echo $tag_name_feedback_class; ?>">Please enter a valid tag name.</div>
+      <h3>Add a New Tag</h3>
+        <div class="label_input">
+        <h3><label for="name_field">Tag Name:</label></h3>
+          <input id="name_field" type="text" name="tag_name" value="<?php echo htmlspecialchars($sticky_tag_name); ?>"/>
+        </div>
+    </div>
+      <!-- <div class="tags"> -->
+      <div>
+      <h3>Choose Existing Tag(s)</h3>
+      <!-- </div> -->
       <div class="column">
-          <div id="feedback4" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
+          <div id="feedback4" class="feedback <?php echo $tag_feedback_class; ?>">Please select at least one tag.</div>
           <div class="forms label_input" role="group" aria-labelledby="play">
           <div id="play"><h3>General Classification: </h3></div>
           <div>
@@ -529,21 +594,13 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           </div>
           </div>
     </div>
+    </div>
 
-      <!-- <div class="plant">
-        <button class="button style">Shrub</button>
-        <button class="button style">Grass</button>
-        <button class="button style">Vine</button>
-        <button class="button style">Tree</button>
-        <button class="button style">Flower</button>
-        <button class="button style">Groundcovers</button>
-        <button class="button style">Other</button>
-      </div> -->
-      <div class="align_right">
-        <input id="add-submit" class="button1" type="submit" name="add-entry" value="Add Entry" />
+        <div class="align_right">
+        <input id="add-submit" class="button1" type="submit" name="add-tag" value="Add Tag" />
       </div>
-      </form>
-      </div>
+    </form>
+    </div>
     </article>
     </div>
     <?php } ?>

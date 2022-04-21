@@ -29,6 +29,8 @@ if (preg_match('/^\/public\//', $request_uri) || $request_uri == '/favicon.ico')
   require 'pages/form.php';
 } else if (match_routes($request_uri, '/plant-details')) {
   require 'pages/details.php';
+} else if (match_routes($request_uri, '/plant-update')) {
+  require 'pages/edit.php';
 } else {
   error_log("  404 Not Found: " . $request_uri);
   http_response_code(404);
