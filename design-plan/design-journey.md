@@ -477,6 +477,34 @@ INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_
 INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);
 ```
 
+The following is the plan for updating plant data
+```
+UPDATE entries SET
+    name_colloquial = :name_colloquial,
+    name_genus_species = :name_genus_species,
+    plant_id = :plant_id,
+    exploratory_constructive_play = :exploratory_constructive_play,
+    exploratory_sensory_play = :exploratory_sensory_play,
+    physical_play = :physical_play,
+    imaginative_play = :imaginative_play,
+    restorative_play = :restorative_play,
+    play_with_rules = :play_with_rules,
+    bio_play = :bio_play,
+    perennial = :perennial,
+    full_sun = :full_sun,
+    partial_shade = :partial_shade,
+    full_shade = :full_shade,
+    hardiness_zone_range = :hardiness_zone_range
+WHERE (id = $id);
+```
+
+```
+UPDATE entry_tags SET
+    entry_id = :entry_id,
+    tag_id = :tag_id
+WHERE (id = $id);
+```
+
 Assemble sql
 ```
 if ($sort_asc) {
