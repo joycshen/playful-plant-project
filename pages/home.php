@@ -6,59 +6,6 @@ $nav_new_entry_form = "active_page";
 // open database
 $db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
 
-// $plant_id = $_GET['id'] ?? NULL;
-
-// if ($plant_id) {
-//   $records = exec_sql_query(
-//     $db,
-//     "SELECT
-//     entries.name_colloquial AS 'entries.name_colloquial',
-//     entries.name_genus_species AS 'entries.name_genus_species',
-//     entries.plant_id AS 'entries.plant_id',
-//     entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
-//     entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
-//     entries.physical_play AS 'entries.physical_play',
-//     entries.imaginative_play AS 'entries.imaginative_play',
-//     entries.restorative_play AS 'entries.restorative_play',
-//     entries.play_with_rules AS 'entries.play_with_rules',
-//     entries.bio_play AS 'entries.bio_play',
-//     entries.perennial AS 'entries.perennial',
-//     entries.full_sun AS 'entries.full_sun',
-//     entries.partial_shade AS 'entries.partial_shade',
-//     entries.full_shade AS 'entries.full_shade',
-//     entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
-//     entries.img_ext AS 'entries.img_ext',
-//     tags.tag_name AS 'tags.tag_name',
-//     entry_tags.entry_id AS 'entries.id',
-//     entry_tags.tag_id AS 'tags.id'
-//     FROM
-//     entry_tags
-//     LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
-//     LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id) WHERE entries.id = :id;",
-//     array(':id' => $plant_id)
-//   )->fetchAll();
-
-//   // if (count($records) > 0) {
-//   $plant = $records[0];
-// }
-
-// if (isset($_GET['submit-sort'])) {
-//   $sort = $_GET['sort'];
-// }
-
-//get tag
-// $tag_id = $_GET['id'] ?? NULL;
-
-// if ($tag_id) {
-//   $tags = exec_sql_query(
-//     $db,
-//     "SELECT * FROM tags;",
-//     array(':id' => $tag_id)
-//   )->fetchAll();
-
-//   $tag = $tags[0];
-// }
-
 //Filters
 $feedback_class = 'hidden';
 
@@ -86,13 +33,6 @@ $other = '';
 $sort = '';
 
 // sticky values
-// $sticky_exploratory_constructive_play_1 = '';
-// $sticky_exploratory_sensory_play_1 = '';
-// $sticky_physical_play_1 = '';
-// $sticky_imaginative_play_1 = '';
-// $sticky_restorative_play_1 = '';
-// $sticky_play_with_rules_1 = '';
-// $sticky_bio_play_1 = '';
 $sticky_perennial ='';
 $sticky_full_sun = '';
 $sticky_partial_shade = '';
@@ -106,75 +46,14 @@ $sticky_groundcovers = '';
 $sticky_other = '';
 $sticky_sort = '';
 
-// $tags = $_GET['tag'] ?? NULL;
-
-// if ($tags) {
-//   $tag_records = exec_sql_query(
-//     $db,
-//     "SELECT
-//     entries.name_colloquial AS 'entries.name_colloquial',
-//     entries.name_genus_species AS 'entries.name_genus_species',
-//     entries.plant_id AS 'entries.plant_id',
-//     entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
-//     entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
-//     entries.physical_play AS 'entries.physical_play',
-//     entries.imaginative_play AS 'entries.imaginative_play',
-//     entries.restorative_play AS 'entries.restorative_play',
-//     entries.play_with_rules AS 'entries.play_with_rules',
-//     entries.bio_play AS 'entries.bio_play',
-//     entries.perennial AS 'entries.perennial',
-//     entries.full_sun AS 'entries.full_sun',
-//     entries.partial_shade AS 'entries.partial_shade',
-//     entries.full_shade AS 'entries.full_shade',
-//     entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
-//     entries.img_ext AS 'entries.img_ext',
-//     tags.tag_name AS 'tags.tag_name',
-//     entry_tags.entry_id AS 'entries.id',
-//     entry_tags.tag_id AS 'tags.id'
-//     FROM
-//     entry_tags
-//     LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
-//     LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id) WHERE tags.id = :tag;",
-//     array(':tag' => $tags)
-//   )->fetchAll();
-
-//   // if (count($records) > 0) {
-//   $tag = $tag_records[0];
-// }
-
-// if (isset($_GET['tag'])) {
-//   $shrub = $_GET['shrub'];
-//   $grass = $_GET['grass'];
-//   $vine = $_GET['vine'];
-//   $tree = $_GET['tree'];
-//   $flower = $_GET['flower'];
-//   $groundcovers = $_GET['groundcovers'];
-//   $other = $_GET['other'];
-// }
 
 if (isset($_GET['submit-filter'])) {
 
-  // $exploratory_constructive_play_1 = $_GET['exploratory_constructive_play'];
-  // $exploratory_sensory_play_1 = $_GET['exploratory_sensory_play'];
-  // $physical_play_1 = $_GET['physical_play'];
-  // $imaginative_play_1 = $_GET['imaginative_play'];
-  // $restorative_play_1 = $_GET['restorative_play'];
-  // $play_with_rules_1 = $_GET['play_with_rules'];
-  // $bio_play_1 = $_GET['bio_play'];
   $perennial = $_GET['perennial'];
   $full_sun = $_GET['full_sun'];
   $partial_shade = $_GET['partial_shade'];
   $full_shade = $_GET['full_shade'];
   $sort = $_GET['sort'];
-  // $tag_shrub = $_GET['tag-shrub'];
-  // $tag_grass = $_GET['tag-grass'];
-  // $tag_vine = $_GET['tag-vine'];
-  // $tag_tree = $_GET['tag-tree'];
-  // $tag_flower = $_GET['tag-flower'];
-  // $tag_groundcovers = $_GET['tag-groundcovers'];
-  // $tag_other = $_GET['tag-other'];
-
-  // $upload = $_FILES['img-file'];
 
   $form_valid = True;
 
@@ -185,26 +64,10 @@ if (isset($_GET['submit-filter'])) {
   }
 
   if ($form_valid) {
-    // form is valid --> sticky values
-    // $sticky_exploratory_constructive_play_1 = (empty($exploratory_constructive_play_1) ? '' : 'checked');
-    // $sticky_exploratory_sensory_play_1 = (empty($exploratory_sensory_play_1) ? '' : 'checked');
-    // $sticky_physical_play_1 = (empty($physical_play_1) ? '' : 'checked');
-    // $sticky_imaginative_play_1 = (empty($imaginative_play_1) ? '' : 'checked');
-    // $sticky_restorative_play_1 = (empty($restorative_play_1) ? '' : 'checked');
-    // $sticky_play_with_rules_1 = (empty($play_with_rules_1) ? '' : 'checked');
-    // $sticky_exploratory_constructive_play_1 = (empty($exploratory_constructive_play_1) ? '' : 'checked');
-    // $sticky_bio_play_1 = (empty($bio_play_1) ? '' : 'checked');
     $sticky_perennial =  (empty($perennial) ? '' : 'checked');
     $sticky_full_sun =  (empty($full_sun) ? '' : 'checked');
     $sticky_partial_shade =  (empty($partial_shade) ? '' : 'checked');
     $sticky_full_shade =  (empty($full_shade) ? '' : 'checked');
-    // $sticky_shrub =  (empty($shrub) ? '' : 'checked');
-    // $sticky_grass =  (empty($grass) ? '' : 'checked');
-    // $sticky_vine =  (empty($vine) ? '' : 'checked');
-    // $sticky_tree =  (empty($tree) ? '' : 'checked');
-    // $sticky_flower = (empty($flower) ? '' : 'checked');
-    // $sticky_groundcovers =  (empty($groundcovers) ? '' : 'checked');
-    // $sticky_other = (empty($other) ? '' : 'checked');
     $sticky_sort = (empty($sort) ? '' : 'checked');
     $feedback_class = 'hidden';
   }
@@ -340,6 +203,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   <main>
   <div class="sections">
   <article>
+  <p>Friendly Tips: You can view plant details by clicking the images.</p>
   <div class="body-display">
   <div class="row">
     <div class="plants">

@@ -62,6 +62,9 @@ if ($plant_id) {
   <?php include('includes/header.php'); ?>
 
   <main>
+  <a href="/">
+    <h3 class="back">Back</h3>
+  </a>
      <div class="plants">
       <div class="plant">
       <article>

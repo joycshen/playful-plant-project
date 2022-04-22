@@ -6,6 +6,8 @@ $nav_new_entry_form = "active_page";
 // open database
 $db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
 
+// $show_confirmation = False;
+
 // values
 $id = '';
 $colloquial_name = '';
@@ -30,7 +32,6 @@ $tree = '';
 $flower = '';
 $groundcovers = '';
 $other = '';
-$tag_name = '';
 
 // sticky values
 $sticky_colloquial_name = '';
@@ -55,7 +56,6 @@ $sticky_tree = '';
 $sticky_flower = '';
 $sticky_groundcovers = '';
 $sticky_other = '';
-$sticky_tag_name = '';
 
 $update_plant = $_POST['update-plant'] ?? NULL;
 
@@ -64,7 +64,31 @@ $plant_id = $_GET['id'] ?? NULL;
 if ($update_plant) {
   $records = exec_sql_query(
     $db,
-    "SELECT * FROM entries WHERE (id = :id);",
+    "SELECT
+    entries.id AS 'entries.id',
+    entries.name_colloquial AS 'entries.name_colloquial',
+    entries.name_genus_species AS 'entries.name_genus_species',
+    entries.plant_id AS 'entries.plant_id',
+    entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
+    entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
+    entries.physical_play AS 'entries.physical_play',
+    entries.imaginative_play AS 'entries.imaginative_play',
+    entries.restorative_play AS 'entries.restorative_play',
+    entries.play_with_rules AS 'entries.play_with_rules',
+    entries.bio_play AS 'entries.bio_play',
+    entries.perennial AS 'entries.perennial',
+    entries.full_sun AS 'entries.full_sun',
+    entries.partial_shade AS 'entries.partial_shade',
+    entries.full_shade AS 'entries.full_shade',
+    entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+    tags.tag_name AS 'tags.tag_name',
+    entry_tags.entry_id AS 'entries.id',
+    entry_tags.tag_id AS 'tags.id'
+    FROM
+    entry_tags
+    LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
+    LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id)
+    WHERE (entries.id = :id);",
     array(':id' => $update_plant)
   )->fetchAll();
 
@@ -77,7 +101,31 @@ if (count($records) > 0) {
 
   $records = exec_sql_query(
     $db,
-    "SELECT * FROM entries WHERE (id = :id);",
+    "SELECT
+    entries.id AS 'entries.id',
+    entries.name_colloquial AS 'entries.name_colloquial',
+    entries.name_genus_species AS 'entries.name_genus_species',
+    entries.plant_id AS 'entries.plant_id',
+    entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
+    entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
+    entries.physical_play AS 'entries.physical_play',
+    entries.imaginative_play AS 'entries.imaginative_play',
+    entries.restorative_play AS 'entries.restorative_play',
+    entries.play_with_rules AS 'entries.play_with_rules',
+    entries.bio_play AS 'entries.bio_play',
+    entries.perennial AS 'entries.perennial',
+    entries.full_sun AS 'entries.full_sun',
+    entries.partial_shade AS 'entries.partial_shade',
+    entries.full_shade AS 'entries.full_shade',
+    entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+    tags.tag_name AS 'tags.tag_name',
+    entry_tags.entry_id AS 'entries.id',
+    entry_tags.tag_id AS 'tags.id'
+    FROM
+    entry_tags
+    LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
+    LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id)
+    WHERE (entries.id = :id);",
     array(
       ':id' => $plant_id
     )
@@ -89,21 +137,28 @@ if (count($records) > 0) {
 }
 
 if ($record) {
-  $id = $record['id'];
-  $colloquial_name = $record['name_colloquial'];
-  $genus_species = $record['name_genus_species'];
-  $plant_id = $record['plant_id'];
-  $hardiness_zone_range = $record['hardiness_zone_range'];
-  $exploratory_constructive_play = $record['exploratory_constructive_play'];
-  $exploratory_sensory_play = $record['exploratory_sensory_play'];
-  $imaginative_play = $record['imaginative_play'];
-  $restorative_play = $record['restorative_play'];
-  $play_with_rules = $record['play_with_rules'];
-  $bio_play = $record['bio_play'];
-  $perennial = $record['perennial'];
-  $full_sun = $record['full_sun'];
-  $partial_shade = $record['partial_shade'];
-  $full_shade = $record['full_shade'];
+  $id = $record['entries.id'];
+  $colloquial_name = $record['entries.name_colloquial'];
+  $genus_species = $record['entries.name_genus_species'];
+  $plant_id = $record['entries.plant_id'];
+  $hardiness_zone_range = $record['entries.hardiness_zone_range'];
+  $exploratory_constructive_play = $record['entries.exploratory_constructive_play'];
+  $exploratory_sensory_play = $record['entries.exploratory_sensory_play'];
+  $imaginative_play = $record['entries.imaginative_play'];
+  $restorative_play = $record['entries.restorative_play'];
+  $play_with_rules = $record['entries.play_with_rules'];
+  $bio_play = $record['entries.bio_play'];
+  $perennial = $record['entries.perennial'];
+  $full_sun = $record['entries.full_sun'];
+  $partial_shade = $record['entries.partial_shade'];
+  $full_shade = $record['entries.full_shade'];
+  $shrub = $record['tags.id'];
+  $grass = $record['tags.id'];
+  $vine = $record['tags.id'];
+  $tree = $record['tags.id'];
+  $flower = $record['tags.id'];
+  $groundcovers = $record['tags.id'];
+  $other = $record['tags.id'];
 
   $sticky_colloquial_name = $colloquial_name;
   $sticky_genus_species = $genus_species;
@@ -121,6 +176,13 @@ if ($record) {
   $sticky_full_sun = (empty($full_sun) ? '' : 'checked');
   $sticky_partial_shade = (empty($partial_shade) ? '' : 'checked');
   $sticky_full_shade = (empty($full_shade) ? '' : 'checked');
+  $sticky_shrub = ($shrub != 1 ? '' : 'checked');
+  $sticky_grass = ($grass != 2 ? '' : 'checked');
+  $sticky_vine = ($vine != 3 ? '' : 'checked');
+  $sticky_tree = ($tree != 4 ? '' : 'checked');
+  $sticky_flower = ($flower != 5 ? '' : 'checked');
+  $sticky_groundcovers = ($groundcovers != 6 ? '' : 'checked');
+  $sticky_other = ($other != 7 ? '' : 'checked');
 
   // feedback message styling
   $name_feedback_class = 'hidden';
@@ -128,7 +190,6 @@ if ($record) {
   $plant_id_feedback_class = 'hidden';
   $topo_feedback_class = 'hidden';
   $growing_needs_feedback_class = 'hidden';
-  $tag_name_feedback_class = 'hidden';
   $tag_feedback_class = 'hidden';
 
   $record_updated = False;
@@ -150,14 +211,42 @@ if ($record) {
     $partial_shade = (!empty($_POST['partial_shade']) ? 1 : 0);
     $full_shade = (!empty($_POST['full_shade']) ? 1 : 0);
     $hardiness_zone_range = trim($_POST['hardiness_zone_range']);
-    $tag_name = trim($_POST['tag_name']);
-    $shrub = (!empty($_POST['shrub']) ? 1 : '');
-    $grass = (!empty($_POST['grass']) ? 2 : '');
-    $vine = (!empty($_POST['vine']) ? 3 : '');
-    $tree = (!empty($_POST['tree']) ? 4 : '');
-    $flower = (!empty($_POST['flower']) ? 5 : '');
-    $groundcovers = (!empty($_POST['groundcovers']) ? 6 : '');
-    $other = (!empty($_POST['other']) ? 7 : '');
+
+    if (!empty($_POST['shrub']) ? 1 : '') {
+      $shrub = 1;
+      $tag_id = 1;
+    }
+    if (!empty($_POST['grass']) ? 2 : '') {
+      $grass = 2;
+      $tag_id = 2;
+    }
+    if (!empty($_POST['vine']) ? 3 : '') {
+      $vine = 3;
+      $tag_id = 3;
+    }
+    if (!empty($_POST['tree']) ? 4 : '') {
+      $tree = 4;
+      $tag_id = 4;
+    }
+    if (!empty($_POST['flower']) ? 5 : '') {
+      $flower = 5;
+      $tag_id = 5;
+    }
+    if (!empty($_POST['groundcovers']) ? 6 : '') {
+      $groundcovers = 6;
+      $tag_id = 6;
+    }
+    if (!empty($_POST['other']) ? 7 : '') {
+      $other = 7;
+      $tag_id = 7;
+    }
+    // $shrub = (!empty($_POST['shrub']) ? 1 : '');
+    // $grass = (!empty($_POST['grass']) ? 2 : '');
+    // $vine = (!empty($_POST['vine']) ? 3 : '');
+    // $tree = (!empty($_POST['tree']) ? 4 : '');
+    // $flower = (!empty($_POST['flower']) ? 5 : '');
+    // $groundcovers = (!empty($_POST['groundcovers']) ? 6 : '');
+    // $other = (!empty($_POST['other']) ? 7 : '');
 
     $form_valid = True;
 
@@ -214,9 +303,8 @@ if ($record) {
             partial_shade = :partial_shade,
             full_shade = :full_shade,
             hardiness_zone_range = :hardiness_zone_range
-          WHERE (id = :id);",
+          WHERE (id = $id);",
         array(
-        //   ':id' => $id,
           ':name_colloquial' => $colloquial_name,
           ':name_genus_species' => $genus_species,
           ':plant_id' => $plant_id,
@@ -235,9 +323,24 @@ if ($record) {
         )
       );
 
-      if ($result) {
+      // $entry_id = $db->lastInsertId('id');
+
+      $result_tag_1 = exec_sql_query(
+      $db,
+      "UPDATE entry_tags SET
+        entry_id = :entry_id,
+        tag_id = :tag_id
+      WHERE (id = $id);",
+      array(
+        ':entry_id' => $id,
+        ':tag_id' => $tag_id,
+      )
+    );
+
+      if ($result && $result_tag_1) {
         $record_updated = True;
       }
+        // $show_confirmation = True;
     } else {
         $sticky_exploratory_constructive_play = (empty($exploratory_constructive_play) ? '' : 'checked');
         $sticky_exploratory_sensory_play = (empty($exploratory_sensory_play) ? '' : 'checked');
@@ -254,6 +357,13 @@ if ($record) {
         $sticky_colloquial_name = $colloquial_name;
         $sticky_genus_species = $genus_species;
         $sticky_plant_id = $plant_id;
+        $sticky_shrub = (empty($shrub) ? '' : 'checked');
+        $sticky_grass = (empty($grass) ? '' : 'checked');
+        $sticky_vine = (empty($vine) ? '' : 'checked');
+        $sticky_tree = (empty($tree) ? '' : 'checked');
+        $sticky_flower = (empty($flower) ? '' : 'checked');
+        $sticky_groundcovers = (empty($groundcovers) ? '' : 'checked');
+        $sticky_other = (empty($other) ? '' : 'checked');
     }
   }
 }
@@ -284,13 +394,16 @@ if ($record) {
 
         <p>The plant <strong>"<?php echo htmlspecialchars($colloquial_name); ?>"</strong> is successfully updated in the catalog!</p>
 
-        <p>View updated catalog in <a href="/">Playful Plant Data</a></p>
+        <p>View updated catalog in <a href="/">"Plant Information" page</a> and <a href="/add-new-plants-form">"Add New Plant" page.</a></p>
       </section>
 
     <?php } else { ?>
+      <a href="/">
+        <h3 class="back">Back</h3>
+      </a>
       <h2>Edit the Plant!</h2>
       <div class="align-center">
-      <form id="request-form" method="post" action="/plant-update?<?php echo http_build_query(array('id' => $record['id'])); ?>" novalidate>
+      <form id="request-form" method="post" action="/plant-update?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>" novalidate>
 
       <div class="add-form">
         <div>
@@ -383,18 +496,7 @@ if ($record) {
           </div>
     </div>
 
-    <input type="hidden" name="update-plant" value="<?php echo htmlspecialchars($id); ?>" />
-
-      <div class="align_right">
-          <button type="submit">Save Changes</button>
-        </div>
-      </form>
-      </div>
-
-<!-- add tag form -->
-    <div class="align-center">
-      <form id="request-form" method="post" action="/add-new-plants-form" novalidate>
-      <div class="add-form">
+    <div class="add-form">
       <!-- <div class="tags"> -->
       <div>
       <h3>Choose Existing Tag(s)</h3>
@@ -438,11 +540,15 @@ if ($record) {
     </div>
     </div>
 
-        <div class="align_right">
-        <input id="add-submit" class="button1" type="submit" name="add-tag" value="Add Tag" />
+
+    <input type="hidden" name="update-plant" value="<?php echo htmlspecialchars($id); ?>" />
+
+      <div class="align_right">
+          <button type="submit">Save Changes</button>
+        </div>
+      </form>
       </div>
-    </form>
-    </div>
+
     </article>
     </div>
     <?php } ?>

@@ -22,7 +22,6 @@ $genus_feedback_class = 'hidden';
 $plant_id_feedback_class = 'hidden';
 $topo_feedback_class = 'hidden';
 $growing_needs_feedback_class = 'hidden';
-$tag_name_feedback_class = 'hidden';
 $tag_feedback_class = 'hidden';
 
 // values
@@ -48,7 +47,6 @@ $tree = '';
 $flower = '';
 $groundcovers = '';
 $other = '';
-$tag_name = '';
 
 // upload values
 $upload_filename = NULL;
@@ -77,7 +75,6 @@ $sticky_tree = '';
 $sticky_flower = '';
 $sticky_groundcovers = '';
 $sticky_other = '';
-$sticky_tag_name = '';
 
 if (isset($_POST['add-entry'])) {
 
@@ -251,95 +248,7 @@ if (isset($_POST['add-entry'])) {
     $sticky_groundcovers = (empty($groundcovers) ? '' : 'checked');
     $sticky_other = (empty($other) ? '' : 'checked');
   }
-
-//   if ($form_valid) {
-//     //securely insert new data
-
-//     $entry_id = $db->lastInsertId('id');
-
-//     $result_tag_1 = exec_sql_query(
-//     $db,
-//     "INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);",
-//     array(
-//       ':entry_id' => $entry_id,
-//       ':tag_id' => $tag_id,
-//     )
-//   );
-// } else {
-//   // form is invalid, apply sticky values
-//   $sticky_shrub = (empty($shrub) ? '' : 'checked');
-// }
-
-//   if ($result_tag_1) {
-//     $record_inserted = True;
-
-//     // form is valid, hide form and show confirmation message
-//     $show_confirmation = True;
-
-//   } else {
-//     // form is invalid, apply sticky values
-//     $sticky_tag_name = $tag_name;
-//   }
 }
-
-// add tag form
-// if (isset($_POST['add-entry'])) {
-
-//   // Get HTTP request user data
-//   // $tag_name = trim($_POST['tag_name']);
-//   if (!empty($_POST['shrub']) ? 1 : '') {
-//     $tag_id = 1;
-//     $form_valid = True;
-//   }
-//   if (!empty($_POST['grass']) ? 2 : '') {
-//     $tag_id = 2;
-//     $form_valid = True;
-//   }
-//   // $shrub = (!empty($_POST['shrub']) ? 1 : '');
-//   // $grass = (!empty($_POST['grass']) ? 2 : '');
-//   $vine = (!empty($_POST['vine']) ? 3 : '');
-//   $tree = (!empty($_POST['tree']) ? 4 : '');
-//   $flower = (!empty($_POST['flower']) ? 5 : '');
-//   $groundcovers = (!empty($_POST['groundcovers']) ? 6 : '');
-//   $other = (!empty($_POST['other']) ? 7 : '');
-
-//   // $form_valid = True;
-
-//   // whether at least one check box checked, if not, form invalid
-//   if (empty($shrub) && empty($grass) && empty($vine) && empty($tree) && empty($flower) && empty($groundcovers) && empty($other)) {
-//     $form_valid = False;
-//     $tag_feedback_class = '';
-//   }
-
-//   if ($form_valid) {
-//     //securely insert new data
-
-//     $entry_id = $db->lastInsertId('id');
-
-//     $result_tag_1 = exec_sql_query(
-//     $db,
-//     "INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);",
-//     array(
-//       ':entry_id' => $entry_id,
-//       ':tag_id' => $tag_id,
-//     )
-//   );
-// } else {
-//   // form is invalid, apply sticky values
-//   $sticky_shrub = (empty($shrub) ? '' : 'checked');;
-// }
-
-//   if ($result_tag_1) {
-//     $record_inserted = True;
-
-//     // form is valid, hide form and show confirmation message
-//     $show_confirmation = True;
-
-//   } else {
-//     // form is invalid, apply sticky values
-//     $sticky_tag_name = $tag_name;
-//   }
-// }
 
 
 // filter and sort form
@@ -609,15 +518,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           </div>
     </div>
 
-      <!-- <div class="align_right">
-        <input id="add-submit" class="button1" type="submit" name="add-entry" value="Add Entry" />
-      </div>
-      </form>
-      </div> -->
-
-<!-- add tag form -->
-    <!-- <div class="align-center">
-      <form id="request-form" method="post" action="/add-new-plants-form" novalidate> -->
       <div class="add-form">
       <!-- <div class="tags"> -->
       <div>
@@ -662,11 +562,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
     </div>
     </div>
 
-        <!-- <div class="align_right">
-        <input id="add-submit" class="button1" type="submit" name="add-tag" value="Add Tag" />
-      </div> -->
-    <!-- </form>
-    </div> -->
     <div class="align_right">
         <input id="add-submit" class="button1" type="submit" name="add-entry" value="Add Entry" />
       </div>
