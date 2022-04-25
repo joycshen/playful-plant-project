@@ -87,7 +87,7 @@ function is_user_member_of($db, $group_id)
 
   $records = exec_sql_query(
     $db,
-    "SELECT id FROM memberships WHERE (group_id = :group_id) AND (user_id = :user_id);",
+    "SELECT id FROM admins WHERE (group_id = :group_id) AND (user_id = :user_id);",
     array(
       ':group_id' => $group_id,
       ':user_id' => $current_user['id']
@@ -235,20 +235,22 @@ function echo_login_form($action, $messages)
     } ?>
   </ul>
 
-  <form class="login" action="<?php echo htmlspecialchars($action) ?>" method="post" novalidate>
-    <div class="group_label_input">
+  <form class="align-center" action="<?php echo htmlspecialchars($action) ?>" method="post" novalidate>
+  <div class="column">
+    <div>
       <label for="username">Username:</label>
       <input id="username" type="text" name="login_username" value="<?php echo htmlspecialchars($sticky_login_username); ?>" required />
     </div>
 
-    <div class="group_label_input">
+    <div>
       <label for="password">Password:</label>
       <input id="password" type="password" name="login_password" required />
     </div>
 
-    <div class="align-right">
-      <button name="login" type="submit">Sign In</button>
+    <div class="align_right">
+      <button class="button1" name="login" type="submit">Sign In</button>
     </div>
+  </div>
   </form>
 <?php
 }

@@ -3,20 +3,9 @@ $title = "Playful Plants Projects";
 $nav_plants_data = "active_page";
 $nav_new_entry_form = "active_page";
 
-// open database
-$db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
-
 //Filters
 $feedback_class = 'hidden';
 
-// values
-// $exploratory_constructive_play_1 = '';
-// $exploratory_sensory_play_1 = '';
-// $physical_play_1 = '';
-// $imaginative_play_1 = '';
-// $restorative_play_1 = '';
-// $play_with_rules_1 = '';
-// $bio_play_1 = '';
 $perennial ='';
 $full_sun = '';
 $partial_shade = '';
@@ -201,6 +190,12 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   <?php include('includes/header.php'); ?>
 
   <main>
+  <article>
+  <?php if (!is_user_logged_in()) { ?>
+    <h3>Please login to view plant catalog.</h3>
+    <?php echo_login_form('/', $session_messages); ?>
+    <?php } else { ?>
+  </article>
   <div class="sections">
   <article>
   <p>Friendly Tips: You can view plant details by clicking the images.</p>
@@ -219,13 +214,18 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
             <img src="/public/uploads/entries/<?php echo $record['entries.id'] . '.' . $record['entries.img_ext']; ?>" alt="" width="250" height="250"/>
             </a>
-        <div class="align_right">
 
+      <?php if ($is_admin) { ?>
+
+        <div class="align_right">
         <a class="" href="/plant-update?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>" aria-label="Edit Entry">
         <input class="button1" type="submit" name="edit-entry" value="Edit" />
       </a>
         <input class="button1" type="submit" name="delete-entry" value="Delete" />
       </div>
+
+    <?php } ?>
+
       </div>
       </div>
       <?php } ?>
@@ -337,40 +337,13 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         </div>
       </form>
 
-
-          <!-- <div class="buttons">
-          <form id="request-form" method="get" action="/" novalidate>
-             <button class="button style" type="submit" name="tag" value="shrub">Shrub</button>
-          </form>
-          <form id="request-form" method="get" action="/" novalidate>
-             <button class="button style" type="submit" name="tag" value="grass">Grass</button>
-          </form>
-          <form id="request-form" method="get" action="/" novalidate>
-             <button class="button style" type="submit" name="tag" value="vine">Vine</button>
-          </form>
-          <form id="request-form" method="get" action="/" novalidate>
-             <button class="button style" type="submit" name="tag" value="tree">Tree</button>
-          </form>
-          <form id="request-form" method="get" action="/" novalidate>
-             <button class="button style" type="submit" name="tag" value="flower">Flower</button>
-          </form>
-          <form id="request-form" method="get" action="/" novalidate>
-             <button class="button style" type="submit" name="tag" value="groundcovers">Groundcovers</button>
-          </form>
-          <form id="request-form" method="get" action="/" novalidate>
-             <button class="button style" type="submit" name="tag" value="other">Other</button>
-          </form>
-          </div> -->
     </div>
   </aside>
 
       </div>
       </div>
     </div>
+    <?php } ?>
   </main>
-
-  <!-- <script type="text/javascript" src="public/scripts/jquery-3.6.0.js"></script>
-  <script type="text/javascript" src="public/scripts/drop-down.js"></script>
-  <script type="text/javascript" src="public/scripts/hamburger.js"></script> -->
 </body>
 </html>

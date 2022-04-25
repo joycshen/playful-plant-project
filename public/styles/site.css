@@ -115,10 +115,14 @@ section p {
     text-decoration: underline;
 }
 
-.log-in {
+.log {
     display: flex;
     justify-content:right;
     margin-right: 20px;
+}
+
+.log a {
+    color: white;
 }
 
 .sections {

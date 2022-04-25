@@ -3,9 +3,6 @@ $title = "Playful Plants Projects";
 $nav_plants_data = "active_page";
 $nav_new_entry_form = "active_page";
 
-// open database
-$db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
-
 $plant_id = $_GET['id'] ?? NULL;
 
 if ($plant_id) {
@@ -88,7 +85,7 @@ if ($plant_id) {
                   <li>Full Sun</li>
                   <?php } ?>
                   <?php if ($plant["entries.partial_shade"] == 1) { ?>
-                  <li>Particla Shade</li>
+                  <li>Partial Shade</li>
                   <?php } ?>
                   <?php if ($plant["entries.full_shade"] == 1) { ?>
                   <li>Full Shade</li>

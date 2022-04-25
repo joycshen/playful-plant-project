@@ -1,3 +1,75 @@
+--- users
+
+CREATE TABLE users (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+  name TEXT NOT NULL,
+  username TEXT NOT NULL UNIQUE,
+  password TEXT NOT NULL
+);
+
+-- password: monkey
+INSERT INTO
+  users (id, name, username, password)
+VALUES
+  (
+    1,
+    'Pat',
+    'pat',
+    '$2y$10$QtCybkpkzh7x5VN11APHned4J8fu78.eFXlyAMmahuAaNcbwZ7FH.'
+  );
+
+-- password: monkey
+INSERT INTO
+  users (id, name, username, password)
+VALUES
+  (
+    2,
+    'Abi',
+    'abi',
+    '$2y$10$QtCybkpkzh7x5VN11APHned4J8fu78.eFXlyAMmahuAaNcbwZ7FH.'
+  );
+
+
+--- Sessions
+
+CREATE TABLE sessions (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+  user_id INTEGER NOT NULL,
+  session TEXT NOT NULL UNIQUE,
+  last_login TEXT NOT NULL,
+  FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+
+--- Groups
+
+CREATE TABLE groups (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+  name TEXT NOT NULL UNIQUE
+);
+
+INSERT INTO
+  groups (id, name)
+VALUES
+  (1, 'admin');
+
+
+--- Group Admin
+
+CREATE TABLE admins (
+  id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,
+  group_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY(group_id) REFERENCES groups(id),
+  FOREIGN KEY(user_id) REFERENCES users(id)
+);
+
+-- User 'Pat' is a member of the 'admin' group.
+INSERT INTO
+  admins (group_id, user_id)
+VALUES
+  (1, 1);
+
 -- entry table
 CREATE TABLE entries (
     id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,

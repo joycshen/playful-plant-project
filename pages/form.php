@@ -3,384 +3,385 @@ $title = "Playful Plants Projects";
 $nav_plants_data = "active_page";
 $nav_new_entry_form = "active_page";
 
-// open database
-$db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
-
 // ----------- add-entry form ----------------
+if (is_user_logged_in() && $is_admin) {
 
-define("MAX_FILE_SIZE", 1000000);
+  define("MAX_FILE_SIZE", 1000000);
 
-// form initial state
-$show_confirmation = False;
+  // form initial state
+  $show_confirmation = False;
 
-//insert new entry
-$record_inserted = False;
+  //insert new entry
+  $record_inserted = False;
 
-// feedback message styling
-$name_feedback_class = 'hidden';
-$genus_feedback_class = 'hidden';
-$plant_id_feedback_class = 'hidden';
-$topo_feedback_class = 'hidden';
-$growing_needs_feedback_class = 'hidden';
-$tag_feedback_class = 'hidden';
+  // feedback message styling
+  $name_feedback_class = 'hidden';
+  $genus_feedback_class = 'hidden';
+  $plant_id_feedback_class = 'hidden';
+  $topo_feedback_class = 'hidden';
+  $growing_needs_feedback_class = 'hidden';
+  $tag_feedback_class = 'hidden';
 
-// values
-$colloquial_name = '';
-$genus_species = '';
-$plant_id = '';
-$exploratory_constructive_play = '';
-$exploratory_sensory_play = '';
-$physical_play = '';
-$imaginative_play = '';
-$restorative_play = '';
-$play_with_rules = '';
-$bio_play = '';
-$perennial = '';
-$full_sun = '';
-$partial_shade = '';
-$full_shade = '';
-$hardiness_zone_range = '';
-$shrub = '';
-$grass = '';
-$vine = '';
-$tree = '';
-$flower = '';
-$groundcovers = '';
-$other = '';
+  // values
+  $colloquial_name = '';
+  $genus_species = '';
+  $plant_id = '';
+  $exploratory_constructive_play = '';
+  $exploratory_sensory_play = '';
+  $physical_play = '';
+  $imaginative_play = '';
+  $restorative_play = '';
+  $play_with_rules = '';
+  $bio_play = '';
+  $perennial = '';
+  $full_sun = '';
+  $partial_shade = '';
+  $full_shade = '';
+  $hardiness_zone_range = '';
+  $shrub = '';
+  $grass = '';
+  $vine = '';
+  $tree = '';
+  $flower = '';
+  $groundcovers = '';
+  $other = '';
 
-// upload values
-$upload_filename = NULL;
-$upload_ext = NULL;
+  // upload values
+  $upload_filename = NULL;
+  $upload_ext = NULL;
 
-// sticky values
-$sticky_colloquial_name = '';
-$sticky_genus_species = '';
-$sticky_plant_id = '';
-$sticky_exploratory_constructive_play = '';
-$sticky_exploratory_sensory_play = '';
-$sticky_physical_play = '';
-$sticky_imaginative_play = '';
-$sticky_restorative_play = '';
-$sticky_play_with_rules = '';
-$sticky_bio_play = '';
-$sticky_perennial = '';
-$sticky_full_sun = '';
-$sticky_partial_shade = '';
-$sticky_full_shade = '';
-$sticky_hardiness_zone_range = '';
-$sticky_shrub = '';
-$sticky_grass = '';
-$sticky_vine = '';
-$sticky_tree = '';
-$sticky_flower = '';
-$sticky_groundcovers = '';
-$sticky_other = '';
+  // sticky values
+  $sticky_colloquial_name = '';
+  $sticky_genus_species = '';
+  $sticky_plant_id = '';
+  $sticky_exploratory_constructive_play = '';
+  $sticky_exploratory_sensory_play = '';
+  $sticky_physical_play = '';
+  $sticky_imaginative_play = '';
+  $sticky_restorative_play = '';
+  $sticky_play_with_rules = '';
+  $sticky_bio_play = '';
+  $sticky_perennial = '';
+  $sticky_full_sun = '';
+  $sticky_partial_shade = '';
+  $sticky_full_shade = '';
+  $sticky_hardiness_zone_range = '';
+  $sticky_shrub = '';
+  $sticky_grass = '';
+  $sticky_vine = '';
+  $sticky_tree = '';
+  $sticky_flower = '';
+  $sticky_groundcovers = '';
+  $sticky_other = '';
 
-if (isset($_POST['add-entry'])) {
+  if (isset($_POST['add-entry'])) {
 
-  //add info
-  $colloquial_name = trim($_POST['colloquial_name']);
-  $genus_species = trim($_POST['genus_species']);
-  $plant_id = trim($_POST['plant_id']);
-  $exploratory_constructive_play = (!empty($_POST['exploratory_constructive_play']) ? 1 : 0);
-  $exploratory_sensory_play = (!empty($_POST['exploratory_sensory_play']) ? 1 : 0);
-  $physical_play = (!empty($_POST['physical_play']) ? 1 : 0);
-  $imaginative_play = (!empty($_POST['imaginative_play']) ? 1 : 0);
-  $restorative_play = (!empty($_POST['restorative_play']) ? 1 : 0);
-  $play_with_rules = (!empty($_POST['play_with_rules']) ? 1 : 0);
-  $bio_play = (!empty($_POST['bio_play']) ? 1 : 0);
-  $perennial = (!empty($_POST['perennial']) ? 1 : 0);
-  $full_sun = (!empty($_POST['full_sun']) ? 1 : 0);
-  $partial_shade = (!empty($_POST['partial_shade']) ? 1 : 0);
-  $full_shade = (!empty($_POST['full_shade']) ? 1 : 0);
-  $hardiness_zone_range = trim($_POST['hardiness_zone_range']);
+    //add info
+    $colloquial_name = trim($_POST['colloquial_name']);
+    $genus_species = trim($_POST['genus_species']);
+    $plant_id = trim($_POST['plant_id']);
+    $exploratory_constructive_play = (!empty($_POST['exploratory_constructive_play']) ? 1 : 0);
+    $exploratory_sensory_play = (!empty($_POST['exploratory_sensory_play']) ? 1 : 0);
+    $physical_play = (!empty($_POST['physical_play']) ? 1 : 0);
+    $imaginative_play = (!empty($_POST['imaginative_play']) ? 1 : 0);
+    $restorative_play = (!empty($_POST['restorative_play']) ? 1 : 0);
+    $play_with_rules = (!empty($_POST['play_with_rules']) ? 1 : 0);
+    $bio_play = (!empty($_POST['bio_play']) ? 1 : 0);
+    $perennial = (!empty($_POST['perennial']) ? 1 : 0);
+    $full_sun = (!empty($_POST['full_sun']) ? 1 : 0);
+    $partial_shade = (!empty($_POST['partial_shade']) ? 1 : 0);
+    $full_shade = (!empty($_POST['full_shade']) ? 1 : 0);
+    $hardiness_zone_range = trim($_POST['hardiness_zone_range']);
 
-  //upload image
-  $upload = $_FILES['img-file'];
+    //upload image
+    $upload = $_FILES['img-file'];
 
-  //add tags
-  if (!empty($_POST['shrub']) ? 1 : '') {
-    $shrub = 1;
-    $tag_id = 1;
-  }
-  if (!empty($_POST['grass']) ? 2 : '') {
-    $grass = 2;
-    $tag_id = 2;
-  }
-  if (!empty($_POST['vine']) ? 3 : '') {
-    $vine = 3;
-    $tag_id = 3;
-  }
-  if (!empty($_POST['tree']) ? 4 : '') {
-    $tree = 4;
-    $tag_id = 4;
-  }
-  if (!empty($_POST['flower']) ? 5 : '') {
-    $flower = 5;
-    $tag_id = 5;
-  }
-  if (!empty($_POST['groundcovers']) ? 6 : '') {
-    $groundcovers = 6;
-    $tag_id = 6;
-  }
-  if (!empty($_POST['other']) ? 7 : '') {
-    $other = 7;
-    $tag_id = 7;
-  }
-
-  $form_valid = True;
-
-  if ($upload['error'] == UPLOAD_ERR_OK) {
-    $upload_filename = basename($upload['name']);
-
-    $upload_ext = strtolower(pathinfo($upload_filename, PATHINFO_EXTENSION));
-  } else {
-    $form_valid = False;
-  }
-
-  // whether at least one check box checked, if not, form invalid
-  if (empty($exploratory_constructive_play) && empty($exploratory_sensory_play) && empty($physical_play) && empty($imaginative_play) && empty($restorative_play) && empty($play_with_rules) && empty($bio_play)) {
-    $form_valid = False;
-    $topo_feedback_class = '';
-  }
-
-  // whether colloquial name is empty, if so, form invalid
-  if (empty($colloquial_name)) {
-    $form_valid = False;
-    $name_feedback_class = '';
-  }
-
-   // whether genus, speicies is empty, if so, form invalid
-  if (empty($genus_species)) {
-    $form_valid = False;
-    $genus_feedback_class = '';
-  }
-
-   // whether plant id is empty, if so, form invalid
-   if (empty($plant_id)) {
-    $form_valid = False;
-    $plant_id_feedback_class = '';
-  }
-
-   // whether at least one check box checked, if so, form invalid
-   if (empty($perennial) && empty($full_sun) && empty($partial_shade) && empty($full_shade) && empty($hardiness_zone_range)) {
-    $form_valid = False;
-    $growing_needs_feedback_class = '';
-  }
-
-    // whether at least one check box checked, if not, form invalid
-    if (empty($shrub) && empty($grass) && empty($vine) && empty($tree) && empty($flower) && empty($groundcovers) && empty($other)) {
-      $form_valid = False;
-      $tag_feedback_class = '';
+    //add tags
+    if (!empty($_POST['shrub']) ? 1 : '') {
+      $shrub = 1;
+      $tag_id = 1;
+    }
+    if (!empty($_POST['grass']) ? 2 : '') {
+      $grass = 2;
+      $tag_id = 2;
+    }
+    if (!empty($_POST['vine']) ? 3 : '') {
+      $vine = 3;
+      $tag_id = 3;
+    }
+    if (!empty($_POST['tree']) ? 4 : '') {
+      $tree = 4;
+      $tag_id = 4;
+    }
+    if (!empty($_POST['flower']) ? 5 : '') {
+      $flower = 5;
+      $tag_id = 5;
+    }
+    if (!empty($_POST['groundcovers']) ? 6 : '') {
+      $groundcovers = 6;
+      $tag_id = 6;
+    }
+    if (!empty($_POST['other']) ? 7 : '') {
+      $other = 7;
+      $tag_id = 7;
     }
 
-  if ($form_valid) {
-    //securely insert new data
-    $result = exec_sql_query(
-    $db,
-    "INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range, :file_name, :img_ext);",
-    array(
-      ':name_colloquial' => $colloquial_name,
-      ':name_genus_species' => $genus_species,
-      ':plant_id' => $plant_id,
-      ':exploratory_constructive_play' => $exploratory_constructive_play,
-      ':exploratory_sensory_play' => $exploratory_sensory_play,
-      ':physical_play' => $physical_play,
-      ':imaginative_play' => $imaginative_play,
-      ':restorative_play' => $restorative_play,
-      ':play_with_rules' => $play_with_rules,
-      ':bio_play' => $bio_play,
-      ':perennial' => $perennial,
-      ':full_sun' => $full_sun,
-      ':partial_shade' => $partial_shade,
-      ':full_shade' => $full_shade,
-      ':hardiness_zone_range' => $hardiness_zone_range,
-      ':file_name' => $upload_filename,
-      ':img_ext' => $upload_ext,
-    )
-  );
+    $form_valid = True;
 
-    $entry_id = $db->lastInsertId('id');
+    if ($upload['error'] == UPLOAD_ERR_OK) {
+      $upload_filename = basename($upload['name']);
 
-    $result_tag_1 = exec_sql_query(
-    $db,
-    "INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);",
-    array(
-      ':entry_id' => $entry_id,
-      ':tag_id' => $tag_id,
-    )
-  );
+      $upload_ext = strtolower(pathinfo($upload_filename, PATHINFO_EXTENSION));
+    } else {
+      $form_valid = False;
+    }
 
-  if($result && $result_tag_1) {
-    $record_inserted = True;
+    // whether at least one check box checked, if not, form invalid
+    if (empty($exploratory_constructive_play) && empty($exploratory_sensory_play) && empty($physical_play) && empty($imaginative_play) && empty($restorative_play) && empty($play_with_rules) && empty($bio_play)) {
+      $form_valid = False;
+      $topo_feedback_class = '';
+    }
 
-    $record_id = $db->lastInsertId('id');
+    // whether colloquial name is empty, if so, form invalid
+    if (empty($colloquial_name)) {
+      $form_valid = False;
+      $name_feedback_class = '';
+    }
 
-    $id_filename = 'public/uploads/entries/' . $record_id . '.' . $upload_ext;
+    // whether genus, speicies is empty, if so, form invalid
+    if (empty($genus_species)) {
+      $form_valid = False;
+      $genus_feedback_class = '';
+    }
 
-    move_uploaded_file($upload["tmp_name"], $id_filename);
-  }
-    // form is valid, hide form and show confirmation message
-    $show_confirmation = True;
+    // whether plant id is empty, if so, form invalid
+    if (empty($plant_id)) {
+      $form_valid = False;
+      $plant_id_feedback_class = '';
+    }
 
-  } else {
-    // form is invalid, apply sticky values
-    $sticky_exploratory_constructive_play = (empty($exploratory_constructive_play) ? '' : 'checked');
-    $sticky_exploratory_sensory_play = (empty($exploratory_sensory_play) ? '' : 'checked');
-    $sticky_physical_play = (empty($physical_play) ? '' : 'checked');
-    $sticky_imaginative_play = (empty($imaginative_play) ? '' : 'checked');
-    $sticky_restorative_play = (empty($restorative_play) ? '' : 'checked');
-    $sticky_play_with_rules = (empty($play_with_rules) ? '' : 'checked');
-    $sticky_bio_play = (empty($bio_play) ? '' : 'checked');
-    $sticky_perennial = (empty($perennial) ? '' : 'checked');
-    $sticky_full_sun = (empty($full_sun) ? '' : 'checked');
-    $sticky_partial_shade = (empty($partial_shade) ? '' : 'checked');
-    $sticky_full_shade = (empty($full_shade) ? '' : 'checked');
-    $sticky_hardiness_zone_range = $hardiness_zone_range;
-    $sticky_colloquial_name = $colloquial_name;
-    $sticky_genus_species = $genus_species;
-    $sticky_plant_id = $plant_id;
-    $sticky_shrub = (empty($shrub) ? '' : 'checked');
-    $sticky_grass = (empty($grass) ? '' : 'checked');
-    $sticky_vine = (empty($vine) ? '' : 'checked');
-    $sticky_tree = (empty($tree) ? '' : 'checked');
-    $sticky_flower = (empty($flower) ? '' : 'checked');
-    $sticky_groundcovers = (empty($groundcovers) ? '' : 'checked');
-    $sticky_other = (empty($other) ? '' : 'checked');
-  }
-}
+    // whether at least one check box checked, if so, form invalid
+    if (empty($perennial) && empty($full_sun) && empty($partial_shade) && empty($full_shade) && empty($hardiness_zone_range)) {
+      $form_valid = False;
+      $growing_needs_feedback_class = '';
+    }
 
+      // whether at least one check box checked, if not, form invalid
+      if (empty($shrub) && empty($grass) && empty($vine) && empty($tree) && empty($flower) && empty($groundcovers) && empty($other)) {
+        $form_valid = False;
+        $tag_feedback_class = '';
+      }
 
-// filter and sort form
+    if ($form_valid) {
+      //securely insert new data
+      $result = exec_sql_query(
+      $db,
+      "INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range, :file_name, :img_ext);",
+      array(
+        ':name_colloquial' => $colloquial_name,
+        ':name_genus_species' => $genus_species,
+        ':plant_id' => $plant_id,
+        ':exploratory_constructive_play' => $exploratory_constructive_play,
+        ':exploratory_sensory_play' => $exploratory_sensory_play,
+        ':physical_play' => $physical_play,
+        ':imaginative_play' => $imaginative_play,
+        ':restorative_play' => $restorative_play,
+        ':play_with_rules' => $play_with_rules,
+        ':bio_play' => $bio_play,
+        ':perennial' => $perennial,
+        ':full_sun' => $full_sun,
+        ':partial_shade' => $partial_shade,
+        ':full_shade' => $full_shade,
+        ':hardiness_zone_range' => $hardiness_zone_range,
+        ':file_name' => $upload_filename,
+        ':img_ext' => $upload_ext,
+      )
+    );
 
-// feedback message styling
-$feedback_class = 'hidden';
+      $entry_id = $db->lastInsertId('id');
 
-// values
-$exploratory_constructive_play_1 = '';
-$exploratory_sensory_play_1 = '';
-$physical_play_1 = '';
-$imaginative_play_1 = '';
-$restorative_play_1 = '';
-$play_with_rules_1 = '';
-$bio_play_1 = '';
-// $perennial ='';
-// $full_sun = '';
-// $partial_shade = '';
-// $full_shade = '';
-// $hardiness_zone_range = '';
-$sort = '';
+      $result_tag_1 = exec_sql_query(
+      $db,
+      "INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);",
+      array(
+        ':entry_id' => $entry_id,
+        ':tag_id' => $tag_id,
+      )
+    );
 
-// sticky values
-$sticky_exploratory_constructive_play_1 = '';
-$sticky_exploratory_sensory_play_1 = '';
-$sticky_physical_play_1 = '';
-$sticky_imaginative_play_1 = '';
-$sticky_restorative_play_1 = '';
-$sticky_play_with_rules_1 = '';
-$sticky_bio_play_1 = '';
-// $sticky_perennial ='';
-// $sticky_full_sun = '';
-// $sticky_partial_shade = '';
-// $sticky_full_shade = '';
-// $sticky_hardiness_zone_range = '';
-$sticky_sort = '';
+    if($result && $result_tag_1) {
+      $record_inserted = True;
 
-if (isset($_GET['submit-filter'])) {
+      $record_id = $db->lastInsertId('id');
 
-  $exploratory_constructive_play_1 = $_GET['exploratory_constructive_play'];
-  $exploratory_sensory_play_1 = $_GET['exploratory_sensory_play'];
-  $physical_play_1 = $_GET['physical_play'];
-  $imaginative_play_1 = $_GET['imaginative_play'];
-  $restorative_play_1 = $_GET['restorative_play'];
-  $play_with_rules_1 = $_GET['play_with_rules'];
-  $bio_play_1 = $_GET['bio_play'];
-  $sort = $_GET['sort'];
+      $id_filename = 'public/uploads/entries/' . $record_id . '.' . $upload_ext;
 
-  // $upload = $_FILES['img-file'];
+      move_uploaded_file($upload["tmp_name"], $id_filename);
+    }
+      // form is valid, hide form and show confirmation message
+      $show_confirmation = True;
 
-  $form_valid = True;
-
-  if (empty($sort) && empty($exploratory_constructive_play_1) && empty($exploratory_sensory_play_1) && empty($physical_play_1) && empty($imaginative_play_1) && empty($restorative_play_1) && empty($play_with_rules_1) && empty($bio_play_1)) {
-    $form_valid = False;
-    $feedback_class = '';
-    $sticky_sort = (empty($sort) ? '' : 'checked');
+    } else {
+      // form is invalid, apply sticky values
+      $sticky_exploratory_constructive_play = (empty($exploratory_constructive_play) ? '' : 'checked');
+      $sticky_exploratory_sensory_play = (empty($exploratory_sensory_play) ? '' : 'checked');
+      $sticky_physical_play = (empty($physical_play) ? '' : 'checked');
+      $sticky_imaginative_play = (empty($imaginative_play) ? '' : 'checked');
+      $sticky_restorative_play = (empty($restorative_play) ? '' : 'checked');
+      $sticky_play_with_rules = (empty($play_with_rules) ? '' : 'checked');
+      $sticky_bio_play = (empty($bio_play) ? '' : 'checked');
+      $sticky_perennial = (empty($perennial) ? '' : 'checked');
+      $sticky_full_sun = (empty($full_sun) ? '' : 'checked');
+      $sticky_partial_shade = (empty($partial_shade) ? '' : 'checked');
+      $sticky_full_shade = (empty($full_shade) ? '' : 'checked');
+      $sticky_hardiness_zone_range = $hardiness_zone_range;
+      $sticky_colloquial_name = $colloquial_name;
+      $sticky_genus_species = $genus_species;
+      $sticky_plant_id = $plant_id;
+      $sticky_shrub = (empty($shrub) ? '' : 'checked');
+      $sticky_grass = (empty($grass) ? '' : 'checked');
+      $sticky_vine = (empty($vine) ? '' : 'checked');
+      $sticky_tree = (empty($tree) ? '' : 'checked');
+      $sticky_flower = (empty($flower) ? '' : 'checked');
+      $sticky_groundcovers = (empty($groundcovers) ? '' : 'checked');
+      $sticky_other = (empty($other) ? '' : 'checked');
+    }
   }
 
-  if ($form_valid) {
-    // form is valid --> sticky values
-    $sticky_exploratory_constructive_play_1 = (empty($exploratory_constructive_play_1) ? '' : 'checked');
-    $sticky_exploratory_sensory_play_1 = (empty($exploratory_sensory_play_1) ? '' : 'checked');
-    $sticky_physical_play_1 = (empty($physical_play_1) ? '' : 'checked');
-    $sticky_imaginative_play_1 = (empty($imaginative_play_1) ? '' : 'checked');
-    $sticky_restorative_play_1 = (empty($restorative_play_1) ? '' : 'checked');
-    $sticky_play_with_rules_1 = (empty($play_with_rules_1) ? '' : 'checked');
-    $sticky_exploratory_constructive_play_1 = (empty($exploratory_constructive_play_1) ? '' : 'checked');
-    $sticky_bio_play_1 = (empty($bio_play_1) ? '' : 'checked');
-    $sticky_sort = (empty($sort) ? '' : 'checked');
-    $feedback_class = 'hidden';
+
+  // filter and sort form
+
+  // feedback message styling
+  $feedback_class = 'hidden';
+
+  // values
+  $exploratory_constructive_play_1 = '';
+  $exploratory_sensory_play_1 = '';
+  $physical_play_1 = '';
+  $imaginative_play_1 = '';
+  $restorative_play_1 = '';
+  $play_with_rules_1 = '';
+  $bio_play_1 = '';
+  // $perennial ='';
+  // $full_sun = '';
+  // $partial_shade = '';
+  // $full_shade = '';
+  // $hardiness_zone_range = '';
+  $sort = '';
+
+  // sticky values
+  $sticky_exploratory_constructive_play_1 = '';
+  $sticky_exploratory_sensory_play_1 = '';
+  $sticky_physical_play_1 = '';
+  $sticky_imaginative_play_1 = '';
+  $sticky_restorative_play_1 = '';
+  $sticky_play_with_rules_1 = '';
+  $sticky_bio_play_1 = '';
+  // $sticky_perennial ='';
+  // $sticky_full_sun = '';
+  // $sticky_partial_shade = '';
+  // $sticky_full_shade = '';
+  // $sticky_hardiness_zone_range = '';
+  $sticky_sort = '';
+
+  if (isset($_GET['submit-filter'])) {
+
+    $exploratory_constructive_play_1 = $_GET['exploratory_constructive_play'];
+    $exploratory_sensory_play_1 = $_GET['exploratory_sensory_play'];
+    $physical_play_1 = $_GET['physical_play'];
+    $imaginative_play_1 = $_GET['imaginative_play'];
+    $restorative_play_1 = $_GET['restorative_play'];
+    $play_with_rules_1 = $_GET['play_with_rules'];
+    $bio_play_1 = $_GET['bio_play'];
+    $sort = $_GET['sort'];
+
+    // $upload = $_FILES['img-file'];
+
+    $form_valid = True;
+
+    if (empty($sort) && empty($exploratory_constructive_play_1) && empty($exploratory_sensory_play_1) && empty($physical_play_1) && empty($imaginative_play_1) && empty($restorative_play_1) && empty($play_with_rules_1) && empty($bio_play_1)) {
+      $form_valid = False;
+      $feedback_class = '';
+      $sticky_sort = (empty($sort) ? '' : 'checked');
+    }
+
+    if ($form_valid) {
+      // form is valid --> sticky values
+      $sticky_exploratory_constructive_play_1 = (empty($exploratory_constructive_play_1) ? '' : 'checked');
+      $sticky_exploratory_sensory_play_1 = (empty($exploratory_sensory_play_1) ? '' : 'checked');
+      $sticky_physical_play_1 = (empty($physical_play_1) ? '' : 'checked');
+      $sticky_imaginative_play_1 = (empty($imaginative_play_1) ? '' : 'checked');
+      $sticky_restorative_play_1 = (empty($restorative_play_1) ? '' : 'checked');
+      $sticky_play_with_rules_1 = (empty($play_with_rules_1) ? '' : 'checked');
+      $sticky_exploratory_constructive_play_1 = (empty($exploratory_constructive_play_1) ? '' : 'checked');
+      $sticky_bio_play_1 = (empty($bio_play_1) ? '' : 'checked');
+      $sticky_sort = (empty($sort) ? '' : 'checked');
+      $feedback_class = 'hidden';
+    }
   }
 }
 
-//query pieces
-$sql_select_part = 'SELECT * FROM entries ';
-$sql_where_part = '';
-$sql_sort_part = ' ORDER BY name_colloquial ASC;';
-$sql_filter_array = array();
+if (is_user_logged_in()) {
+  //query pieces
+  $sql_select_part = 'SELECT * FROM entries ';
+  $sql_where_part = '';
+  $sql_sort_part = ' ORDER BY name_colloquial ASC;';
+  $sql_filter_array = array();
 
-//Filters
-$filter_exploratory_constructive_play = (bool)($_GET['exploratory_constructive_play'] ?? NULL);
-$filter_exploratory_sensory_play = (bool)($_GET['exploratory_sensory_play'] ?? NULL);
-$filter_physical_play = (bool)($_GET['physical_play'] ?? NULL);
-$filter_imaginative_play = (bool)($_GET['imaginative_play'] ?? NULL);
-$filter_restorative_play = (bool)($_GET['restorative_play'] ?? NULL);
-$filter_play_with_rules = (bool)($_GET['play_with_rules'] ?? NULL);
-$filter_bio_play = (bool)($_GET['bio_play'] ?? NULL);
+  //Filters
+  $filter_exploratory_constructive_play = (bool)($_GET['exploratory_constructive_play'] ?? NULL);
+  $filter_exploratory_sensory_play = (bool)($_GET['exploratory_sensory_play'] ?? NULL);
+  $filter_physical_play = (bool)($_GET['physical_play'] ?? NULL);
+  $filter_imaginative_play = (bool)($_GET['imaginative_play'] ?? NULL);
+  $filter_restorative_play = (bool)($_GET['restorative_play'] ?? NULL);
+  $filter_play_with_rules = (bool)($_GET['play_with_rules'] ?? NULL);
+  $filter_bio_play = (bool)($_GET['bio_play'] ?? NULL);
 
-if ($filter_exploratory_constructive_play) {
-  array_push($sql_filter_array, "(exploratory_constructive_play = '1')");
+  if ($filter_exploratory_constructive_play) {
+    array_push($sql_filter_array, "(exploratory_constructive_play = '1')");
+  }
+
+  if ($filter_exploratory_sensory_play) {
+    array_push($sql_filter_array, "(exploratory_sensory_play = '1')");
+  }
+
+  if ($filter_physical_play) {
+    array_push($sql_filter_array, "(physical_play = '1')");
+  }
+
+  if ($filter_imaginative_play) {
+    array_push($sql_filter_array, "(imaginative_play = '1')");
+  }
+
+  if ($filter_restorative_play) {
+    array_push($sql_filter_array, "(restorative_play = '1')");
+  }
+
+  if ($filter_play_with_rules) {
+    array_push($sql_filter_array, "(play_with_rules = '1')");
+  }
+
+  if ($filter_bio_play) {
+    array_push($sql_filter_array, "(bio_play = '1')");
+  }
+
+  if (count($sql_filter_array) > 0) {
+    $sql_where_part = ' WHERE ' . implode(' AND ', $sql_filter_array);
+  }
+
+  //sorting
+  $sort_asc = (bool)($_GET['sort'] ?? NULL);
+
+  //stick the parts together
+  if ($sort_asc) {
+    $sql_query = $sql_select_part . $sql_where_part . $sql_sort_part;
+  }
+  else {
+    $sql_query = $sql_select_part . $sql_where_part;
+  }
+
+  $records = exec_sql_query($db, $sql_query)->fetchAll();
 }
-
-if ($filter_exploratory_sensory_play) {
-  array_push($sql_filter_array, "(exploratory_sensory_play = '1')");
-}
-
-if ($filter_physical_play) {
-  array_push($sql_filter_array, "(physical_play = '1')");
-}
-
-if ($filter_imaginative_play) {
-  array_push($sql_filter_array, "(imaginative_play = '1')");
-}
-
-if ($filter_restorative_play) {
-  array_push($sql_filter_array, "(restorative_play = '1')");
-}
-
-if ($filter_play_with_rules) {
-  array_push($sql_filter_array, "(play_with_rules = '1')");
-}
-
-if ($filter_bio_play) {
-  array_push($sql_filter_array, "(bio_play = '1')");
-}
-
-if (count($sql_filter_array) > 0) {
-  $sql_where_part = ' WHERE ' . implode(' AND ', $sql_filter_array);
-}
-
-//sorting
-$sort_asc = (bool)($_GET['sort'] ?? NULL);
-
-//stick the parts together
-if ($sort_asc) {
-  $sql_query = $sql_select_part . $sql_where_part . $sql_sort_part;
-}
-else {
-  $sql_query = $sql_select_part . $sql_where_part;
-}
-
-$records = exec_sql_query($db, $sql_query)->fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -401,6 +402,12 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
   <main>
     <article>
+    <?php if (!is_user_logged_in()) { ?>
+      <h3>Please login to add plants or view plant catalog.</h3>
+    <?php echo_login_form('/add-new-plants-form', $session_messages); ?>
+
+    <?php } elseif (is_user_logged_in() && $is_admin) { ?>
+
     <?php if ($show_confirmation) { ?>
 
       <section>
@@ -408,10 +415,11 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
         <p>The new plant <strong>"<?php echo htmlspecialchars($colloquial_name); ?>"</strong> is successfully added to the catalog!</p>
 
-        <p>View new catalog in <a href="/">Playful Plant Data</a></p>
+        <p>View updated catalog in <a href="/">"Plant Information" page</a> and <a href="/add-new-plants-form">"Add New Plant" page.</a></p>
       </section>
 
     <?php } else { ?>
+      <p>Friendly Tips: You can scroll down to view the complete plant catalog.</p>
       <h2>Add a New Plant!</h2>
       <div class="align-center">
       <form id="request-form" method="post" action="/add-new-plants-form" enctype="multipart/form-data" novalidate>
@@ -661,9 +669,12 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
       </form>
     </aside>
     </div>
+    <?php } else { ?>
+      <article>
+        <h3>Sorry, the page you are trying to access is restricted to "Playful Plants Project" administrators only. </h3>
+        <h3>You can view relevent information regarding plants on <a href="/">"Plants Information" page. </a></h3>
+      </article>
+    <?php } ?>
   </main>
-
-  <!-- <script type="text/javascript" src="public/scripts/jquery-3.6.0.js"></script>
-  <script type="text/javascript" src="public/scripts/hamburger.js"></script> -->
 </body>
 </html>

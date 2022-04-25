@@ -3,11 +3,6 @@ $title = "Playful Plants Projects";
 $nav_plants_data = "active_page";
 $nav_new_entry_form = "active_page";
 
-// open database
-$db = init_sqlite_db('db/site.sqlite', 'db/init.sql');
-
-// $show_confirmation = False;
-
 // values
 $id = '';
 $colloquial_name = '';
@@ -398,7 +393,7 @@ if ($record) {
       </section>
 
     <?php } else { ?>
-      <a href="/">
+      <a href="/add-new-plants-form">
         <h3 class="back">Back</h3>
       </a>
       <h2>Edit the Plant!</h2>
