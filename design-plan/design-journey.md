@@ -288,11 +288,33 @@ Table3: entry_tags
 - entry_id: INTEGER {NN}
 - tag_id: INTEGER {NN}
 
-Tabl4: users
+Table4: users
 
 - id: INTEGER {PK, U, NN, AI}
-- username: TEXT {NN}
+- name: TEXT {NN}
+- username: TEXT {U, NN}
 - password: TEXT {NN}
+
+Table5: sessions
+
+- id: INTEGER {PK, U, NN, AI}
+- user_id: INTEGER {NN}
+- session: TEXT {U, NN}
+- last_login: TEXT {NN}
+FOREIGN KEY(user_id) REFERENCES users(id)
+
+Table6: groups
+
+- id: INTEGER {PK, U, NN, AI}
+- name: TEXT U, {NN}
+
+Table7: admins
+
+- id: INTEGER {PK, U, NN, AI}
+- group_id: INTEGER {NN}
+- user_id: INTEGER {NN}
+FOREIGN KEY(group_id) REFERENCES groups(id),
+FOREIGN KEY(user_id) REFERENCES users(id)
 
 
 ### Database Query Plan (Milestone 1, Milestone 2, Milestone 3, Final Submission)
@@ -376,7 +398,21 @@ Tabl4: users
 > Plan any PHP code you'll need here using pseudocode.
 > Tip: Break this up by pages. It makes it easier to plan.
 
-_1. "Plant Information" page_
+*** User log in ***
+```
+1. if user is not loggined in, or logged in as consumer
+2.    show plant catalog with images without edit/delete button
+3.    allow filtering/sorting/tagging
+4.    allow access to plant detail page
+5.    deny access to /add-new-plants-form
+6. if user is logged in as an admin
+7.    show plant catalogs with edit/delete button
+8.    allow filtering/sorting/tagging
+9.    allow access to plant detail page
+10.   allow access to /add-new-plants-form (add form and plant catalog for admin)
+```
+
+*** "Plant Information" page_ ***
 
 The following is the view all entry page for consumers
 ```
@@ -417,7 +453,7 @@ The following is the plan for selecting tags
 3.         show plants that have the selected tag(s)
 ```
 
-_2. "Add New Plants" page_
+*** "Add New Plants" page_ ***
 
 The following is the plan for user login and logout
 ```
