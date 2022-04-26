@@ -253,69 +253,26 @@ if (is_user_logged_in() && $is_admin) {
 }
 
   //delete entry
-    //   $delete_plant = $_POST['delete-entry'] ?? NULL;
+  if (isset($_POST['delete-entry'])) {
+    $delete_id = trim($_POST['delete-entry']);
+    exec_sql_query(
+      $db,
+      'DELETE FROM entries WHERE id = :id;',
+      array(
+        ':id' => $delete_id,
+      )
+    );
 
+    exec_sql_query(
+      $db,
+      'DELETE FROM entry_tags WHERE id = :id;',
+      array(
+        ':id' => $delete_id,
+      )
+    );
 
-    // if ($update_plant) {
-    //   $records = exec_sql_query(
-    //     $db,
-    //     "SELECT
-    //     entries.id AS 'entries.id',
-    //     entries.name_colloquial AS 'entries.name_colloquial',
-    //     entries.name_genus_species AS 'entries.name_genus_species',
-    //     entries.plant_id AS 'entries.plant_id',
-    //     entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
-    //     entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
-    //     entries.physical_play AS 'entries.physical_play',
-    //     entries.imaginative_play AS 'entries.imaginative_play',
-    //     entries.restorative_play AS 'entries.restorative_play',
-    //     entries.play_with_rules AS 'entries.play_with_rules',
-    //     entries.bio_play AS 'entries.bio_play',
-    //     entries.perennial AS 'entries.perennial',
-    //     entries.full_sun AS 'entries.full_sun',
-    //     entries.partial_shade AS 'entries.partial_shade',
-    //     entries.full_shade AS 'entries.full_shade',
-    //     entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
-    //     tags.tag_name AS 'tags.tag_name',
-    //     entry_tags.entry_id AS 'entries.id',
-    //     entry_tags.tag_id AS 'tags.id'
-    //     FROM
-    //     entry_tags
-    //     LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
-    //     LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id)
-    //     WHERE (entries.id = :id);",
-    //     array(':id' => $delete_plant)
-    //   )->fetchAll();
-
-    // if (count($records) > 0) {
-    //     $record = $records[0];
-    //   }
-
-    // if ($record) {
-    //   $id = $record['entries.id'];
-    //   }
-
-    //   $plant_id = $_GET['id'] ?? NULL;
-    //   if (isset($_POST['delete-entry'])) {
-    //     $result = exec_sql_query(
-    //       $db,
-    //       "DELETE FROM entries
-    //         WHERE (id = :id);",
-    //         array(':id' => $plant_id)
-    //     );
-
-    //     $result_1 = exec_sql_query(
-    //       $db,
-    //       "DELETE FROM entry_tags
-    //         WHERE (id = :id);",
-    //         array(':id' => $plant_id)
-    //     );
-
-    //     if ($result && $result_1) {
-    //       $delete_entry = True;
-    //     }
-    //   }
-    // }
+    $delete_entry = True;
+  }
 
   // filter and sort form
 
@@ -479,7 +436,7 @@ if (is_user_logged_in()) {
         <section>
           <h2>Plant Deleted Confirmation</h2>
 
-          <h3>The plant <strong>"<?php echo htmlspecialchars($colloquial_name); ?>"</strong> is successfully deleted from the catalog!</h3>
+          <h3>The plant is successfully deleted from the catalog!</h3>
 
           <p>View updated catalog in <a href="/">"Plant Information" page</a> and <a href="/add-new-plants-form">"Add New Plant" page.</a></p>
         </section>
@@ -681,9 +638,14 @@ if (is_user_logged_in()) {
         <a class="" href="/plant-update?<?php echo http_build_query(array('id' => $record['id'])); ?>" aria-label="Edit Entry">
         <input class="button1" type="submit" name="edit-entry" value="Edit" />
         </a>
+
         <form method="post" action="/add-new-plants-form" novalidate>
-          <input class="button1" type="submit" name="delete-entry" value="Delete" />
+          <input class="hidden" name="delete-entry" value="<?php echo htmlspecialchars($record['id']); ?>"/>
+
+          <button class="button1" type="submit" aria-label="<?php echo htmlspecialchars($record['id']); ?>">Delete
+          </button>
         </form>
+
       </div>
       </div>
       <?php } ?>

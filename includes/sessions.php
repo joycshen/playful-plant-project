@@ -149,13 +149,13 @@ function password_login($db, &$messages, $username, $password)
           array_push($messages, "Log in failed.");
         }
       } else {
-        array_push($messages, "Invalid username or password.");
+        array_push($messages, "The username or password you entered is invalid. Please try again.");
       }
     } else {
-      array_push($messages, "Invalid username or password.");
+      array_push($messages, "The username or password you entered is invalid. Please try again.");
     }
   } else {
-    array_push($messages, "No username or password given.");
+    array_push($messages, "Please enter a valid username or password.");
   }
 
   error_log("  failed to login via password");

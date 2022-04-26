@@ -147,6 +147,10 @@ section p {
     margin: 10px;
 }
 
+.catalog h3 {
+   font-size: 14px;
+}
+
 .catalogs {
     display: flex;
     flex-direction: column;
@@ -287,7 +291,12 @@ form label {
 .plant, .detail {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.plant h2 {
+    font-size: 18px;
 }
 
 .plant h3 {
@@ -349,21 +358,6 @@ img {
     bottom: 0;
 }
 
-#checkboxes {
-    display: none;
-    border: 1px #dadada solid;
-}
-
-#checkboxes label {
-    display: block;
-    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-size: 12px;
-}
-
-#checkboxes label:hover {
-    background-color: #a6af9c;
-}
-
 .buttons {
     display: flex;
     flex-direction: column;
@@ -378,11 +372,15 @@ img {
     display: inline-block;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16px;
-    margin: 4px 2px;
+    /* margin: 2px 2px; */
 }
 
 .style {
     background-color: #516150;
+    width: 100%;
+}
+
+.buttons .style {
     width: 100%;
 }
 

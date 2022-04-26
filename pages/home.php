@@ -3,6 +3,8 @@ $title = "Playful Plants Projects";
 $nav_plants_data = "active_page";
 $nav_new_entry_form = "active_page";
 
+$delete_entry = False;
+
 //Filters
 $feedback_class = 'hidden';
 
@@ -60,6 +62,28 @@ if (isset($_GET['submit-filter'])) {
     $sticky_sort = (empty($sort) ? '' : 'checked');
     $feedback_class = 'hidden';
   }
+}
+
+//delete entry
+if (isset($_POST['delete-entry'])) {
+  $delete_id = trim($_POST['delete-entry']);
+  exec_sql_query(
+    $db,
+    'DELETE FROM entries WHERE id = :id;',
+    array(
+      ':id' => $delete_id,
+    )
+  );
+
+  exec_sql_query(
+    $db,
+    'DELETE FROM entry_tags WHERE id = :id;',
+    array(
+      ':id' => $delete_id,
+    )
+  );
+
+  $delete_entry = True;
 }
 
 //query pieces
@@ -195,7 +219,21 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   <?php if (!is_user_logged_in()) { ?>
     <h3>Please login to view plant catalog.</h3>
     <?php echo_login_form('/', $session_messages); ?>
+
     <?php } else { ?>
+
+    <?php if ($delete_entry) { ?>
+
+  <section>
+    <h2>Plant Deleted Confirmation</h2>
+
+    <h3>The plant is successfully deleted from the catalog!</h3>
+
+    <p>View updated catalog in <a href="/">"Plant Information" page</a> and <a href="/add-new-plants-form">"Add New Plant" page.</a></p>
+  </section>
+
+  <?php } ?>
+
   </article>
 
   <div class="row">
@@ -313,7 +351,13 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         <a class="" href="/plant-update?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>" aria-label="Edit Entry">
         <input class="button1" type="submit" name="edit-entry" value="Edit" />
       </a>
-        <input class="button1" type="submit" name="delete-entry" value="Delete" />
+
+        <form method="post" action="/" novalidate>
+          <input class="hidden" name="delete-entry" value="<?php echo htmlspecialchars($record['entries.id']); ?>"/>
+
+          <button class="button1" type="submit" aria-label="<?php echo htmlspecialchars($record['entries.id']); ?>">Delete
+          </button>
+        </form>
       </div>
 
     <?php } ?>

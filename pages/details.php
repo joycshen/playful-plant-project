@@ -72,8 +72,7 @@ if ($plant_id) {
             <button class="button style"><?php echo $plant['tags.tag_name']; ?></button>
         </div>
         </div>
-        <div class="plant">
-            <img src="/public/uploads/entries/<?php echo $plant['entries.id'] . '.' . $plant['entries.img_ext'];  ?>" alt="<?php echo htmlspecialchars($plant['entries.name_colloquial']); ?>" width="600" height="350"/>
+            <img src="/public/uploads/entries/<?php echo $plant['entries.id'] . '.' . $plant['entries.img_ext'];  ?>" alt="" width="600" height="350"/>
             <div class="catalogs">
             <div class="catalog">
               <h3>Growing Needs and Characteristics: </h3>
@@ -93,7 +92,6 @@ if ($plant_id) {
                   <li><?php echo htmlspecialchars($plant["entries.hardiness_zone_range"]) ?></li>
               </ul>
             </div>
-        </div>
         </div>
         <?php } ?>
       </article>
