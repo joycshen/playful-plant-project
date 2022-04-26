@@ -181,45 +181,65 @@ I combined the two forms to one as it would be more convenient for Pat. The back
 
 I showed only one confirmation message for this iteration and add hyperlinks linking to the catalog or linking back to the add-entry form to better guide Pat.
 
+**Iteration 3:**
 
-_Final Design:_
+![mobile homepage #3](mobile_3.png)
+
+For this iteration, I plant to use hover drop-down for menu, filter, sort, and tags. This not only save space for mobile version, but also Abi, a risk-averse consumer who processes information comprehensively, to know exactly what to do. I also decided to put two pictures of plants in a row to make the most effective use of space while displaying the right amount of information for Abi to process. As mentioned before, a list dislay for the details page for each plant is helpful for Abi, who has low self-efficacy and task-oriented motivation, to select and comprehend information.
+
+![desktop homepage thumbnail $3](desktop_thumbnail_3.png)
+
+For this iteration, I plan to use hover drop-down for filter and sort, and a sidebar for tags on the right to make effective use of space, and that Abi and Pat could select plants they desire. Three pictures of plants are displayed in a row. "Delet" buttons will only appear for Pat after she logs in, so that she could reach the goal of deleting plants.
+
+![desktop homepage details #3](desktop_detail_3.png)
+
+For this iteration, I plant to use boxes to group different information so that Abi and Pat to see some organization and categorization of information. "Edit Plant" button will only appear after Pat login, so that she will be able to edit plants, as her one of her needs. Information such as genus, plant ID, and TOPO will also only be displayed for Pat after login.
+
+
+**_Final Design:_**
 
 **URL for thumbnail: /**
 
-**URL for details page: /plant-name**
+**URL for details page: /plant-details?id=1 (example)**
 
 ![mobile homepage final](mobile_final.png)
 
-I will use hover drop-down for menu, filter, sort, and tags. This not only save space for mobile version, but also Abi, a risk-averse consumer who processes information comprehensively, to know exactly what to do. I also decided to put two pictures of plants in a row to make the most effective use of space while displaying the right amount of information for Abi to process. As mentioned before, a list dislay for the details page for each plant is helpful for Abi, who has low self-efficacy and task-oriented motivation, to select and comprehend information.
+(_Edited_)
+Due to time constraints, I changed my design for mobile home page a bit. I decided not to use javascript but go for a simpler design that achieve the same goal for Abi. I put the section for sort and filter, as well as filter by tags on the top of the mobile page. There will be one plant entry each row, given the narrow screen size of mobile phones.
 
 **URL: /**
 
 ![desktop homepage thumbnail final](desktop_thumbnail_final.png)
 
-For the desktop thumbnail, I will use hover drop-down for filter and sort, and a sidebar for tags on the right to make effective use of space, and that Abi and Pat could select plants they desire. Three pictures of plants are displayed in a row. "Delet" buttons will only appear for Pat after she logs in, so that she could reach the goal of deleting plants.
+(_Edited_)
+Due to time constraints, I changed my design for desktop home page a bit. I decided to put the sidebar for sorting and filtering on the left side. For a standard desktop view, there will be three plants in a row, but the site support wrapping depending on different screen sizes. For instance, if the user narrows the screen size, there will be two entries in a row.
 
-**URL: /plant-name**
+**URL for details page: /plant-details?id=1 (example)**
 
 ![desktop homepage details final](desktop_detail_final.png)
 
-I will use boxes to group different information so that Abi and Pat to see some organization and categorization of information. "Edit Plant" button will only appear after Pat login, so that she will be able to edit plants, as her one of her needs. Information such as genus, plant ID, and TOPO will also only be displayed for Pat after login.
+(_Edited_)
+Due to time constraints, I changed my design for desktop home page a bit. I will align everything in the center in a column display, so that the page does not feel empty.
 
-**URL: /add-new-plants/login**
+**URL: /add-new-plants**
 
 ![admin-only login page final](login_final.png)
 
 I will show a notice in a box for Abi and Pat before them attempt to login. Feedback messages and sticky values will process themselves for Pat as she tries to login. These message help Abi, who is risk-averse, and has low self-efficacy and process-oriented learn style to process information and stay on site to achieve needs.
 
-**URL: /add-new-plants/form**
+**URL: /add-new-plants**
 
-![add-entry form final](add_form_final.png)
+![add-entry+edit-entry form final](add_form_final.png)
 ![full catalog for admin final](admin_catalog_final.png)
 
 I segmented different sections and display them in a row to save space, and show some strcuture for Pat. The concise feedback also show the right amount of guidance to Pat, who is in the middle of all cognitive facets.
 I also put the full catalog of the plants as a list with filter and sort options for Pat underneath the add-entry form. Pat can refer to the catalog and see data that is relevant to her need, including plant name, species and genus, plant ID, and types of play categorizations. She will also be able to filter and sort the plants based on themed situation and select the plants that concur her desires.
 
+(_Note_) The edit entry form will look the same as the add-entry form, so I didn't include a sketch for the edit-entry form. But here is the URL for edit-entry form:
 
-**URL: /add-new-plants/confirmation**
+**URL: /plant-update?id=1 (example)**
+
+**URL: /add-new-plants**
 
 ![confirmation+logout page #2](confirmation_final.png)
 
