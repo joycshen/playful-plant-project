@@ -190,15 +190,107 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
   <?php include('includes/header.php'); ?>
 
   <main>
+
   <article>
   <?php if (!is_user_logged_in()) { ?>
     <h3>Please login to view plant catalog.</h3>
     <?php echo_login_form('/', $session_messages); ?>
     <?php } else { ?>
   </article>
+
+  <div class="row">
+  <aside>
+    <div class="form">
+    <div class="column">
+    <div id="feedback" class="feedback <?php echo $feedback_class; ?>">Please choose at least one sorting/filter.</div>
+    <div class="mobile-row">
+    <div class="column">
+      <h2>Sort by...</h2>
+      <form id="request-form" method="get" action="/" novalidate>
+
+        <div class="forms label_input" role="group" aria-labelledby="sorting">
+        <div>
+              <input type="checkbox" id="sorting" name="sort" <?php echo $sticky_sort; ?>/>
+              <label for="sorting">Sort by Colloquial Name Alphabetically (A-Z)</label>
+            </div>
+        </div>
+    </div>
+
+    <div class="column">
+      <h2>Filter by...</h2>
+        <div class="forms label_input" role="group" aria-labelledby="growing needs">
+          <div id="TOPO"><h3>Growing Needs and Characteristic: </h3></div>
+
+          <div>
+            <div>
+              <input type="checkbox" id="perennial" name="perennial" <?php echo $sticky_perennial; ?>/>
+              <label for="perennial">Perennial</label>
+            </div>
+            <div>
+              <input type="checkbox" id="full_sun" name="full_sun" <?php echo $sticky_full_sun; ?>/>
+              <label for="full_sun">Full Sun</label>
+            </div>
+            <div>
+              <input type="checkbox" id="partial_shade" name="partial_shade" <?php echo $sticky_partial_shade; ?>/>
+              <label for="partial_shade">Partial Shade</label>
+            </div>
+            <div>
+              <input type="checkbox" id="full_shade" name="full_shade" <?php echo $sticky_full_shade; ?>/>
+              <label for="full_shade">Full Shade</label>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+        <input id="filter-submit" class="button1" type="submit" name="submit-filter" value="Sort and Filter"/>
+
+        <div class="forms label_input" role="group" aria-labelledby="growing needs">
+        <div id="TOPO"><h2>Choose Tag(s)</h2>
+          <h3>General Classification: </h3></div>
+
+        <div class="mobile-column">
+        <div class="mobile-row">
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-shrub" value="shrub"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-grass" value="grass"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-vine" value="vine"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-tree" value="tree"/>
+        </a>
+        </div>
+
+        <div class="mobile-row">
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-flower" value="flower"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-groundcovers" value="groundcovers"/>
+        </a>
+
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
+          <input id="tag-submit" class="button style" type="submit" name="tag-other" value="other"/>
+        </a>
+        </div>
+        </div>
+        </div>
+      </form>
+    </div>
+    </div>
+  </aside>
+
   <div class="sections">
   <article>
-  <p>Friendly Tips: You can view plant details by clicking the images.</p>
+  <p><strong>Friendly Tips: </strong>You can view plant details by clicking the images.</p>
   <div class="body-display">
   <div class="row">
     <div class="plants">
@@ -230,118 +322,11 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
       </div>
       <?php } ?>
       </div>
-    </div>
-      </article>
-      <!-- </div> -->
-
-    <aside>
-    <div class="form">
-    <div class="column">
-    <div id="feedback" class="feedback <?php echo $feedback_class; ?>">Please choose at least one sorting/filter.</div>
-      <h2>Sort by...</h2>
-      <form id="request-form" method="get" action="/" novalidate>
-
-        <div class="forms label_input" role="group" aria-labelledby="sorting">
-        <div>
-              <input type="checkbox" id="sorting" name="sort" <?php echo $sticky_sort; ?>/>
-              <label for="sorting">Sort by Colloquial Name Alphabetically (A-Z)</label>
-            </div>
-        </div>
-
-      <h2>Filter by...</h2>
-        <div class="forms label_input" role="group" aria-labelledby="growing needs">
-          <div id="TOPO"><h3>Growing Needs and Characteristic: </h3></div>
-
-          <div>
-            <div>
-              <input type="checkbox" id="perennial" name="perennial" <?php echo $sticky_perennial; ?>/>
-              <label for="perennial">Perennial</label>
-            </div>
-            <div>
-              <input type="checkbox" id="full_sun" name="full_sun" <?php echo $sticky_full_sun; ?>/>
-              <label for="full_sun">Full Sun</label>
-            </div>
-            <div>
-              <input type="checkbox" id="partial_shade" name="partial_shade" <?php echo $sticky_partial_shade; ?>/>
-              <label for="partial_shade">Partial Shade</label>
-            </div>
-            <div>
-              <input type="checkbox" id="full_shade" name="full_shade" <?php echo $sticky_full_shade; ?>/>
-              <label for="full_shade">Full Shade</label>
-            </div>
-          </div>
-        </div>
-
-        <input id="filter-submit" class="button1" type="submit" name="submit-filter" value="Sort and Filter"/>
-
-        <div class="forms label_input" role="group" aria-labelledby="growing needs">
-        <div id="TOPO"><h2>Choose Tag(s)</h2>
-          <h3>General Classification: </h3></div>
-
-            <!-- <div>
-              <input type="checkbox" id="shrub" name="shrub" <?php echo $sticky_shrub; ?>/>
-              <label for="shrub">Shrub</label>
-            </div> -->
-            <!-- <div>
-              <input type="checkbox" id="grass" name="grass" <?php echo $sticky_grass; ?>/>
-              <label for="grass">Grass</label>
-            </div>
-            <div>
-              <input type="checkbox" id="vine" name="vine" <?php echo $sticky_vine; ?>/>
-              <label for="vine">Vine</label>
-            </div>
-            <div>
-              <input type="checkbox" id="tree" name="tree" <?php echo $sticky_tree; ?>/>
-              <label for="tree">Tree</label>
-            </div> -->
-            <!-- <div>
-              <input type="checkbox" id="flower" name="flower" <?php echo $sticky_flower; ?>/>
-              <label for="flower">Flower</label>
-            </div>
-            <div>
-              <input type="checkbox" id="groundcovers" name="groundcovers" <?php echo $sticky_groundcovers; ?>/>
-              <label for="groundcovers">Groundcovers</label>
-            </div>
-            <div>
-              <input type="checkbox" id="other" name="other" <?php echo $sticky_other; ?>/>
-              <label for="other">Other</label>
-            </div> -->
-
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-shrub" value="shrub"/>
-        </a>
-
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-grass" value="grass"/>
-        </a>
-
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-vine" value="vine"/>
-        </a>
-
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-tree" value="tree"/>
-        </a>
-
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-flower" value="flower"/>
-        </a>
-
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-groundcovers" value="groundcovers"/>
-        </a>
-
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-other" value="other"/>
-        </a>
-        </div>
-      </form>
-
-    </div>
-  </aside>
-
       </div>
-      </div>
+    </article>
+    </div>
+    </div>
+    </div>
     </div>
     <?php } ?>
   </main>

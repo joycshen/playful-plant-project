@@ -539,7 +539,7 @@ if ($record) {
     <input type="hidden" name="update-plant" value="<?php echo htmlspecialchars($id); ?>" />
 
       <div class="align_right">
-          <button type="submit">Save Changes</button>
+          <button type="submit" class="button1">Save Changes</button>
         </div>
       </form>
       </div>

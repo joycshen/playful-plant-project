@@ -136,10 +136,9 @@ section p {
     flex-grow: 3;
 }
 
-.sections aside {
+.row aside {
     padding: 10px 10px;
     margin: 5px;
-    flex-grow: 1;
 }
 
 .catalog {
@@ -189,7 +188,7 @@ section p {
     background-color:#FFFFFF;
 }
 
-form {
+.form {
     display: flex;
     flex-direction: column;
 }
@@ -201,6 +200,11 @@ form {
 }
 
 form * {
+    margin-bottom: 2px;
+    margin: 1px;
+}
+
+.form * {
     margin-bottom: 2px;
     margin: 1px;
 }
@@ -222,6 +226,10 @@ form label {
 }
 
 .forms .label_input {
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.forms label {
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
@@ -436,50 +444,35 @@ img {
         flex-direction: column;
     }
 
-    /* hamburger menu */
-    /* .menuItem {
-        display: block;
-        margin: 2rem 4rem;
-        font-size: 1.8rem;
-        color: white;
-        text-decoration: none;
-      }
+    .row {
+        flex-direction: column;
+    }
 
-      .menuItem:hover {
-        text-decoration: underline;
-      }
+    .column h2 {
+        font-size: 16px;
+    }
 
-      .hamburger {
-        position: fixed;
-        z-index: 100;
-        top: 1rem;
-        right: 1rem;
-        padding: 4px;
-        border: black solid 1px;
-        background: white;
-        cursor: pointer;
-      }
+    .column h3 {
+        font-size: 14px;
+    }
 
-      .closeIcon {
-        display: none;
-      }
+    .column p {
+        font-size: 12px;
+    }
 
-      .menu {
-        position: fixed;
-        transform: translateY(-100%);
-        transition: transform 0.2s;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 99;
-        background: black;
-        color: white;
-        list-style: none;
-        padding-top: 4rem;
-      }
+    .mobile-row {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+    }
 
-      .showMenu {
-        transform: translateY(0);
-      } */
+    .mobile-column {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mobile-wrap {
+        display: flex;
+        flex-wrap: wrap;
+    }
   }

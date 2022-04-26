@@ -14,6 +14,9 @@ if (is_user_logged_in() && $is_admin) {
   //insert new entry
   $record_inserted = False;
 
+  //delete an entry
+  $delete_entry = False;
+
   // feedback message styling
   $name_feedback_class = 'hidden';
   $genus_feedback_class = 'hidden';
@@ -247,7 +250,72 @@ if (is_user_logged_in() && $is_admin) {
       $sticky_other = (empty($other) ? '' : 'checked');
     }
   }
+}
 
+  //delete entry
+    //   $delete_plant = $_POST['delete-entry'] ?? NULL;
+
+
+    // if ($update_plant) {
+    //   $records = exec_sql_query(
+    //     $db,
+    //     "SELECT
+    //     entries.id AS 'entries.id',
+    //     entries.name_colloquial AS 'entries.name_colloquial',
+    //     entries.name_genus_species AS 'entries.name_genus_species',
+    //     entries.plant_id AS 'entries.plant_id',
+    //     entries.exploratory_constructive_play AS 'entries.exploratory_constructive_play',
+    //     entries.exploratory_sensory_play AS 'entries.exploratory_sensory_play',
+    //     entries.physical_play AS 'entries.physical_play',
+    //     entries.imaginative_play AS 'entries.imaginative_play',
+    //     entries.restorative_play AS 'entries.restorative_play',
+    //     entries.play_with_rules AS 'entries.play_with_rules',
+    //     entries.bio_play AS 'entries.bio_play',
+    //     entries.perennial AS 'entries.perennial',
+    //     entries.full_sun AS 'entries.full_sun',
+    //     entries.partial_shade AS 'entries.partial_shade',
+    //     entries.full_shade AS 'entries.full_shade',
+    //     entries.hardiness_zone_range AS 'entries.hardiness_zone_range',
+    //     tags.tag_name AS 'tags.tag_name',
+    //     entry_tags.entry_id AS 'entries.id',
+    //     entry_tags.tag_id AS 'tags.id'
+    //     FROM
+    //     entry_tags
+    //     LEFT OUTER JOIN entries ON (entry_tags.entry_id = entries.id)
+    //     LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id)
+    //     WHERE (entries.id = :id);",
+    //     array(':id' => $delete_plant)
+    //   )->fetchAll();
+
+    // if (count($records) > 0) {
+    //     $record = $records[0];
+    //   }
+
+    // if ($record) {
+    //   $id = $record['entries.id'];
+    //   }
+
+    //   $plant_id = $_GET['id'] ?? NULL;
+    //   if (isset($_POST['delete-entry'])) {
+    //     $result = exec_sql_query(
+    //       $db,
+    //       "DELETE FROM entries
+    //         WHERE (id = :id);",
+    //         array(':id' => $plant_id)
+    //     );
+
+    //     $result_1 = exec_sql_query(
+    //       $db,
+    //       "DELETE FROM entry_tags
+    //         WHERE (id = :id);",
+    //         array(':id' => $plant_id)
+    //     );
+
+    //     if ($result && $result_1) {
+    //       $delete_entry = True;
+    //     }
+    //   }
+    // }
 
   // filter and sort form
 
@@ -262,11 +330,6 @@ if (is_user_logged_in() && $is_admin) {
   $restorative_play_1 = '';
   $play_with_rules_1 = '';
   $bio_play_1 = '';
-  // $perennial ='';
-  // $full_sun = '';
-  // $partial_shade = '';
-  // $full_shade = '';
-  // $hardiness_zone_range = '';
   $sort = '';
 
   // sticky values
@@ -277,11 +340,6 @@ if (is_user_logged_in() && $is_admin) {
   $sticky_restorative_play_1 = '';
   $sticky_play_with_rules_1 = '';
   $sticky_bio_play_1 = '';
-  // $sticky_perennial ='';
-  // $sticky_full_sun = '';
-  // $sticky_partial_shade = '';
-  // $sticky_full_shade = '';
-  // $sticky_hardiness_zone_range = '';
   $sticky_sort = '';
 
   if (isset($_GET['submit-filter'])) {
@@ -295,7 +353,6 @@ if (is_user_logged_in() && $is_admin) {
     $bio_play_1 = $_GET['bio_play'];
     $sort = $_GET['sort'];
 
-    // $upload = $_FILES['img-file'];
 
     $form_valid = True;
 
@@ -319,7 +376,6 @@ if (is_user_logged_in() && $is_admin) {
       $feedback_class = 'hidden';
     }
   }
-}
 
 if (is_user_logged_in()) {
   //query pieces
@@ -418,8 +474,18 @@ if (is_user_logged_in()) {
         <p>View updated catalog in <a href="/">"Plant Information" page</a> and <a href="/add-new-plants-form">"Add New Plant" page.</a></p>
       </section>
 
+      <?php } elseif ($delete_entry) { ?>
+
+        <section>
+          <h2>Plant Deleted Confirmation</h2>
+
+          <h3>The plant <strong>"<?php echo htmlspecialchars($colloquial_name); ?>"</strong> is successfully deleted from the catalog!</h3>
+
+          <p>View updated catalog in <a href="/">"Plant Information" page</a> and <a href="/add-new-plants-form">"Add New Plant" page.</a></p>
+        </section>
+
     <?php } else { ?>
-      <p>Friendly Tips: You can scroll down to view the complete plant catalog.</p>
+      <p><strong>Friendly Tips: </strong>You can scroll down to view the complete plant catalog.</p>
       <h2>Add a New Plant!</h2>
       <div class="align-center">
       <form id="request-form" method="post" action="/add-new-plants-form" enctype="multipart/form-data" novalidate>
@@ -613,9 +679,11 @@ if (is_user_logged_in()) {
         </ul>
         <div class="align_right">
         <a class="" href="/plant-update?<?php echo http_build_query(array('id' => $record['id'])); ?>" aria-label="Edit Entry">
-        <input id="add-submit" class="button1" type="submit" name="edit-entry" value="Edit" />
+        <input class="button1" type="submit" name="edit-entry" value="Edit" />
         </a>
-        <input id="add-submit" class="button1" type="submit" name="delete-entry" value="Delete" />
+        <form method="post" action="/add-new-plants-form" novalidate>
+          <input class="button1" type="submit" name="delete-entry" value="Delete" />
+        </form>
       </div>
       </div>
       <?php } ?>
