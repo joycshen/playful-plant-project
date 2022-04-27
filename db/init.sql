@@ -93,9 +93,9 @@ CREATE TABLE entries (
 );
 
 INSERT INTO
-    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, img_ext)
+    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext)
 VALUES
-    (1, 'Giant Iron Weed', 'Vernonia gigantea', 'GA_15', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, '5-8', 'jpg');
+    (1, 'Giant Iron Weed', 'Vernonia gigantea', 'GA_15', 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, '5-8', 'placeholder', 'jpg');
 
 INSERT INTO
     entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, img_ext)
@@ -103,34 +103,34 @@ VALUES
     (2, "Lady's Mantle", 'Alchemilla mollis', 'FL_26', 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, '3-8', 'jpg');
 
 INSERT INTO
-    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, img_ext)
+    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext)
 VALUES
-    (3, 'American Cranberry', 'Vaccinium macrocarpon', 'GR_03', 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, '3-6', 'jpg');
+    (3, 'American Cranberry', 'Vaccinium macrocarpon', 'GR_03', 0, 1, 1, 1, 0, 0, 1, 0, 1, 0, 0, '3-6', 'placeholder', 'jpg');
 
 INSERT INTO
-    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, img_ext)
+    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext)
 VALUES
-    (4, 'Jostaberry', 'Ribes x nidigrolaria', 'SH_19', 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, '3-8', 'jpg');
+    (4, 'Jostaberry', 'Ribes x nidigrolaria', 'SH_19', 0, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, '3-8', 'placeholder', 'jpg');
 
 INSERT INTO
-    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, img_ext)
+    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext)
 VALUES
-    (5, 'Camperdown Elm', "Ulmus glabra 'Camperdownii'", 'TR_30', 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, '4-6', 'jpg');
+    (5, 'Camperdown Elm', "Ulmus glabra 'Camperdownii'", 'TR_30', 1, 1, 1, 0, 1, 0, 0, 1, 1, 0, 0, '4-6', 'placeholder', 'jpg');
 
 INSERT INTO
-    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, img_ext)
+    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext)
 VALUES
-    (6, "Houseleek 'Mahogany'", "Sempervivum rubellum 'Mahogany'", 'GR_09', 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, '5-8', 'jpg');
+    (6, "Houseleek 'Mahogany'", "Sempervivum rubellum 'Mahogany'", 'GR_09', 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, '5-8', 'placeholder', 'jpg');
 
 INSERT INTO
-    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, img_ext)
+    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext)
 VALUES
-    (7, "Hen & Chicks 'Red Lion'", "Sempervivum 'Red Lion'", 'GR_07', 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, '4-7, variable', 'jpg');
+    (7, "Hen & Chicks 'Red Lion'", "Sempervivum 'Red Lion'", 'GR_07', 0, 1, 0, 1, 0, 0, 1, 1, 1, 1, 0, '4-7, variable', 'placeholder', 'jpg');
 
 INSERT INTO
-    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, img_ext)
+    entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext)
 VALUES
-    (8, 'Silky Willow', 'Salix sericea', 'SH_01', 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, '4-8', 'jpg');
+    (8, 'Silky Willow', 'Salix sericea', 'SH_01', 1, 1, 1, 0, 1, 0, 1, 1, 1, 1, 1, '4-8', 'placeholder', 'jpg');
 
 INSERT INTO
     entries(id, name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, img_ext)

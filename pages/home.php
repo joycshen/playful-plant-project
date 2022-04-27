@@ -334,9 +334,16 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             <h3><?php echo htmlspecialchars($record["entries.name_colloquial"]) ?></h3>
             <button class="home-tag"><?php echo htmlspecialchars($record['tags.tag_name']); ?></button>
         </div>
-          <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
-            <img src="/public/uploads/entries/<?php echo $record['entries.id'] . '.' . $record['entries.img_ext']; ?>" alt="" width="250" height="250"/>
+          <?php if ($record['entries.file_name'] == 'placeholder') { ?>
+            <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
+            <img src="/public/uploads/entries/<?php echo $record['entries.file_name'] . '.' . $record['entries.img_ext']; ?>" alt="no image" width="250" height="250"/>
             </a>
+          <?php } ?>
+          <?php if ($record['entries.file_name'] != 'placeholder') { ?>
+            <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
+            <img src="/public/uploads/entries/<?php echo $record['entries.id'] . '.' . $record['entries.img_ext']; ?>" alt="image" width="250" height="250"/>
+            </a>
+          <?php } ?>
 
       <?php if ($is_admin) { ?>
 
