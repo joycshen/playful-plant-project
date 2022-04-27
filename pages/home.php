@@ -256,8 +256,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
     <div class="column">
       <h2>Filter by...</h2>
-        <div class="forms label_input" role="group" aria-labelledby="growing needs">
-          <div id="TOPO"><h3>Growing Needs and Characteristic: </h3></div>
+        <div class="forms label_input" role="group" aria-labelledby="growing">
+          <div id="growing"><h3>Growing Needs and Characteristic: </h3></div>
 
           <div>
             <div>
@@ -283,41 +283,34 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
         <input id="filter-submit" class="button1" type="submit" name="submit-filter" value="Sort and Filter"/>
 
-        <div class="forms label_input" role="group" aria-labelledby="growing needs">
-        <div id="TOPO"><h2>Choose Tag(s)</h2>
+        <div class="forms label_input" role="group" aria-labelledby="needs">
+        <div id="needs"><h2>Choose Tag(s)</h2>
           <h3>General Classification: </h3></div>
 
         <div class="mobile-column">
         <div class="mobile-row">
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-shrub" value="shrub"/>
-        </a>
+        <a class="hidden" href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">1</a>
+          <input id="tag-shrub" class="button style" type="submit" name="tag-shrub" value="shrub"/>
 
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-grass" value="grass"/>
-        </a>
+        <a class="hidden" href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">2</a>
+          <input id="tag-grass" class="button style" type="submit" name="tag-grass" value="grass"/>
 
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-vine" value="vine"/>
-        </a>
+        <a class="hidden" href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">3</a>
+          <input id="tag-vine" class="button style" type="submit" name="tag-vine" value="vine"/>
 
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-tree" value="tree"/>
-        </a>
+        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">4</a>
+          <input id="tag-tree" class="button style" type="submit" name="tag-tree" value="tree"/>
         </div>
 
         <div class="mobile-row">
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-flower" value="flower"/>
-        </a>
+        <a class="hidden" href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">5</a>
+          <input id="tag-flower" class="button style" type="submit" name="tag-flower" value="flower"/>
 
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-groundcovers" value="groundcovers"/>
-        </a>
+        <a class="hidden" href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">6</a>
+          <input id="tag-groundcovers" class="button style" type="submit" name="tag-groundcovers" value="groundcovers"/>
 
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">
-          <input id="tag-submit" class="button style" type="submit" name="tag-other" value="other"/>
-        </a>
+        <a class="hidden" href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">7</a>
+          <input id="tag-other" class="button style" type="submit" name="tag-other" value="other"/>
         </div>
         </div>
         </div>
@@ -348,12 +341,12 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
       <?php if ($is_admin) { ?>
 
         <div class="align_right">
-        <a class="" href="/plant-update?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>" aria-label="Edit Entry">
-        <input class="button1" type="submit" name="edit-entry" value="Edit" />
-      </a>
+        <form method="post" action="/plant-update?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>" novalidate>
+          <input class="button1" type="submit" name="edit-entry" value="Edit" />
+        </form>
 
         <form method="post" action="/" novalidate>
-          <input class="hidden" name="delete-entry" value="<?php echo htmlspecialchars($record['entries.id']); ?>"/>
+          <input class="hidden" name="delete-entry" value="<?php echo htmlspecialchars($record['entries.id']); ?>" aria-label="delete-entry"/>
 
           <button class="button1" type="submit" aria-label="<?php echo htmlspecialchars($record['entries.id']); ?>">Delete
           </button>

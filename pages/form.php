@@ -445,7 +445,7 @@ if (is_user_logged_in()) {
       <p><strong>Friendly Tips: </strong>You can scroll down to view the complete plant catalog.</p>
       <h2>Add a New Plant!</h2>
       <div class="align-center">
-      <form id="request-form" method="post" action="/add-new-plants-form" enctype="multipart/form-data" novalidate>
+      <form id="add-form" method="post" action="/add-new-plants-form" enctype="multipart/form-data" novalidate>
 
       <div class="add-form">
         <div>
@@ -475,31 +475,25 @@ if (is_user_logged_in()) {
 
           <div>
             <div>
-              <input type="checkbox" id="exploratory_constructive_play_present" name="exploratory_constructive_play" <?php echo $sticky_exploratory_constructive_play; ?>/>
-              <label for="exploratory_constructive_play_present">Supports Exploratory Constructive Play</label>
+              <p><input type="checkbox" id="exploratory_constructive_play_present" aria-label="TOPO" name="exploratory_constructive_play" <?php echo $sticky_exploratory_constructive_play; ?>/>Supports Exploratory Constructive Play</p>
             </div>
             <div>
-              <input type="checkbox" id="exploratory_sensory_play_present" name="exploratory_sensory_play" <?php echo $sticky_exploratory_sensory_play; ?>/>
-              <label for="exploratory_sensory_play_present">Supports Exploratory Sensory Play</label>
+              <p><input type="checkbox" id="exploratory_sensory_play_present" aria-label="TOPO"  name="exploratory_sensory_play" <?php echo $sticky_exploratory_sensory_play; ?>/> Supports Exploratory Sensory Play</p>
             </div>
             <div>
-              <input type="checkbox" id="physical_play_present" name="physical_play" <?php echo $sticky_physical_play; ?>/>
-              <label for="physical_play_present">Supports Physical Play</label>
+              <p><input type="checkbox" id="physical_play_present" aria-label="TOPO" name="physical_play" <?php echo $sticky_physical_play; ?>/> Supports Physical Play</p>
             </div>
             <div>
-              <input type="checkbox" id="imaginative_play_present" name="imaginative_play" <?php echo $sticky_imaginative_play; ?>/>
-              <label for="imaginative_play_present">Supports Imaginative Play</label>
+              <p><input type="checkbox" id="imaginative_play_present" aria-label="TOPO" name="imaginative_play" <?php echo $sticky_imaginative_play; ?>/> Supports Imaginative Play</p>
             </div>
             <div>
-              <input type="checkbox" id="restorative_play_present" name="restorative_play" <?php echo $sticky_restorative_play; ?>/>
-              <label for="restorative_play_present">Supports Restorative Play</label>
+              <p><input type="checkbox" id="restorative_play_present" aria-label="TOPO" name="restorative_play" <?php echo $sticky_restorative_play; ?>/> Supports Restorative Play</p>
             </div>
             <div>
-              <input type="checkbox" id="play_with_rules_present" name="play_with_rules" <?php echo $sticky_play_with_rules; ?>/>
-              <label for="play_with_rules_present">Supports Play with Rules</label>
+              <p><input type="checkbox" id="play_with_rules_present" aria-label="TOPO" name="play_with_rules" <?php echo $sticky_play_with_rules; ?>/> Supports Play with Rules</p>
             </div>
             <div>
-              <input type="checkbox" id="bio_play_present" name="bio_play" <?php echo $sticky_bio_play; ?>/>
+              <input type="checkbox" id="bio_play_present" aria-label="TOPO" name="bio_play" <?php echo $sticky_bio_play; ?>/>
               <label for="bio_play_present">Supports Bio Play</label>
             </div>
           </div>
@@ -510,7 +504,7 @@ if (is_user_logged_in()) {
         <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_FILE_SIZE; ?>" />
         <div class="column">
           <!-- <div id="feedback5" class="feedback">Please upload an image.</div> -->
-          <div class="forms label_input" role="group" aria-labelledby="upload">
+          <div class="forms label_input" role="group" aria-labelledby="upload-file">
           <div class="label_input">
           <h3><label for="upload-file">Upload an Image:</label></h3>
           <input type="file" id="upload-file" name="img-file"/>
@@ -520,9 +514,9 @@ if (is_user_logged_in()) {
 
       <div class="add-form">
       <div class="column">
-          <div id="feedback4" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
-          <div class="forms label_input" role="group" aria-labelledby="play">
-          <div id="play"><h3>Growing Needs and Characteristics: </h3></div>
+          <div id="feedback5" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
+          <div class="forms label_input" role="group" aria-labelledby="growing">
+          <div id="growing"><h3>Growing Needs and Characteristics: </h3></div>
           <div>
             <div>
               <input type="checkbox" id="perennial" name="perennial" <?php echo $sticky_perennial; ?>/>
@@ -555,9 +549,9 @@ if (is_user_logged_in()) {
       <h3>Choose Existing Tag(s)</h3>
       <!-- </div> -->
       <div class="column">
-          <div id="feedback4" class="feedback <?php echo $tag_feedback_class; ?>">Please select at least one tag.</div>
-          <div class="forms label_input" role="group" aria-labelledby="play">
-          <div id="play"><h3>General Classification: </h3></div>
+          <div id="feedback6" class="feedback <?php echo $tag_feedback_class; ?>">Please select at least one tag.</div>
+          <div class="forms label_input" role="group" aria-labelledby="general">
+          <div id="general"><h3>General Classification: </h3></div>
           <div>
             <div>
               <input type="checkbox" id="shrub" name="shrub" <?php echo $sticky_shrub; ?>/>
@@ -634,16 +628,19 @@ if (is_user_logged_in()) {
             <li>Supports Bio Play </li>
           <?php } ?>
         </ul>
+
         <div class="align_right">
-        <a class="" href="/plant-update?<?php echo http_build_query(array('id' => $record['id'])); ?>" aria-label="Edit Entry">
-        <input class="button1" type="submit" name="edit-entry" value="Edit" />
-        </a>
+        <form method="post" action="/plant-update?<?php echo http_build_query(array('id' => $record['id'])); ?>" novalidate>
+          <input class="button1" type="submit" name="edit-entry" value="Edit"/>
+        </form>
 
         <form method="post" action="/add-new-plants-form" novalidate>
-          <input class="hidden" name="delete-entry" value="<?php echo htmlspecialchars($record['id']); ?>"/>
+          <input class="hidden" name="delete-entry" value="<?php echo htmlspecialchars($record['id']); ?>" aria-label="delete-entry"/>
 
           <button class="button1" type="submit" aria-label="<?php echo htmlspecialchars($record['id']); ?>">Delete
           </button>
+
+          <!-- <label for="delete-entry" class="hidden" >delete</label> -->
         </form>
 
       </div>
@@ -665,32 +662,32 @@ if (is_user_logged_in()) {
         </div>
 
       <h2>Filter by...</h2>
-        <div class="forms label_input" role="group" aria-labelledby="TOPO">
-          <div id="TOPO"><h3>TOPO-Play Type Categorization: </h3></div>
+        <div class="forms label_input" role="group" aria-labelledby="topo">
+          <div id="topo"><h3>TOPO-Play Type Categorization: </h3></div>
 
           <div>
             <div>
-              <input type="checkbox" id="exploratory_constructive_play_present" name="exploratory_constructive_play" <?php echo $sticky_exploratory_constructive_play_1; ?>/>
+              <input type="checkbox" aria-label="topo" name="exploratory_constructive_play" <?php echo $sticky_exploratory_constructive_play_1; ?>/>
               <label for="exploratory_constructive_play_present">Supports Exploratory Constructive Play</label>
             </div>
             <div>
-              <input type="checkbox" id="exploratory_sensory_play_present" name="exploratory_sensory_play" <?php echo $sticky_exploratory_sensory_play_1; ?>/>
+              <input type="checkbox" aria-label="topo" name="exploratory_sensory_play" <?php echo $sticky_exploratory_sensory_play_1; ?>/>
               <label for="exploratory_sensory_play_present">Supports Exploratory Sensory Play</label>
             </div>
             <div>
-              <input type="checkbox" id="physical_play_present" name="physical_play" <?php echo $sticky_physical_play_1; ?>/>
+              <input type="checkbox" aria-label="topo" name="physical_play" <?php echo $sticky_physical_play_1; ?>/>
               <label for="physical_play_present">Supports Physical Play</label>
             </div>
             <div>
-              <input type="checkbox" id="imaginative_play_present" name="imaginative_play" <?php echo $sticky_imaginative_play_1; ?>/>
+              <input type="checkbox" aria-label="topo" name="imaginative_play" <?php echo $sticky_imaginative_play_1; ?>/>
               <label for="imaginative_play_present">Supports Imaginative Play</label>
             </div>
             <div>
-              <input type="checkbox" id="restorative_play_present" name="restorative_play" <?php echo $sticky_restorative_play_1; ?>/>
+              <input type="checkbox" aria-label="topo" name="restorative_play" <?php echo $sticky_restorative_play_1; ?>/>
               <label for="restorative_play_present">Supports Restorative Play</label>
             </div>
             <div>
-              <input type="checkbox" id="play_with_rules_present" name="play_with_rules" <?php echo $sticky_play_with_rules_1; ?>/>
+              <input type="checkbox" aria-label="topo" name="play_with_rules" <?php echo $sticky_play_with_rules_1; ?>/>
               <label for="play_with_rules_present">Supports Play with Rules</label>
             </div>
           </div>

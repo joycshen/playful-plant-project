@@ -462,7 +462,7 @@ if ($record) {
 
       <div class="add-form">
       <div class="column">
-          <div id="feedback4" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
+          <div id="feedback5" class="feedback <?php echo $growing_needs_feedback_class; ?>">Please select at least one Growing Need and Characteristic.</div>
           <div class="forms label_input" role="group" aria-labelledby="play">
           <div id="play"><h3>Growing Needs and Characteristics: </h3></div>
           <div>
@@ -497,9 +497,9 @@ if ($record) {
       <h3>Choose Existing Tag(s)</h3>
       <!-- </div> -->
       <div class="column">
-          <div id="feedback4" class="feedback <?php echo $tag_feedback_class; ?>">Please select at least one tag.</div>
-          <div class="forms label_input" role="group" aria-labelledby="play">
-          <div id="play"><h3>General Classification: </h3></div>
+          <div id="feedback6" class="feedback <?php echo $tag_feedback_class; ?>">Please select at least one tag.</div>
+          <div class="forms label_input" role="group" aria-labelledby="general">
+          <div id="general"><h3>General Classification: </h3></div>
           <div>
             <div>
               <input type="checkbox" id="shrub" name="shrub" <?php echo $sticky_shrub; ?>/>
