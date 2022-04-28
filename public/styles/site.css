@@ -468,10 +468,26 @@ img {
         font-size: 12px;
     }
 
+    .column label {
+        font-size: 12px;
+    }
+
+    .column {
+        margin-left: 30px;
+    }
+
     .mobile-row {
         display: flex;
         flex-direction: row;
-        flex-wrap: nowrap;
+    }
+
+    .button1 {
+        margin-left: 25px;
+        width: 80%;
+    }
+
+    .row form {
+        width: 80%;
     }
 
     .mobile-column {

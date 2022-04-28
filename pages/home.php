@@ -235,13 +235,13 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
   <div class="row">
   <aside>
-    <div class="form">
     <div class="column">
     <div id="feedback" class="feedback <?php echo $feedback_class; ?>">Please choose at least one sorting/filter.</div>
+    <div class="row">
+    <form id="request-form" method="get" action="/" novalidate>
     <div class="mobile-row">
     <div class="column">
       <h2>Sort by...</h2>
-      <form id="request-form" method="get" action="/" novalidate>
 
         <div class="forms label_input" role="group" aria-labelledby="sorting">
         <div>
@@ -249,7 +249,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
               <label for="sorting">Sort by Colloquial Name Alphabetically (A-Z)</label>
             </div>
         </div>
-    </form>
     </div>
 
     <div class="column">
@@ -277,9 +276,10 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           </div>
         </div>
       </div>
-      </div>
+    </div>
 
         <input id="filter-submit" class="button1" type="submit" name="submit-filter" value="Sort and Filter"/>
+
 
         <div class="forms label_input" role="group" aria-labelledby="needs">
         <div id="needs"><h2>Choose Tag(s)</h2>
@@ -312,6 +312,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         </div>
         </div>
         </div>
+    </form>
     </div>
     </div>
   </aside>
