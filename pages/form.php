@@ -593,7 +593,6 @@ if (is_user_logged_in()) {
       </form>
       </div>
     </article>
-    </div>
     <?php } ?>
 
     <div class="sections">
@@ -695,6 +694,7 @@ if (is_user_logged_in()) {
         <input id="filter-submit" class="button1" type="submit" name="submit-filter" value="Sort and Filter"/>
       </form>
     </aside>
+    </div>
     </div>
     <?php } else { ?>
       <article>

@@ -215,7 +215,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
   <main>
 
-  <article>
   <?php if (!is_user_logged_in()) { ?>
     <h3>Please login to view plant catalog.</h3>
     <?php echo_login_form('/', $session_messages); ?>
@@ -234,8 +233,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
 
   <?php } ?>
 
-  </article>
-
   <div class="row">
   <aside>
     <div class="form">
@@ -252,6 +249,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
               <label for="sorting">Sort by Colloquial Name Alphabetically (A-Z)</label>
             </div>
         </div>
+    </form>
     </div>
 
     <div class="column">
@@ -314,7 +312,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         </div>
         </div>
         </div>
-      </form>
     </div>
     </div>
   </aside>
@@ -337,10 +334,10 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           <?php if ($record['entries.file_name'] == 'placeholder') { ?>
             <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
             <img src="/public/uploads/entries/<?php echo $record['entries.file_name'] . '.' . $record['entries.img_ext']; ?>" alt="no image" width="250" height="250"/>
+            </a>
             <div class="hidden">
             Source: <cite><a href="https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/">Image Placeholder</a></cite>
            </div>
-            </a>
           <?php } ?>
           <?php if ($record['entries.file_name'] != 'placeholder') { ?>
             <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
@@ -370,9 +367,8 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
       <?php } ?>
       </div>
       </div>
+      </div>
     </article>
-    </div>
-    </div>
     </div>
     </div>
     <?php } ?>

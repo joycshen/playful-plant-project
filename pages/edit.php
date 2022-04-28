@@ -545,7 +545,6 @@ if ($record) {
       </div>
 
     </article>
-    </div>
     <?php } ?>
   </main>
 </body>
