@@ -284,8 +284,7 @@ form p {
 .plants {
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    /* margin-bottom: 20px; */
+    justify-content: space-evenly;
 }
 
 .plants .row {
@@ -411,6 +410,10 @@ img {
 
 .detail button {
     margin-left: 50px;
+}
+
+.plant img {
+    width: 90%;
 }
 
 

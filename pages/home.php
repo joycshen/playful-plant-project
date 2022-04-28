@@ -298,7 +298,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
         <a class="hidden" href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">3</a>
           <input id="tag-vine" class="button style" type="submit" name="tag-vine" value="vine"/>
 
-        <a href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">4</a>
+        <a class="hidden" href="/?<?php echo http_build_query(array('tag' => $record['tags.id'])); ?>">4</a>
           <input id="tag-tree" class="button style" type="submit" name="tag-tree" value="tree"/>
         </div>
 
@@ -337,6 +337,9 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
           <?php if ($record['entries.file_name'] == 'placeholder') { ?>
             <a href="/plant-details?<?php echo http_build_query(array('id' => $record['entries.id'])); ?>">
             <img src="/public/uploads/entries/<?php echo $record['entries.file_name'] . '.' . $record['entries.img_ext']; ?>" alt="no image" width="250" height="250"/>
+            <div class="hidden">
+            Source: <cite><a href="https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/">Image Placeholder</a></cite>
+           </div>
             </a>
           <?php } ?>
           <?php if ($record['entries.file_name'] != 'placeholder') { ?>

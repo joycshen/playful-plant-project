@@ -72,7 +72,15 @@ if ($plant_id) {
             <button class="button style"><?php echo $plant['tags.tag_name']; ?></button>
         </div>
         </div>
-            <img src="/public/uploads/entries/<?php echo $plant['entries.id'] . '.' . $plant['entries.img_ext'];  ?>" alt="" width="600" height="350"/>
+          <?php if ($plant['entries.file_name'] == 'placeholder') { ?>
+            <img src="/public/uploads/entries/<?php echo $plant['entries.file_name'] . '.' . $plant['entries.img_ext']; ?>" alt="no image" width="450" height="300"/>
+            <div class="hidden">
+            Source: <cite><a href="https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/">Image-Placeholder</a></cite>
+           </div>
+          <?php } ?>
+          <?php if ($plant['entries.file_name'] != 'placeholder') { ?>
+            <img src="/public/uploads/entries/<?php echo $plant['entries.id'] . '.' . $plant['entries.img_ext']; ?>" alt="image"/>
+          <?php } ?>
             <div class="catalogs">
             <div class="catalog">
               <h3>Growing Needs and Characteristics: </h3>
