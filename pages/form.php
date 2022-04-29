@@ -3,7 +3,7 @@ $title = "Playful Plants Projects";
 $nav_plants_data = "active_page";
 $nav_new_entry_form = "active_page";
 
-// ----------- add-entry form ----------------
+// add-entry form
 if (is_user_logged_in() && $is_admin) {
 
   define("MAX_FILE_SIZE", 1000000);
@@ -503,7 +503,6 @@ if (is_user_logged_in()) {
 
         <input type="hidden" name="MAX_FILE_SIZE" value="<?php echo MAX_FILE_SIZE; ?>" />
         <div class="column">
-          <!-- <div id="feedback5" class="feedback">Please upload an image.</div> -->
           <div class="forms label_input" role="group" aria-labelledby="upload-file">
           <div class="label_input">
           <h3><label for="upload-file">Upload an Image:</label></h3>
@@ -544,10 +543,8 @@ if (is_user_logged_in()) {
     </div>
 
       <div class="add-form">
-      <!-- <div class="tags"> -->
       <div>
       <h3>Choose Existing Tag(s)</h3>
-      <!-- </div> -->
       <div class="column">
           <div id="feedback6" class="feedback <?php echo $tag_feedback_class; ?>">Please select at least one tag.</div>
           <div class="forms label_input" role="group" aria-labelledby="general">
@@ -639,7 +636,6 @@ if (is_user_logged_in()) {
           <button class="button1" type="submit" aria-label="<?php echo htmlspecialchars($record['id']); ?>">Delete
           </button>
 
-          <!-- <label for="delete-entry" class="hidden" >delete</label> -->
         </form>
 
       </div>

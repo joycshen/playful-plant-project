@@ -297,7 +297,6 @@ form p {
 .plant, .detail {
     display: flex;
     flex-direction: row;
-    /* align-items: center; */
     justify-content: center;
 }
 
@@ -313,7 +312,6 @@ form p {
 }
 
 img {
-    /* width: 80%; */
     padding: 10px;
     margin: 15px;
 }
@@ -378,7 +376,6 @@ img {
     display: inline-block;
     font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-size: 16px;
-    /* margin: 2px 2px; */
 }
 
 .style {
@@ -433,8 +430,6 @@ img {
         display: flex;
         flex-direction: column;
         align-items: center;
-        /* margin-bottom: 20px;
-        margin-left: 20px; */
     }
 
     .plant {

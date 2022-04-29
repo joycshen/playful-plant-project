@@ -87,7 +87,6 @@ if (isset($_POST['delete-entry'])) {
 }
 
 //query pieces
-// $sql_select_part = 'SELECT * FROM entries ';
 $sql_select_part = "SELECT
 entries.name_colloquial AS 'entries.name_colloquial',
 entries.name_genus_species AS 'entries.name_genus_species',
@@ -116,7 +115,6 @@ LEFT OUTER JOIN tags ON (entry_tags.tag_id = tags.id) ";
 $sql_where_part = '';
 $sql_sort_part = ' ORDER BY entries.name_colloquial ASC;';
 $sql_filter_array = array();
-// $sql_tag_array = array();
 
 //Filters
 $filter_perennial = (bool)($_GET['perennial'] ?? NULL);
@@ -325,7 +323,6 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
     <div class="plants">
       <?php
       foreach ($records as $record) { ?>
-      <!-- <div class="plant"> -->
       <div class="catalog">
         <div>
         <div class="row">

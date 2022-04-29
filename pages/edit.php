@@ -235,13 +235,6 @@ if ($record) {
       $other = 7;
       $tag_id = 7;
     }
-    // $shrub = (!empty($_POST['shrub']) ? 1 : '');
-    // $grass = (!empty($_POST['grass']) ? 2 : '');
-    // $vine = (!empty($_POST['vine']) ? 3 : '');
-    // $tree = (!empty($_POST['tree']) ? 4 : '');
-    // $flower = (!empty($_POST['flower']) ? 5 : '');
-    // $groundcovers = (!empty($_POST['groundcovers']) ? 6 : '');
-    // $other = (!empty($_POST['other']) ? 7 : '');
 
     $form_valid = True;
 
@@ -492,10 +485,8 @@ if ($record) {
     </div>
 
     <div class="add-form">
-      <!-- <div class="tags"> -->
       <div>
       <h3>Choose Existing Tag(s)</h3>
-      <!-- </div> -->
       <div class="column">
           <div id="feedback6" class="feedback <?php echo $tag_feedback_class; ?>">Please select at least one tag.</div>
           <div class="forms label_input" role="group" aria-labelledby="general">

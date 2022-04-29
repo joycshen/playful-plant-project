@@ -36,7 +36,6 @@ if ($plant_id) {
     array(':id' => $plant_id)
   )->fetchAll();
 
-  // if (count($records) > 0) {
   $plant = $records[0];
 }
 
