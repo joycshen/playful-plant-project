@@ -410,8 +410,40 @@ FOREIGN KEY(user_id) REFERENCES users(id)
 3. Insert Record
 
     ```
-    INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play);
-    INSERT INTO entries (shrub, grass, vine, tree, flower, groundcovers, other) VALUES (:shrub, :grass, :vine, :tree, :flower, :groundcovers, :other);
+    INSERT INTO entries (name_colloquial, name_genus_species, plant_id, exploratory_constructive_play, exploratory_sensory_play, physical_play, imaginative_play, restorative_play, play_with_rules, bio_play, perennial, full_sun, partial_shade, full_shade, hardiness_zone_range, file_name, img_ext) VALUES (:name_colloquial, :name_genus_species, :plant_id, :exploratory_constructive_play, :exploratory_sensory_play, :physical_play, :imaginative_play, :restorative_play, :play_with_rules, :bio_play, :perennial, :full_sun, :partial_shade, :full_shade, :hardiness_zone_range, :file_name, :img_ext);
+    ```
+
+    ```
+    INSERT INTO entry_tags (entry_id, tag_id) VALUES (:entry_id, :tag_id);
+    ```
+
+4. Edit Record
+
+    ```
+    UPDATE entries SET
+      name_colloquial = :name_colloquial,
+      name_genus_species = :name_genus_species,
+      plant_id = :plant_id,
+      exploratory_constructive_play = :exploratory_constructive_play,
+      exploratory_sensory_play = :exploratory_sensory_play,
+      physical_play = :physical_play,
+      imaginative_play = :imaginative_play,
+      restorative_play = :restorative_play,
+      play_with_rules = :play_with_rules,
+      bio_play = :bio_play,
+      perennial = :perennial,
+      full_sun = :full_sun,
+      partial_shade = :partial_shade,
+      full_shade = :full_shade,
+      hardiness_zone_range = :hardiness_zone_range
+    WHERE (id = $id);
+    ```
+
+5. Delete Record
+
+    ```
+    DELETE FROM entries WHERE id = :id;
+    DELETE FROM entry_tags WHERE id = :id;
     ```
 
 ### Code Planning (Milestone 1, Milestone 2, Milestone 3, Final Submission)
@@ -432,7 +464,7 @@ FOREIGN KEY(user_id) REFERENCES users(id)
 10.   allow access to /add-new-plants-form (add form and plant catalog for admin)
 ```
 
-*** "Plant Information" page_ ***
+*** "Plant Information" page ***
 
 The following is the view all entry page for consumers
 ```
@@ -575,7 +607,11 @@ else {
 > Tell us what issues you discovered during your accessibility audit.
 > What do you do to improve the accessibility of your site?
 
-TODO
+I didn't put a generic image placeholder for the plants that do not have an image, and I didn't put alternative text either. During the WAVE accessibility audit, it told me I didn't have alt text for those plants without an image, which could be an accessibility issue, as my audience might not be able to understand what information is shown there. Therefore, I improved the accessibility by placing image placeholders at places where no images were provided, and added alt text for each.
+
+Another issue was that I don't have labels for some forms (e.g. Edit form). This could be an accessibility issue as some audience may have difficulty understanding what the form is for if there is no label. As a result, I improved the accessibility by adding aria-label or label for all the forms to make my site more informative.
+
+Overall, my issues were mainly about how my website was not explaining things like images and forms well and straightforwardly. It is always a good idea to label things and provide text explanation as an alternative.
 
 
 ## Reflection (Final Submission)
@@ -583,24 +619,44 @@ TODO
 ### Audience (Final Submission)
 > Tell us how your final site meets the goals of your audiences. Be specific here. Tell us how you tailored your design, content, etc. to make your website usable for your personas.
 
-TODO
+Since Abi has low self-efficacy and is risk averse about using unfamiliar technology, I made sure to incorporate friendly reminders and feedback to navigate her through the website. For instance, I included as note on the "add new plant form" page telling her the page is for admin only, and also provided instruction for next steps. Addressing her low computer self-efficacy, I phrased the titles and feedbacks as friendly and clear as I can, ensuring her she doesn't need to blame herself and there are instructions guiding her what to do.
+
+As Abi has comprehensive information processing style and leans toward process-oriented learning, I used full sentences to explain what she could do on the website. For example, I included a line of friendly reminder on the top of the catalog, telling Abi she could click on it to view plant details. As mentioned before, I also included a paragraph explaining to her what each page is about.
+
+For Pat, the administrator, I made sure to provide the right amount of information to present to her. Since she lays in the middle of the spectrum for most aspects, I don't want to provide too much detailed information that may overwhelm her. Given she is not too risk averse and has medium computer self-efficacy, I included instructions and feedback that sound similar to those for Abi, which are short but clear and friendly.To address her learning style of trying out new features by doing and reflecting on each feedback her gets, I included the right amount of feedback that could guide her throughout filling out the forms.
+
+Moreover, I made the buttons "edit" and "delete" intuitive to click on, given Pat's motivation and attitude toward risk. With the direct and exact wording, Pat will be able to know it is the right thing to act on the buttons to achieve her goals.
 
 
 ### Additional Design Justifications (Final Submission)
 > If you feel like you haven’t fully explained your design choices in the final submission, or you want to explain some functions in your site (e.g., if you feel like you make a special design choice which might not meet the final requirement), you can use the additional design justifications to justify your design choices. Remember, this is place for you to justify your design choices which you haven’t covered in the design journey. You don’t need to fill out this section if you think all design choices have been well explained in the design journey.
 
-TODO
+This is not really a design justification, but a reminder of how to view my website design as I intended.
+
+For the desktop version, I designed to place three plants in a row for the wide screens (width>1300). It would then adjust to two plants in a row for width 900-1200, and one plant for width lower than 900. The website is reponsive so it handles how many plants to displace automatically, as I wanted to leave margins and white spaces between columns.
+
+Another **important note** is that the filter for "Growing needs and characteristics" is working. My M3 feedback said it is not working, and I believe it is because most of my plant has "perennial" and/or "full sun", so it is hard to tell how the catalog has changed after filtering. Try to click on multiple filters!
+
+Finally, the users can filter by normal info (growing needs) and filter by tags, but the function works only when the user choose normal filters and then click on a tag, but not the other way around. (Since filtering by normal information and tag is not really a need of the Abi and Pat, I didn't implement this function)
 
 
 ### Self-Reflection (Final Submission)
 > Reflect on what you learned during this assignment. How have you improved from Project 2? What would you do differently next time?
 
-TODO
+I learnt a lot during this assignment, including cognitive styles, sql query, user access control, cookies, etc. In this assignment, I really had a deeper undertstanding of how back-end database work, how queries work, and how a website actually function to present what the users see at the front-end. I am able to create a more interactive and multi-media catalog website with more comprehensive information using the knowledge learnt during Project 3, which is something I have improved from Project 2.
+
+In Project 3, I also paid more attention to how to implement the website that cater to the users' cognitive styles. Keeping the cognitive styles of my persona in mind, I was able to create a website that better serve the users and satisfy their needs.
+
+The logic of entire website also makes more sense as I implemented user access control, which improved user experience.
+
+Overall, I have improved not only my technical skill of how to construct a catalog website, but also learnt to become a better UX designer in Project 3, compared to Project 2.
 
 
 > Take some time here to reflect on how much you've learned since you started this class. It's often easy to ignore our own progress. Take a moment and think about your accomplishments in this class. Hopefully you'll recognize that you've accomplished a lot and that you should be very proud of those accomplishments!
 
-TODO
+Looking back at this semester, I am definitely amazed by how much I have accomplished and learnt. I got a deep and comprehensive understanding of how the backend of websites work and get to implement them myself. I not only learnt useful ways to implement website, such as includes and http params, but also grasps the core of improving user experience. Through the process of creating the 3 projects, I have to always keep my users in mind from planning the design of the website to how they will actually interact with the website. There are lots of nuances to address, but I got to tackle them all step by step.
+
+In terms of the technical side of web design, I got exposed to hwo to query database and implement sql queries to obtain the data I want.Putting everything together, I was able to create a multi-media catalog website that encompassed useful information for a great project.
 
 
 ### Grading: Step-by-Step Instructions (Final Submission)
@@ -609,32 +665,54 @@ TODO
 > For example, you must login before you can delete.
 > For each set of instructions, assume the grader is starting from /
 
+_Log in and log out_
+
+1. Log in: Fill out the username and password, click on "Sign in" button
+2. Log out: click on "Log out" on the upper right corner of the site
+
 _View all entries:_
 
-1. the site will display all entries with photos and names for consumers when entering (Plants information page)
-2. the admin will be able to view all desirable entries when clicking on the "Add New Plants" page and scrolling down
+1. Both Abi (consumers) and the Pat (admins) have to log in to view all entries. The site will display all entries with photos and names for both the consumers and admins when entering (Plants information page)
+2. Pat (the admin) will be able to view all desirable entries by clicking on the "Add New Plants" page and scrolling down (there is a tip on the top of the page), while Abi (the consumer) don't have access to the "Add New Plants" page.
 
 _View all entries for a tag:_
 
-1. TODO
-2.
+1. Both Abi and Pat can view all entries for a tag by clicking on one of the green buttons with text informing what the tag is on the left side.
+2. Abi and Pat can click on another tag anytime when they want to view entries for another tag. The site does not support viewing entries for multiple tags at the same time though.
+3. To view all entries again, click on "Plant information" in the nav bar.
 
 _View a single entry's details:_
 
-1. TODO
-2.
+1. Both Abi and Pat can click on an image in the main catalog to view a single entry's detail. (There is also a tip on the top of the page)
+2. To go back to the main catalog from the details page, click on "Back" on the top of the detail page or click on "Plant information" in the nav bar.
 
 _How to insert and upload a new entry:_
 
-1. TODO
-2.
+1. Only the admin Pat will be able to insert and upload a new entry after logging in.
+2. Click on the "Add New Plant" page in the nav bar.
+3. Fill out the "Add a new plant" form accordingly, and click "Add Entry" when finished.
+4. Feedbacks will show up if a category is not filled out. The form will not submit untill all fields are filled.
+5. A confirmation message will pop up after successfully adding an entry, including hyperlinks to the "Plants Information" page or "Add new plants" page to view the updated catalog.
 
 _How to delete an entry:_
 
-1. TODO
-2.
+1. Only Pat, the admin, will be able to see delete buttons after logging in on both the "Plants Information" and "Add new plants pages. The button is located under each plant image on the "Plants Information" page, and the right bottom corner of each entry on the "Add new plants page.
+2. Delete an entry by simply clicking on the "delete" button.
+3. A confirmation message will pop up after successfully deleting an entry, including hyperlinks to the "Plants Information" page or "Add new plants" page to view the updated catalog.
 
 _How to edit and existing entry and its tags:_
 
-1. TODO
-2.
+1. Only Pat, the admin, will be able to see edit buttons after logging in on both the "Plants Information" and "Add new plants pages. The button is located under each plant image on the "Plants Information" page, and the right bottom corner of each entry on the "Add new plants page.
+2. Click on the "Edit" button and Pat will be directed to the edit page. (/plant-update?id=x)
+3. Edit the entry and its tags by click or click checkboxes, or change the text in the fields. Click "Save changes" to save.
+4. A confirmation message will pop up after successfully editing an entry, including hyperlinks to the "Plants Information" page or "Add new plants" page to view the updated catalog.
+
+_How to filter and sort_
+1. Both Pat and Abi can filter and sort the entries after logging in.
+2. Check boxes for the desired filtering and/or sorting and click "Sort and filter" button.
+3. To view all entries again, click on "Plant information" in the nav bar.
+
+Note: users can click on multiple filters.
+
+**Important!**
+The filter for "Growing needs and characteristics" is working. My M3 feedback said it is not working, and I believe it is because most of my plant are "perennial" and/or "full sun", so it is hard to tell whether the catalog is after filtering. Try to click on multiple filters!
