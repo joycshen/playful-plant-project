@@ -637,7 +637,7 @@ For the desktop version, I designed to place three plants in a row for the wide 
 
 Another **important note** is that the filter for "Growing needs and characteristics" is working. My M3 feedback said it is not working, and I believe it is because most of my plant has "perennial" and/or "full sun", so it is hard to tell how the catalog has changed after filtering. Try to click on multiple filters!
 
-Finally, the users can filter by normal info (growing needs) and filter by tags, but the function works only when the user choose normal filters and then click on a tag, but not the other way around. (Since filtering by normal information and tag is not really a need of the Abi and Pat, I didn't implement this function)
+Finally, the users can filter by normal info (growing needs) or filter by tags, but cannot filter by both at the same time. Since filtering by both normal information and tag is not a need of the Abi and Pat, I didn't implement this function.
 
 
 ### Self-Reflection (Final Submission)

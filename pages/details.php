@@ -75,6 +75,7 @@ if ($plant_id) {
           <?php if ($plant['entries.file_name'] == 'placeholder') { ?>
             <img src="/public/uploads/entries/<?php echo $plant['entries.file_name'] . '.' . $plant['entries.img_ext']; ?>" alt="no image" width="450" height="300"/>
             <div class="hidden">
+            <!-- Source: https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/ -->
             Source: <cite><a href="https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/">Image-Placeholder</a></cite>
            </div>
           <?php } ?>

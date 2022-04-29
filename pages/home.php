@@ -337,6 +337,7 @@ $records = exec_sql_query($db, $sql_query)->fetchAll();
             <img src="/public/uploads/entries/<?php echo $record['entries.file_name'] . '.' . $record['entries.img_ext']; ?>" alt="no image" width="250" height="250"/>
             </a>
             <div class="hidden">
+            <!-- Source: https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/ -->
             Source: <cite><a href="https://propertywiselaunceston.com.au/wp-content/themes/property-wise/images/">Image Placeholder</a></cite>
            </div>
           <?php } ?>
